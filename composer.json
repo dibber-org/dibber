@@ -11,7 +11,7 @@
     } ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.3.5", // 5.4 in fact but won't satisfy some dependencies
+        "php": ">=5.3.5",
         "zendframework/zendframework": "*",
         "doctrine/common": "2.2.2",
         "doctrine/mongodb": "1.0.0-BETA1",
