@@ -15,7 +15,7 @@ return [
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => 'Dibber\Controller\Index',
+                        'controller' => 'Dibber\Controller\Mongo',
                         'action'     => 'index',
                     ],
                 ],
@@ -69,7 +69,8 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'Dibber\Controller\Index' => 'Dibber\Controller\IndexController'
+            'Dibber\Controller\Index' => 'Dibber\Controller\IndexController',
+            'Dibber\Controller\Mongo' => 'Dibber\Controller\MongoController'
         ],
     ],
     'view_manager' => [
