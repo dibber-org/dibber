@@ -1,15 +1,17 @@
 <?php
-return array(
-    'modules' => array(
-        'Dibber'
-    ),
-    'module_listener_options' => array(
-        'config_glob_paths'    => array(
+return [
+    'modules' => [
+        'Dibber',
+        'DoctrineModule',
+        'DoctrineMongoODMModule'
+    ],
+    'module_listener_options' => [
+        'config_glob_paths'    => [
             'config/autoload/{,*.}{global,local}.php',
-        ),
-        'module_paths' => array(
+        ],
+        'module_paths' => [
             './module',
             './vendor',
-        ),
-    ),
-);
+        ],
+    ],
+];

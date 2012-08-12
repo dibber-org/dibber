@@ -11,6 +11,6 @@
  * credentials from accidentally being comitted into version control.
  */
 
-return array(
+return [
     // ...
-);
+];
