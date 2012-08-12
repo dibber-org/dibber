@@ -1,0 +1,24 @@
+{
+    "name": "dibber/dibber",
+    "homepage": "https://github.com/jhuet/dibber",
+    "keywords": [],
+    "description": "Soon.",
+    "authors": [ {
+        "name": "Jérémy Huet",
+        "email": "jeremy.huet+dibber@gmail.com",
+        "homepage": "http://glpl.us/jhuet",
+        "role": "Developer"
+    } ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.5", // 5.4 in fact but won't satisfy some dependencies
+        "zendframework/zendframework": "*",
+        "doctrine/common": "2.2.2",
+        "doctrine/mongodb": "1.0.0-BETA1",
+        "doctrine/doctrine-mongo-odm-module": "dev-master",
+        "gedmo/doctrine-extensions": "2.3.*"
+    },
+    "require-dev": {
+        "mageekguy/atoum": "dev-master"
+    }
+}
