@@ -1,18 +1,18 @@
 dibber
-=====
+====
 
 English
-====
+=====
 
 dibber is an attempt at creating a web application that would be usable by small scale farmers, gardeners... to help them establish their plot. They will then manage their activities while choosing to share their experiences publicly or exclusively with their dibber _"friends"_ making the application a place of perpetual exchanges and mutual-help.
 
-dibber would keep track of things such as plantations, haversts, seeds, treatments, fields emplacements... and many other things in the future. We take data protection to heart. All the information that will be stored will stay property of their creators and we will only allow ourselves to use it in order to maintain good functioning of the application.
+dibber would keep track of things such as plantings, harvests, seeds, treatments, fields emplacements... and many other things in the future. We take data protection to heart. All the information that will be stored will stay the property of their creators and we will only allow ourselves to use it in order to maintain good functioning of the application.
 
 dibber is an open source project and thus welcomes any help from people willing to give a hand. If you feel like so please contact the team at contact@dibber.org
 
 
 Français
-====
+=====
 
 dibber est une tentative pour créer une application web qui serait utilisable par des paysans, jardiniers... afin de les aider à établir leur lieu, leurs parcelles. Il pourront ensuite y gérer leurs activités et choisir de partager leurs expériences publiquement ou auprès de leurs _"amis"_ sur dibber faisant de l'application un lieu d'échanges et d'entre-aide permanent.
 
