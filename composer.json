@@ -1,14 +1,22 @@
 {
-    "name": "dibber/dibber",
-    "homepage": "https://github.com/jhuet/dibber",
+    "name": "dibber-org/dibber",
+    "homepage": "https://github.com/dibber-org/dibber",
     "keywords": [],
-    "description": "Soon.",
+    "description": "dibber is an attempt at creating a web application that would be usable by small scale farmers, gardeners...",
     "authors": [ {
         "name": "Jérémy Huet",
         "email": "jeremy.huet+dibber@gmail.com",
         "homepage": "http://glpl.us/jhuet",
         "role": "Developer"
     } ],
+    "support": {
+        "email": "contact@dibber.org",
+        "forum": "https://groups.google.com/forum/#!forum/dibber",
+        "irc": "irc://irc.freenode.org/dibber",
+        "issues": "https://github.com/dibber-org/dibber/issues",
+        "source": "https://github.com/dibber-org/dibber",
+        "wiki": "https://github.com/dibber-org/dibber/wiki"
+    },
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.5",
