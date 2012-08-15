@@ -2,6 +2,7 @@
 /data/cache/
 composer.lock
 nbproject
+*~
 ._*
 .~lock.*
 .buildpath
