@@ -2,7 +2,9 @@
 return function ($class) {
     static $map;
     if (!$map) {
-        $map = include __DIR__ . '/autoload_classmap.php';
+        $map = array_merge(
+            include __DIR__ . '/module/Dibber/autoload_classmap.php'
+        );
     }
 
     if (!isset($map[$class])) {

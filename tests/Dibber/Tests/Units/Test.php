@@ -2,7 +2,7 @@
 namespace Dibber\Tests\Units;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
-require __DIR__ . '/../../../../module/Dibber/autoload_register.php';
+require __DIR__ . '/../../../../autoload_register.php';
 
 use mageekguy\atoum;
 
