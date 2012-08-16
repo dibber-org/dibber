@@ -17,7 +17,7 @@ class MongoController extends AbstractActionController
 {
     public function indexAction()
     {
-        /** @var $dm \Doctrine\ODM\MongoDB\DocumentManager */
+        /* @var $dm \Doctrine\ODM\MongoDB\DocumentManager */
         $dm = $this->getServiceLocator()->get('doctrine.documentmanager.odm_default');
 
         $jhuet = new Document\User;
@@ -31,9 +31,9 @@ class MongoController extends AbstractActionController
 
         $qsnr = new Document\User;
         $qsnr->setName('Shawna Green')
-               ->setLogin('qsnr')
-               ->setPassword('42toto')
-               ->setEmail('qsnr+dibber@gmail.com');
+             ->setLogin('qsnr')
+             ->setPassword('42toto')
+             ->setEmail('qsnr+dibber@gmail.com');
         $dm->persist($qsnr);
 
         $potaje = new Document\Place;
@@ -87,7 +87,7 @@ class MongoController extends AbstractActionController
         die;
 
 
-        /** @var $place Document\Place */
+        /* @var $place Document\Place */
         $place = $dm->getRepository('Dibber\Document\Place')->findOneBy(['login' => 'a-verrieres']);
         $place->setName('A Verrieres');
         $dm->persist($place);
@@ -106,10 +106,10 @@ class MongoController extends AbstractActionController
         $dm->persist($newPlace->getUsers()[0]);
         $dm->flush();
 
-        /** @var $place Document\Place */
+        /* @var $place Document\Place */
         $place = $dm->getRepository('Dibber\Document\Place')->findOneBy(['login' => 'a-verrieres']);
 
-        /** @var $user Document\User */
+        /* @var $user Document\User */
         $user = $dm->getRepository('Dibber\Document\User')->findOneBy(['login' => 'jhuet']);
         if ($place && $user) {
             $place->setCoordinates(new Document\Coordinates(0.01, 0.02));
@@ -139,7 +139,7 @@ class MongoController extends AbstractActionController
         $dm->persist($place);
         $dm->flush();
 
-        /** @var $place Document\Place */
+        /* @var $place Document\Place */
         $place = $dm->getRepository('Dibber\Document\Place')->findOneBy(['login' => 'a-verrieres']);
 //        foreach ($place->getThings() as $thing) {
 //            echo $thing -> getName() . '<br />';
