@@ -40,6 +40,15 @@ abstract class Thing extends Base
     }
 
     /**
+     * @param string $note
+     * @return Thing
+     */
+    public function setNote($note) {
+        $this->note = $note;
+        return $this;
+    }
+
+    /**
      * @param Thing $parent
      * @return Thing
      */
@@ -51,15 +60,6 @@ abstract class Thing extends Base
         } else {
             $this->parent = $parent;
         }
-        return $this;
-    }
-
-    /**
-     * @param string $note
-     * @return Thing
-     */
-    public function setNote($note) {
-        $this->note = $note;
         return $this;
     }
 }

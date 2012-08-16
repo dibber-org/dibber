@@ -45,7 +45,7 @@ class Place extends Thing
     {
         if (! is_null($parent)) {
             // @todo throw right exception
-            throw new \Exception(get_class($this) . ' can\'t have a parent');
+            throw new \Exception(get_class($this) . " can't have a parent");
         }
         $this->parent = null;
         return $this;
