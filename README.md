@@ -1,4 +1,4 @@
-dibber
+dibber [![Build Status](https://secure.travis-ci.org/dibber-org/dibber.png?branch=master)](http://travis-ci.org/dibber-org/dibber)
 ====
 
 English
