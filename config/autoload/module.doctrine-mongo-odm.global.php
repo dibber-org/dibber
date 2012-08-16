@@ -35,9 +35,13 @@ return [
         ],
 
         'driver' => [
+            'dibber' => [
+                'class' => 'Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver',
+            ],
             'odm_default' => [
-                'class'     => 'Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver',
-                'drivers'   => []
+                'drivers' => [
+                    'Dibber\Document' => 'dibber'
+                ]
             ]
         ],
 
