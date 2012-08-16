@@ -56,7 +56,7 @@ abstract class Thing extends Base
     {
         if (! in_array($this->COLLECTION, $parent->ACCEPTS)) {
             // @todo throw right exception
-            throw new \Exception(get_class($parent) . ' does not accept ' . get_class($this) . ' children');
+            throw new \Exception(get_class($parent) . ' does not accept ' . get_class($this) . ' as a child');
         } else {
             $this->parent = $parent;
         }
