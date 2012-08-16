@@ -23,8 +23,7 @@ class Place extends Test
     {
         $user = new \mock\Dibber\Document\User;
         $this->place->addUser($user);
-
-        $this->object($this->place->users[0])
+        $this->object($this->place->getUsers()[0])
              ->isInstanceOf('Dibber\Document\User')
              ->isIdenticalTo($user);
     }

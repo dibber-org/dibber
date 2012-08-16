@@ -54,7 +54,7 @@ abstract class Thing extends Base
      */
     public function setParent(Thing $parent = null)
     {
-        if (! in_array($this->COLLECTION, $parent->ACCEPTS)) {
+        if (! is_null($parent) && ! in_array($this->COLLECTION, $parent->ACCEPTS)) {
             // @todo throw right exception
             throw new \Exception(get_class($parent) . ' does not accept ' . get_class($this) . ' as a child');
         } else {
