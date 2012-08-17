@@ -3,11 +3,11 @@ language: php
 php:
   - 5.4
 before_script:
-  - wget http://getcomposer.org/composer.phar
-  - php composer.phar install --dev
   - wget http://pecl.php.net/get/mongo-1.2.10.tgz
   - tar -xzf mongo-1.2.10.tgz
-  - sh -c "cd mongo-1.2.10 && phpize && ./configure && sudo make install"
-  - echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"` 
+  - sh -c "cd mongo-1.2.10 && phpize && ./configure --enable-mongo && make && sudo make install"
+  - echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+  - wget http://getcomposer.org/composer.phar
+  - php composer.phar install --dev
 notifications:
   irc: "irc.freenode.org#dibber"
