@@ -2,6 +2,10 @@ script: bin/tests.sh
 language: php
 php:
   - 5.4
+branches:
+  only:
+    - master
+    - dev
 before_script:
   - wget http://pecl.php.net/get/mongo-1.2.10.tgz
   - tar -xzf mongo-1.2.10.tgz
