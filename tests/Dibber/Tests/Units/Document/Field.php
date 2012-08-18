@@ -1,10 +1,9 @@
 <?php
 namespace Dibber\Tests\Units\Document;
 
-require_once(__DIR__ . '/../Test.php');
+require_once(__DIR__ . '/Test.php');
 
-use Dibber\Tests\Units\Test
- ,  Dibber\Document;
+use Dibber\Document;
 
 class Field extends Test
 {
