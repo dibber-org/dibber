@@ -173,8 +173,14 @@ abstract class Base
     public function save($document, $flush = false)
     {
         if (is_array($document)) {
-            # Means we only have array of data here
-            $document = $this->hydrate($document);
+            # Means we only have an array of data here
+            $data = $document;
+            $document = null;
+            if (array_key_exists('_id', $document) && !empty($document['_id'])) {
+                # We have an id here > it's an update !
+                $document = $this->find($data['_id']);
+            }
+            $document = $this->hydrate($data, $document);
         }
 
         $this->dm->persist($document);
