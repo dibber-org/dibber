@@ -14,7 +14,7 @@ class Base extends Test
 
     public function beforeTestMethod($method)
     {
-        # Make it behave like a User mapper
+        # Will make it behave like a User mapper
         $this->baseMapper = new \mock\Dibber\Document\Mapper\Base('Dibber\Document\User', $this->dm);
     }
 
@@ -23,24 +23,22 @@ class Base extends Test
         $this->exception(function() {
                 $this->baseMapper->setDocumentName('Non\Existing\FQDN');
             } )
-             ->isInstanceOf('\Exception')
-             ->hasMessage("'Non\Existing\FQDN' class doesn't exist. Can't create class.");
+                ->isInstanceOf('\Exception')
+                ->hasMessage("'Non\Existing\FQDN' class doesn't exist. Can't create class.");
 
         $this->baseMapper->setDocumentName('Dibber\Document\User');
         $this->string($this->baseMapper->getDocumentName())
-             ->isEqualTo('Dibber\Document\User');
+                ->isEqualTo('Dibber\Document\User');
     }
 
     public function testGetRepository()
     {
         $this->object($this->baseMapper->getRepository())
-             ->isInstanceOf('\Doctrine\ODM\MongoDB\DocumentRepository');
-
-        $this->string($this->baseMapper->getRepository()->getDocumentName())
-             ->isEqualTo('Dibber\Document\User');
-
-        $this->string($this->baseMapper->getRepository('Dibber\Document\Place')->getDocumentName())
-             ->isEqualTo('Dibber\Document\Place');
+                ->isInstanceOf('\Doctrine\ODM\MongoDB\DocumentRepository')
+             ->string($this->baseMapper->getRepository()->getDocumentName())
+                ->isEqualTo('Dibber\Document\User')
+             ->string($this->baseMapper->getRepository('Dibber\Document\Place')->getDocumentName())
+                ->isEqualTo('Dibber\Document\Place');
     }
 
     public function testHydrate()
@@ -50,12 +48,12 @@ class Base extends Test
             'name'    => 'Far away'
         ];
         $this->object($this->baseMapper->hydrate($dataPlace, $place))
-             ->isInstanceOf('Dibber\Document\Place')
-             ->isIdenticalTo($place);
+                ->isInstanceOf('Dibber\Document\Place')
+                ->isIdenticalTo($place);
 
         # Not sure next string test is really necessary
         $this->string($place->getName())
-             ->isEqualTo($dataPlace['name']);
+                ->isEqualTo($dataPlace['name']);
 
         $dataUser = [
             'login'    => 'jhuet',
@@ -63,7 +61,7 @@ class Base extends Test
             'email'    => 'jeremy.huet+dibber@gmail.com'
         ];
         $this->object($this->baseMapper->hydrate($dataUser))
-             ->isInstanceOf('Dibber\Document\User');
+                ->isInstanceOf('Dibber\Document\User');
     }
 
     public function testFlush()
@@ -75,20 +73,19 @@ class Base extends Test
 
         $this->baseMapper->flush();
 
-        $this->mockClass($this->dm)
-             ->call('flush')->once();
+        $this->mock($this->dm)
+                ->call('flush')->once();
     }
 
     public function testCreateDocument()
     {
        $this->object($this->baseMapper->createDocument())
-            ->isInstanceOf('Dibber\Document\User');
-
-       $this->exception(function() {
+                ->isInstanceOf('Dibber\Document\User')
+            ->exception(function() {
                $this->baseMapper->createDocument('Non\Existing\FQDN');
            } )
-            ->isInstanceOf('\Exception')
-            ->hasMessage("'Non\Existing\FQDN' class doesn't exist. Can't create class.");
+                ->isInstanceOf('\Exception')
+                ->hasMessage("'Non\Existing\FQDN' class doesn't exist. Can't create class.");
     }
 
     /**
@@ -96,21 +93,15 @@ class Base extends Test
      */
     protected function mockGetRepository()
     {
-        $this->mockClass('Doctrine\ODM\MongoDB\DocumentRepository');
-
-        $controller = new atoum\mock\controller();
-        $controller->__construct = function() {};
-        $controller->controlNextNewMock();
-
+        $this->mockGenerator->orphanize('__construct');
         $repository = new \mock\Doctrine\ODM\MongoDB\DocumentRepository();
 
         $this->baseMapper->getMockController()->getRepository = function() use ($repository) {return $repository;};
+        return $repository;
     }
 
     public function testFind()
     {
-        return;
-
         $user = new \mock\Dibber\Document\User;
 
         $repository = $this->mockGetRepository();
@@ -119,17 +110,14 @@ class Base extends Test
         };
 
         $this->object($this->baseMapper->find('4242'))
-             ->isInstanceOf('Dibber\Document\User')
-             ->isIdenticalTo($user);
-
-        $this->mockClass($repository)
-             ->call('find')->withArguments('4242')->once();
+                ->isInstanceOf('Dibber\Document\User')
+                ->isIdenticalTo($user)
+             ->mock($repository)
+                ->call('find')->withArguments('4242')->once();
     }
 
     public function testFindOneBy()
     {
-        return;
-
         $user = new \mock\Dibber\Document\User;
 
         $repository = $this->mockGetRepository();
@@ -138,17 +126,14 @@ class Base extends Test
         };
 
         $this->object($this->baseMapper->findOneBy([]))
-             ->isInstanceOf('Dibber\Document\User')
-             ->isIdenticalTo($user);
-
-        $this->mockClass($repository)
-             ->call('findOneBy')->withArguments([])->once();
+                ->isInstanceOf('Dibber\Document\User')
+                ->isIdenticalTo($user)
+             ->mock($repository)
+                ->call('findOneBy')->withArguments([])->once();
     }
 
     public function testFindAll()
     {
-        return;
-
         $user = new \mock\Dibber\Document\User;
 
         $repository = $this->mockGetRepository();
@@ -157,16 +142,13 @@ class Base extends Test
         };
 
         $this->phpArray($this->baseMapper->findAll())
-             ->strictlyContainsValues([$user, $user]);
-
-        $this->mockClass($repository)
-             ->call('findAll')->once();
+                ->strictlyContainsValues([$user, $user])
+             ->mock($repository)
+                ->call('findAll')->once();
     }
 
     public function testFindBy()
     {
-        return;
-
         $user = new \mock\Dibber\Document\User;
 
         $repository = $this->mockGetRepository();
@@ -175,10 +157,9 @@ class Base extends Test
         };
 
         $this->phpArray($this->baseMapper->findBy([]))
-             ->strictlyContainsValues([$user, $user]);
-
-        $this->mockClass($repository)
-             ->call('findAll')->withArguments([])->once();
+                ->strictlyContainsValues([$user, $user])
+             ->mock($repository)
+                ->call('findBy')->withArguments([])->once();
     }
 
     public function testSave()
