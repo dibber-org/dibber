@@ -16,4 +16,20 @@ abstract class Test extends \Dibber\Tests\Units\Test
 
         $this->dm = $this->application->getServiceManager()->get('doctrine.documentmanager.odm_default');
     }
+
+    /**
+     * @return Doctrine\ODM\MongoDB\DocumentRepository
+     */
+    protected function mockGetRepository($mockingOn = null)
+    {
+        if (is_null($mockingOn)) {
+            $mockingOn = $this->baseMapper;
+        }
+
+        $this->mockGenerator->orphanize('__construct');
+        $repository = new \mock\Doctrine\ODM\MongoDB\DocumentRepository();
+
+        $mockingOn->getMockController()->getRepository = function() use ($repository) {return $repository;};
+        return $repository;
+    }
 }

@@ -88,18 +88,6 @@ class Base extends Test
                 ->hasMessage("'Non\Existing\FQDN' class doesn't exist. Can't create class.");
     }
 
-    /**
-     * @return Doctrine\ODM\MongoDB\DocumentRepository
-     */
-    protected function mockGetRepository()
-    {
-        $this->mockGenerator->orphanize('__construct');
-        $repository = new \mock\Doctrine\ODM\MongoDB\DocumentRepository();
-
-        $this->baseMapper->getMockController()->getRepository = function() use ($repository) {return $repository;};
-        return $repository;
-    }
-
     public function testFind()
     {
         $user = new \mock\Dibber\Document\User;
