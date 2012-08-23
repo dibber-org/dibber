@@ -115,11 +115,11 @@ abstract class Base
     public function createDocument($documentName = null)
     {
         if (is_null($documentName)) {
-            if ( !$this->getDocumentName()) {
+            $documentName = $this->getDocumentName();
+            if ( !$documentName) {
                 // @todo throw good Exception
                 throw new \Exception("documentName not set. Can't create class.");
             }
-            $documentName = $this->getDocumentName();
         } else {
             if (false === class_exists($documentName)) {
                 // @todo throw good Exception
