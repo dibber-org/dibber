@@ -20,26 +20,33 @@ class Field extends Test
      */
     public function testSetParent()
     {
-        $place = new \mock\Dibber\Document\Place;
-        $this->field->setParent($place);
-        $this->object($this->field->getParent())
-             ->isInstanceOf('Dibber\Document\Place')
-             ->isIdenticalTo($place);
+        $this->assert('Setting a Place as parent')
+             ->if($place = new \mock\Dibber\Document\Place)
+             ->and($this->field->setParent($place))
+             ->then
+                ->object($this->field->getParent())
+                    ->isInstanceOf('Dibber\Document\Place')
+                    ->isIdenticalTo($place)
 
-        $this->field->setParent();
-        $this->variable($this->field->getParent())
-             ->isNull();
+             ->assert('Setting a Zone as parent')
+             ->if($zone = new \mock\Dibber\Document\Zone)
+             ->and($this->field->setParent($zone))
+             ->then
+                ->object($this->field->getParent())
+                    ->isInstanceOf('Dibber\Document\Zone')
+                    ->isIdenticalTo($zone)
 
-        $zone = new \mock\Dibber\Document\Zone;
-        $this->field->setParent($zone);
-        $this->object($this->field->getParent())
-             ->isInstanceOf('Dibber\Document\Zone')
-             ->isIdenticalTo($zone);
+             ->assert('Setting null parent')
+             ->if($this->field->setParent())
+             ->then
+                ->variable($this->field->getParent())
+                    ->isNull()
 
-        $this->exception(function() {
-                $this->field->setParent(new Document\Field);
-            } )
-            ->isInstanceOf('\Exception')
-            ->hasMessage("Dibber\Document\Field does not accept Dibber\Document\Field as a child");
+             ->assert('Setting a not accepted parent raises an exception')
+                ->exception(function() {
+                    $this->field->setParent(new Document\Field);
+                } )
+                    ->isInstanceOf('\Exception')
+                    ->hasMessage("Dibber\Document\Field does not accept Dibber\Document\Field as a child");
     }
 }

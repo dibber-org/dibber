@@ -41,6 +41,10 @@ class Base extends Test
                 ->isEqualTo('Dibber\Document\Place');
     }
 
+    /**
+     * @todo really test what methods are called but would require to mock
+     * DocumentManager wich can only be instantiate via a static factory :(
+     */
     public function testHydrate()
     {
         $place = new Document\Place;
@@ -58,7 +62,7 @@ class Base extends Test
         $dataUser = [
             'login'    => 'jhuet',
             'password' => 'toto42',
-            'email'    => 'jeremy.huet+dibber@gmail.com'
+            'email'    => 'contact@dibber.org'
         ];
         $this->object($this->baseMapper->hydrate($dataUser))
                 ->isInstanceOf('Dibber\Document\User');
