@@ -172,11 +172,11 @@ class Base extends Test
                 return [$user, $user];
              } )
              ->then
-                ->phpArray($this->baseMapper->findAll())
+                ->phpArray($this->baseMapper->findBy([]))
                     ->strictlyContainsValues([$user, $user])
 
                 ->mock($repository)
-                    ->call('findBy')->once();
+                    ->call('findBy')->withArguments([])->once();
     }
 
     public function testSave()
