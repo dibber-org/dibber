@@ -1,10 +1,9 @@
 <?php
 namespace Dibber\Tests\Units\Document;
 
-require_once(__DIR__ . '/../Test.php');
+require_once(__DIR__ . '/Test.php');
 
-use Dibber\Tests\Units\Test
- ,  Dibber\Document;
+use Dibber\Document;
 
 class Place extends Test
 {
@@ -21,11 +20,13 @@ class Place extends Test
      */
     public function testAddUser()
     {
-        $user = new \mock\Dibber\Document\User;
-        $this->place->addUser($user);
-        $this->object($this->place->getUsers()[0])
-             ->isInstanceOf('Dibber\Document\User')
-             ->isIdenticalTo($user);
+        $this->assert('User is added and retreived')
+             ->if($user = new \mock\Dibber\Document\User)
+             ->and($this->place->addUser($user))
+             ->then
+                ->object($this->place->getUsers()[0])
+                    ->isInstanceOf('Dibber\Document\User')
+                    ->isIdenticalTo($user);
     }
 
     /**
@@ -33,14 +34,17 @@ class Place extends Test
      */
     public function testSetParent()
     {
-        $this->place->setParent();
-        $this->variable($this->place->parent)
-             ->isNull();
+        $this->assert('Setting null parent')
+             ->if($this->place->setParent())
+             ->then
+                ->variable($this->place->getParent())
+                    ->isNull()
 
-        $this->exception(function() {
-                $this->place->setParent(new \mock\Dibber\Document\Place);
-            } )
-            ->isInstanceOf('\Exception')
-            ->hasMessage("Dibber\Document\Place can't have a parent");
+             ->assert('Setting any kind of parent raises an exception')
+                ->exception(function() {
+                    $this->place->setParent(new Document\Place);
+                } )
+                    ->isInstanceOf('\Exception')
+                    ->hasMessage("Dibber\Document\Place can't have a parent");
     }
 }
