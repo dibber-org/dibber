@@ -9,7 +9,7 @@ dibber is an attempt at creating a web application that would be usable by small
 
 dibber would keep track of things such as plantings, harvests, seeds, treatments, fields emplacements... and many other things in the future. We take data protection to heart. All the information that will be stored will stay the property of their creators and we will only allow ourselves to use it in order to maintain good functioning of the application.
 
-dibber is an open source project and thus welcomes any help from people willing to give a hand. If you feel like so please [contact the team](https://github.com/dibber-org/dibber/wiki/How-to-contact-us/) or start by reading the [contribution guidelines](https://github.com/dibber-org/dibber/wiki/Contribution-guidelines).
+dibber is an open source project and thus welcomes any help from people willing to give a hand. If you feel like so please [contact the team](https://github.com/dibber-org/dibber/wiki/How-to-contact-us/) or start by reading the [contribution guidelines](https://github.com/dibber-org/dibber/wiki/Contribution-guidelines) or checking out [the website](http://dibber.org).
 
 
 ### Français - Qu'est ce que dibber ?
@@ -18,4 +18,4 @@ dibber est une tentative pour créer une application web qui serait utilisable p
 
 dibber pourra garder trace de choses telles que les plantations, les récoltes, les semences, les traitements, les emplacements des champs... et d'autres choses dans le futur. Nous tenons à coeur la protection des données. Toutes les informations qui y seront stockées resteront la propriété de leurs créateurs et nous ne nous accapareront le droit de les utiliser que pour le bon fonctionnement de l'application.
 
-dibber est une projet open source et ainsi accueille volontier toute aide de personnes souhaitant apporter un coup de main. Si cela vous tente, n'hésitez pas à [contacter l'équipe](https://github.com/dibber-org/dibber/wiki/Nous-contacter/) ou bien commencez en lisant le [guide des contributeurs](https://github.com/dibber-org/dibber/wiki/Guide-des-contributeurs).
+dibber est une projet open source et ainsi accueille volontier toute aide de personnes souhaitant apporter un coup de main. Si cela vous tente, n'hésitez pas à [contacter l'équipe](https://github.com/dibber-org/dibber/wiki/Nous-contacter/) ou bien commencez en lisant le [guide des contributeurs](https://github.com/dibber-org/dibber/wiki/Guide-des-contributeurs) ou en faisant un tour sur [le site web](http://dibber.org/fr/).
