@@ -166,7 +166,7 @@ abstract class Base
     }
 
     /**
-     * @param array|\Dibber\Document\Base $data
+     * @param array|\Dibber\Document\Base $document
      * @param bool $flush
      * @return Dibber\Document\Base
      */
@@ -176,7 +176,7 @@ abstract class Base
             # Means we only have an array of data here
             $data = $document;
             $document = null;
-            if (array_key_exists('_id', $document) && !empty($document['_id'])) {
+            if (array_key_exists('_id', $data) && !empty($data['_id'])) {
                 # We have an id here > it's an update !
                 $document = $this->find($data['_id']);
             }
