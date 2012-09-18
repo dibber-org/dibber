@@ -23,4 +23,6 @@ return array(
     'Dibber\Document\Hydrator\DibberDocumentZoneHydrator'        => __DIR__ . '/src/Dibber/Document/Hydrator/DibberDocumentZoneHydrator.php',
     'Dibber\Document\Hydrator\DibberDocumentUserHydrator'        => __DIR__ . '/src/Dibber/Document/Hydrator/DibberDocumentUserHydrator.php',
     'Dibber\Document\Field'                                      => __DIR__ . '/src/Dibber/Document/Field.php',
+    'Dibber\Document\Mapper\Base'                                => __DIR__ . '/src/Dibber/Document/Mapper/Base.php',
+    'Dibber\Document\Mapper\User'                                => __DIR__ . '/src/Dibber/Document/Mapper/User.php',
 );
