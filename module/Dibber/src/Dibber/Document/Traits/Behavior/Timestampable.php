@@ -2,6 +2,7 @@
 namespace Dibber\Document\Traits\Behavior;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
+ ,  Gedmo
  ,  Dibber\Document;
 
 trait Timestampable
