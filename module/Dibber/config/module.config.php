@@ -15,20 +15,6 @@ return [
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => 'Dibber\Controller\Mongo',
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => [
-                'type'    => 'Literal',
-                'options' => [
-                    'route'    => '/application',
-                    'defaults' => [
                         '__NAMESPACE__' => 'Dibber\Controller',
                         'controller'    => 'Index',
                         'action'        => 'index',
@@ -39,12 +25,14 @@ return [
                     'default' => [
                         'type'    => 'Segment',
                         'options' => [
-                            'route'    => '/[:controller[/:action]]',
+                            'route'    => '[:controller[/:action]]',
                             'constraints' => [
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ],
                             'defaults' => [
+                                '__NAMESPACE__' => 'Dibber\Controller',
+                                'action' => 'index',
                             ],
                         ],
                     ],
@@ -69,8 +57,8 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'Dibber\Controller\Index' => 'Dibber\Controller\IndexController',
-            'Dibber\Controller\Mongo' => 'Dibber\Controller\MongoController'
+            'Dibber\Controller\Index'   => 'Dibber\Controller\IndexController',
+            'Dibber\Controller\Mongo'   => 'Dibber\Controller\MongoController'
         ],
     ],
     'view_manager' => [
