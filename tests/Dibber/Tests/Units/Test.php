@@ -1,11 +1,7 @@
 <?php
 namespace Dibber\Tests\Units;
 
-require __DIR__ . '/../../../../vendor/autoload.php';
-require __DIR__ . '/../../autoload_classmap.php';
-require __DIR__ . '/../../../../autoload_register.php';
-
-require __DIR__ . '/../../../../vendor/zf-commons/zfc-user-doctrine-mongo-odm/autoload_register.php'; // Waiting for Composer integration...
+require __DIR__ . '/../../../../init_autoloader.php';
 
 use mageekguy\atoum;
 
