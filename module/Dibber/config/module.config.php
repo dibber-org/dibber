@@ -15,7 +15,7 @@ return [
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => 'Dibber\Controller\Mongo',
+                        'controller' => 'Dibber\Controller\Index',
                         'action'     => 'index',
                     ],
                 ],
