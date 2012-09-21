@@ -5,6 +5,8 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 require __DIR__ . '/../../autoload_classmap.php';
 require __DIR__ . '/../../../../autoload_register.php';
 
+require __DIR__ . '/../../../../vendor/zf-commons/zfc-user-doctrine-mongo-odm/autoload_register.php'; // Waiting for Composer integration...
+
 use mageekguy\atoum;
 
 abstract class Test extends atoum\test
