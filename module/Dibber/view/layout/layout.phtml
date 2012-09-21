@@ -39,10 +39,10 @@
           <div id="userbox" class="nav-collapse">
             <ul id="user-links" class="nav">
               <?php if ($this->zfcUserIdentity()) : ?>
-              <li><a href="<?php echo $this->url('zfcuser') ?>"><?php echo $this->translate('Profile') ?></a></li>
-              <li><a href="<?php echo $this->url('zfcuser/logout') ?>"><?php echo $this->translate('Logout') ?></a></li>
+              <li><a href="<?php echo $this->url('home/profile') ?>"><?php echo $this->translate('Profile') ?></a></li>
+              <li><a href="<?php echo $this->url('home/logout') ?>"><?php echo $this->translate('Sign out') ?></a></li>
               <?php else : ?>
-              <li><a href="<?php echo $this->url('zfcuser/login') ?>"><?php echo $this->translate('Login') ?></a></li>
+              <li><a href="<?php echo $this->url('home/login') ?>"><?php echo $this->translate('Sign in') ?></a></li>
               <?php endif; ?>
             </ul>
           </div>

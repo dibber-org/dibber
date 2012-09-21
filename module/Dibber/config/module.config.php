@@ -1,9 +1,9 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework (http://framework.zend.com/]
  *
  * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c] 2005-2012 Zend Technologies USA Inc. (http://www.zend.com]
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -15,20 +15,6 @@ return [
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => 'Dibber\Controller\Index',
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => [
-                'type'    => 'Literal',
-                'options' => [
-                    'route'    => '/application',
-                    'defaults' => [
                         '__NAMESPACE__' => 'Dibber\Controller',
                         'controller'    => 'Index',
                         'action'        => 'index',
@@ -39,12 +25,48 @@ return [
                     'default' => [
                         'type'    => 'Segment',
                         'options' => [
-                            'route'    => '/[:controller[/:action]]',
+                            'route'    => '[:controller[/:action]]',
                             'constraints' => [
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ],
                             'defaults' => [
+                                '__NAMESPACE__' => 'Dibber\Controller',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+
+                    /**
+                     * Shortcut routes
+                     */
+                    'profile' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => 'profile',
+                            'defaults' => [
+                                'controller' => 'user',
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],
+                    'login' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => 'login',
+                            'defaults' => [
+                                'controller' => 'user',
+                                'action'     => 'login',
+                            ],
+                        ],
+                    ],
+                    'logout' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => 'logout',
+                            'defaults' => [
+                                'controller' => 'user',
+                                'action'     => 'logout',
                             ],
                         ],
                     ],
@@ -70,6 +92,7 @@ return [
     'controllers' => [
         'invokables' => [
             'Dibber\Controller\Index' => 'Dibber\Controller\IndexController',
+            'Dibber\Controller\User'  => 'Dibber\Controller\UserController',
             'Dibber\Controller\Mongo' => 'Dibber\Controller\MongoController'
         ],
     ],
