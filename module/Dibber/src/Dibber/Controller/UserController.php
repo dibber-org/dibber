@@ -33,4 +33,20 @@ class UserController extends \ZfcUser\Controller\UserController
         }
         return new ViewModel();
     }
+
+    public function listAction()
+    {
+        // @todo paginator with MongoDB?
+//        $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\Array());
+//        $paginator->setCurrentPageNumber($this->params('page'));
+
+        /* @var $dm \Doctrine\ODM\MongoDB\DocumentManager */
+        $dm = $this->getServiceLocator()->get('doctrine.documentmanager.odm_default');
+        $userMapper = new \Dibber\Document\Mapper\User($dm);
+        $users = $userMapper->findAll(['name']); // @todo sortBy not working
+
+        return new ViewModel( [
+            'users' => $users
+        ] );
+    }
 }
