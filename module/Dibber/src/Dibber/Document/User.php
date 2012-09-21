@@ -40,7 +40,7 @@ class User extends Base implements \ZfcUser\Entity\UserInterface
     {
         parent::__construct();
 
-        $this->places = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->places = new \Doctrine\Common\Collections\ArrayCollection;
     }
 
     /**
