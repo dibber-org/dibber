@@ -20,7 +20,7 @@ $settings = array(
      * Name of Entity class to use. Useful for using your own entity class
      * instead of the default one provided. Default is ZfcUser\Entity\User.
      */
-//    'user_entity_class' => 'Application\Document\User',
+    'user_entity_class' => 'Dibber\Document\User',
 
     /**
      * Enable registration
@@ -29,7 +29,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-//    'enable_registration' => true,
+    'enable_registration' => true,
 
     /**
      * Enable Username
@@ -39,7 +39,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-//    'enable_username' => true,
+    'enable_username' => true,
 
     /**
      * Enable Display Name
@@ -49,7 +49,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-//    'enable_display_name' => true,
+    'enable_display_name' => true,
 
     /**
      * Modes for authentication identity match
@@ -60,7 +60,7 @@ $settings = array(
      * Default value: array containing 'email'
      * Accepted values: array containing one or more of: email, username
      */
-//    'auth_identity_fields' => array('username', 'email'),
+    'auth_identity_fields' => array('username', 'email'),
 
     /**
      * Login form timeout
@@ -70,7 +70,7 @@ $settings = array(
      *
      * Accepted values: positive int value
      */
-    //'login_form_timeout' => 300,
+    'login_form_timeout' => 300,
 
     /**
      * Registration form timeout
@@ -80,7 +80,7 @@ $settings = array(
      *
      * Accepted values: positive int value
      */
-    //'user_form_timeout' => 300,
+    'user_form_timeout' => 300,
 
     /**
      * Login After Registration
@@ -90,7 +90,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    //'login_after_registration' => true,
+    'login_after_registration' => true,
 
     /**
      * Registration Form Captcha
@@ -98,7 +98,7 @@ $settings = array(
      * Determines if a captcha should be utilized on the user registration form.
      * Default value is false.
      */
-    //'use_registration_form_captcha' => false,
+    'use_registration_form_captcha' => false,
 
     /**
      * Form Captcha Options
@@ -123,7 +123,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    //'use_redirect_parameter_if_present' => true,
+    'use_redirect_parameter_if_present' => true,
 
     /**
      * Login Redirect Route
@@ -134,7 +134,7 @@ $settings = array(
      * Accepted values: A valid route name within your application
      *
      */
-    //'login_redirect_route' => 'zfcuser',
+    'login_redirect_route' => 'zfcuser',
 
     /**
      * Logout Redirect Route
@@ -144,7 +144,7 @@ $settings = array(
      * Default value: 'zfcuser/login'
      * Accepted values: A valid route name within your application
      */
-    //'logout_redirect_route' => 'zfcuser/login',
+    'logout_redirect_route' => 'zfcuser/login',
 
     /**
      * Password Security
@@ -167,7 +167,7 @@ $settings = array(
      *
      * Accepted values: integer between 4 and 31
      */
-    //'password_cost' => 14,
+    'password_cost' => 14,
 
     /**
      * End of ZfcUser configuration
@@ -179,14 +179,22 @@ $settings = array(
  */
 return array(
     'zfcuser' => $settings,
-//    'controllers' => array(
-//        'invokables' => array(
-//            'zfcuser' => 'Application\Controller\UserController',
-//        ),
-//    ),
+    'controllers' => array(
+        'invokables' => array(
+            'zfcuser' => 'Dibber\Controller\UserController',
+        ),
+    ),
     'service_manager' => array(
         'aliases' => array(
             'zfcuser_zend_db_adapter' => (isset($settings['zend_db_adapter'])) ? $settings['zend_db_adapter']: 'Zend\Db\Adapter\Adapter',
         ),
+        'factories' => array(
+            'zfcuser_user_mapper' => function ($sm) {
+                return new \Dibber\Document\Mapper\User(
+                    $sm->get('zfcuser_doctrine_dm'),
+                    $sm->get('zfcuser_module_options')
+                );
+            },
+        )
     ),
 );

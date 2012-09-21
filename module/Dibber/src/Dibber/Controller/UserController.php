@@ -9,13 +9,6 @@
 
 namespace Dibber\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController
- ,  Zend\View\Model\ViewModel;
-
-class UserController extends AbstractActionController
+class UserController extends \ZfcUser\Controller\UserController
 {
-    public function indexAction()
-    {
-        return new ViewModel();
-    }
 }

@@ -5,7 +5,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
  ,  Dibber\Document\Traits;
 
 /** @ODM\Document(collection="users") */
-class User extends Base
+class User extends Base implements \ZfcUser\Entity\UserInterface
 {
     use Traits\ManyPlaces;
 
@@ -44,6 +44,16 @@ class User extends Base
     }
 
     /**
+     * Used to comply with ZfcUser UserInterface
+     *
+     * @param string $id
+     * @throws Exception
+     */
+    public function setId($id) {
+        throw new Exception('It is not allowed to specifically set the ID of a document');
+    }
+
+    /**
      * @return string the $login
      */
     public function getLogin() {
@@ -57,6 +67,25 @@ class User extends Base
     public function setLogin($login) {
         $this->login = (string) $login;
         return $this;
+    }
+
+    /**
+     * Used to comply with ZfcUser UserInterface
+     *
+     * @return string the $login
+     */
+    public function getUsername() {
+        return $this->getLogin();
+    }
+
+    /**
+     * Used to comply with ZfcUser UserInterface
+     *
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username) {
+        return $this->setLogin($username);
     }
 
     /**
@@ -105,6 +134,25 @@ class User extends Base
     public function setName($name) {
         $this->name = (string) $name;
         return $this;
+    }
+
+    /**
+     * Used to comply with ZfcUser UserInterface
+     *
+     * @return string the $name
+     */
+    public function getDisplayName() {
+        return $this->getName();
+    }
+
+    /**
+     * Used to comply with ZfcUser UserInterface
+     *
+     * @param string $displayName
+     * @return User
+     */
+    public function setDisplayName($displayName) {
+        return $this->setName($displayName);
     }
 
     /**
