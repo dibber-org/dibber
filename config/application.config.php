@@ -4,8 +4,8 @@ return [
         'DoctrineModule',
         'DoctrineMongoODMModule',
         'ZfcBase',
-        'ZfcUser',
-        'ZfcUserDoctrineMongoODM',
+//        'ZfcUser',
+//        'ZfcUserDoctrineMongoODM',
         'Dibber'
     ],
     'module_listener_options' => [
