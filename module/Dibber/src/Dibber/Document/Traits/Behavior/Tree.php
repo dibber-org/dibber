@@ -61,6 +61,14 @@ trait Tree
     }
 
     /**
+     * @return string the $code
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
      * @return mixed
      */
     public function getParent()

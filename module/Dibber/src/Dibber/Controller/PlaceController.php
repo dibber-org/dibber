@@ -9,28 +9,18 @@
 
 namespace Dibber\Controller;
 
-use Zend\View\Model\ViewModel;
+use Zend\Mvc\Controller\AbstractActionController
+ ,  Zend\View\Model\ViewModel;
 
-class UserController extends \ZfcUser\Controller\UserController
+class PlaceController extends AbstractActionController
 {
     /**
-     * Public user page
+     * Public place page
      */
     public function indexAction()
     {
         return new ViewModel( [
-            'user' => $this->params('user')
+            'place' => $this->params('place')
         ] );
-    }
-
-    /**
-     * Profile page
-     */
-    public function profileAction()
-    {
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser/login');
-        }
-        return new ViewModel();
     }
 }

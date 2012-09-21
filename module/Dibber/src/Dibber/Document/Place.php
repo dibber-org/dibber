@@ -36,6 +36,16 @@ class Place extends Thing
     }
 
     /**
+     * For consistency with Document\User::getLogin()
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->getCode();
+    }
+
+    /**
      * Places can't have parents. They are the root of all "Thing"s :)
      *
      * @param Thing $parent

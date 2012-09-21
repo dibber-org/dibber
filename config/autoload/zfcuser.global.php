@@ -134,7 +134,7 @@ $settings = array(
      * Accepted values: A valid route name within your application
      *
      */
-    'login_redirect_route' => 'home/profile',
+    'login_redirect_route' => 'dibber/profile',
 
     /**
      * Logout Redirect Route
@@ -144,7 +144,7 @@ $settings = array(
      * Default value: 'zfcuser/login'
      * Accepted values: A valid route name within your application
      */
-    'logout_redirect_route' => 'home',
+    'logout_redirect_route' => 'dibber',
 
     /**
      * Password Security

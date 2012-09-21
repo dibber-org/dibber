@@ -10,7 +10,7 @@
 return [
     'router' => [
         'routes' => [
-            'home' => [
+            'dibber' => [
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => [
                     'route'    => '/',
@@ -37,6 +37,20 @@ return [
                         ],
                     ],
 
+                    'home' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => ':login',
+                            'constraints' => [
+                                'login'      => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'home',
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],
+
                     /**
                      * Shortcut routes
                      */
@@ -46,7 +60,7 @@ return [
                             'route' => 'profile',
                             'defaults' => [
                                 'controller' => 'user',
-                                'action'     => 'index',
+                                'action'     => 'profile',
                             ],
                         ],
                     ],
@@ -92,6 +106,8 @@ return [
     'controllers' => [
         'invokables' => [
             'Dibber\Controller\Index' => 'Dibber\Controller\IndexController',
+            'Dibber\Controller\Home'  => 'Dibber\Controller\HomeController',
+            'Dibber\Controller\Place' => 'Dibber\Controller\PlaceController',
             'Dibber\Controller\User'  => 'Dibber\Controller\UserController',
             'Dibber\Controller\Mongo' => 'Dibber\Controller\MongoController'
         ],

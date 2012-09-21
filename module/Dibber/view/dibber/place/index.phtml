@@ -1,0 +1,16 @@
+<div style="float:left; padding-right:16px; width: 150px;">
+    <h3><?php echo $place->getName() ?></h3>
+</div>
+<div style="margin-left: 160px;">
+    <?php if ($place->getUsers()) : ?>
+    <div id="users">
+        <h3>Users</h3>
+        <ul>
+        <?php foreach ($place->getUsers() as $user) : ?>
+            <li><a href="<?php echo $this->url('dibber') . $user->getLogin()?>"><?php echo $this->zfcUserDisplayName($user) ?></a></li>
+        <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+    </div>
+</div>
+<div style="clear:both;"></div>
