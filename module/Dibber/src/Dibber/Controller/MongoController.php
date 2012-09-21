@@ -20,21 +20,20 @@ class MongoController extends AbstractActionController
         /* @var $dm \Doctrine\ODM\MongoDB\DocumentManager */
         $dm = $this->getServiceLocator()->get('doctrine.documentmanager.odm_default');
 
-        $jhuet = new Document\User;
-        $dm->getHydratorFactory()->hydrate($jhuet, [
+        $userMapper = new Document\Mapper\User($dm);
+        $jhuet = $userMapper->save( [
             'name' => 'Jérémy Huet',
             'login' => 'jhuet',
             'password' => 'toto42',
             'email' => 'jeremy.huet+dibber@gmail.com',
         ] );
-        $dm->persist($jhuet);
 
         $qsnr = new Document\User;
         $qsnr->setName('Shawna Green')
-             ->setLogin('qsnr')
+             ->setLogin('qsnr2004')
              ->setPassword('42toto')
-             ->setEmail('qsnr+dibber@gmail.com');
-        $dm->persist($qsnr);
+             ->setEmail('qsnr2004+dibber@gmail.com');
+        $userMapper->save($qsnr);
 
         $potaje = new Document\Place;
         $dm->getHydratorFactory()->hydrate($potaje, [
@@ -70,8 +69,7 @@ class MongoController extends AbstractActionController
         $dm->getHydratorFactory()->hydrate($field12, [
             'name' => 'Field 1.2',
             'surfaceSize' => 0.3,
-            'surfaceUnit' => 'ha',
-            'parent' => ['$id' => $zone1->getId()]
+            'surfaceUnit' => 'ha'
         ] );
         $field12->setParent($zone1);
         $dm->persist($field12);

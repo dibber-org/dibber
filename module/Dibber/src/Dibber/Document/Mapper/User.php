@@ -3,7 +3,7 @@ namespace Dibber\Document\Mapper;
 
 use \Doctrine\ODM\MongoDB\DocumentManager;
 
-class User extends Base
+class User extends Base implements \ZfcUser\Mapper\UserInterface
 {
     /**
      * @param \Doctrine\ODM\MongoDB\DocumentManager $dm
@@ -14,8 +14,18 @@ class User extends Base
     }
 
     /**
+     * Used to comply with ZfcUser UserInterface
+     *
+     * @param string $id
+     * @return \Dibber\Document\User
+     */
+    public function findById($id) {
+        return $this->find($id);
+    }
+
+    /**
      * @param string $login
-     * @return Dibber\Document\User
+     * @return \Dibber\Document\User
      */
     public function findByLogin($login)
     {
@@ -23,11 +33,41 @@ class User extends Base
     }
 
     /**
+     * Used to comply with ZfcUser UserInterface
+     *
+     * @param string $username
+     * @return \Dibber\Document\User
+     */
+    public function findByUsername($username) {
+        return $this->findByLogin($username);
+    }
+
+    /**
      * @param string $email
-     * @return Dibber\Document\User
+     * @return \Dibber\Document\User
      */
     public function findByEmail($email)
     {
         return $this->findOneBy(['email' => $email]);
+    }
+
+    /**
+     * Used to comply with ZfcUser UserInterface
+     *
+     * @param \Dibber\Document\User $user
+     * @return \Dibber\Document\User
+     */
+    public function insert($user) {
+        return $this->save($user, true);
+    }
+
+    /**
+     * Used to comply with ZfcUser UserInterface
+     *
+     * @param \Dibber\Document\User $user
+     * @return \Dibber\Document\User
+     */
+    public function update($user) {
+        return $this->save($user, true);
     }
 }

@@ -1,9 +1,12 @@
 <?php
 return [
     'modules' => [
-        'Dibber',
         'DoctrineModule',
-        'DoctrineMongoODMModule'
+        'DoctrineMongoODMModule',
+        'ZfcBase',
+        'ZfcUser',
+        'ZfcUserDoctrineMongoODM',
+        'Dibber'
     ],
     'module_listener_options' => [
         'config_glob_paths'    => [

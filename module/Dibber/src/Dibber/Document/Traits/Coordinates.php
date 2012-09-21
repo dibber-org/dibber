@@ -2,7 +2,6 @@
 namespace Dibber\Document\Traits;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
- ,  Gedmo\Mapping\Annotation as Gedmo
  ,  Dibber\Document;
 
 trait Coordinates

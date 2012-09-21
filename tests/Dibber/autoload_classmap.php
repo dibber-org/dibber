@@ -8,6 +8,7 @@ return array(
     'Dibber\Tests\Units\Document\Test'        => __DIR__ . '/Tests/Units/Document/Test.php',
     'Dibber\Tests\Units\Document\Field'       => __DIR__ . '/Tests/Units/Document/Field.php',
     'Dibber\Tests\Units\Document\Mapper\Base' => __DIR__ . '/Tests/Units/Document/Mapper/Base.php',
+    'Dibber\Tests\Units\Document\Mapper\User' => __DIR__ . '/Tests/Units/Document/Mapper/User.php',
     'Dibber\Tests\Units\Document\Mapper\Test' => __DIR__ . '/Tests/Units/Document/Mapper/Test.php',
     'Dibber\Tests\Units\Test'                 => __DIR__ . '/Tests/Units/Test.php',
 );

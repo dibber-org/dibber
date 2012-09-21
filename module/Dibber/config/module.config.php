@@ -3,14 +3,14 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c] 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
 return [
     'router' => [
         'routes' => [
-            'home' => [
+            'dibber' => [
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => [
                     'route'    => '/',
@@ -36,6 +36,54 @@ return [
                             ],
                         ],
                     ],
+
+                    'home' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => ':login',
+                            'constraints' => [
+                                'login'      => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'home',
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],
+
+                    /**
+                     * Shortcut routes
+                     */
+                    'profile' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => 'profile',
+                            'defaults' => [
+                                'controller' => 'user',
+                                'action'     => 'profile',
+                            ],
+                        ],
+                    ],
+                    'login' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => 'login',
+                            'defaults' => [
+                                'controller' => 'user',
+                                'action'     => 'login',
+                            ],
+                        ],
+                    ],
+                    'logout' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => 'logout',
+                            'defaults' => [
+                                'controller' => 'user',
+                                'action'     => 'logout',
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],
@@ -57,8 +105,11 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'Dibber\Controller\Index'   => 'Dibber\Controller\IndexController',
-            'Dibber\Controller\Mongo'   => 'Dibber\Controller\MongoController'
+            'Dibber\Controller\Index' => 'Dibber\Controller\IndexController',
+            'Dibber\Controller\Home'  => 'Dibber\Controller\HomeController',
+            'Dibber\Controller\Place' => 'Dibber\Controller\PlaceController',
+            'Dibber\Controller\User'  => 'Dibber\Controller\UserController',
+            'Dibber\Controller\Mongo' => 'Dibber\Controller\MongoController'
         ],
     ],
     'view_manager' => [

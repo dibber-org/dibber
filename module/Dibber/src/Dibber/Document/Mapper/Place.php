@@ -12,4 +12,15 @@ class Place extends Base
     {
         parent::__construct('Dibber\Document\Place', $dm);
     }
+
+    /**
+     * For consistency with Document\Mapper\User::findByLogin()
+     *
+     * @param string $login
+     * @return \Dibber\Document\User
+     */
+    public function findByLogin($login)
+    {
+        return $this->findOneBy(['code' => $login]);
+    }
 }
