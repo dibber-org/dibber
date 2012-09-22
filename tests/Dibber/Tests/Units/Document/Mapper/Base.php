@@ -149,10 +149,10 @@ class Base extends Test
 
     public function testFindAll()
     {
-        $this->assert('Correctly returns the result and calls the right findAll')
+        $this->assert('Correctly returns the result and calls the right findBy')
              ->if($user = new \mock\Dibber\Document\User)
              ->and($repository = $this->mockGetRepository())
-             ->and($repository->getMockController()->findAll = function() use ($user) {
+             ->and($repository->getMockController()->findBy = function() use ($user) {
                 return [$user, $user];
              } )
              ->then
@@ -160,7 +160,7 @@ class Base extends Test
                     ->strictlyContainsValues([$user, $user])
 
                 ->mock($repository)
-                    ->call('findAll')->once();
+                    ->call('findBy')->once();
     }
 
     public function testFindBy()
