@@ -23,4 +23,20 @@ class PlaceController extends AbstractActionController
             'place' => $this->params('place')
         ] );
     }
+
+    public function listAction()
+    {
+        // @todo paginator with MongoDB?
+//        $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\Array());
+//        $paginator->setCurrentPageNumber($this->params('page'));
+
+        /* @var $dm \Doctrine\ODM\MongoDB\DocumentManager */
+        $dm = $this->getServiceLocator()->get('doctrine.documentmanager.odm_default');
+        $placeMapper = new \Dibber\Document\Mapper\Place($dm);
+        $places = $placeMapper->findAll(['name']); // @todo sortBy not working
+
+        return new ViewModel( [
+            'places' => $places
+        ] );
+    }
 }
