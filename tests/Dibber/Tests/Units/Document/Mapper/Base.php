@@ -149,18 +149,18 @@ class Base extends Test
 
     public function testFindAll()
     {
-        $this->assert('Correctly returns the result and calls the right findBy')
+        $this->assert('Correctly returns the result and calls the right findBy with the right arguments')
              ->if($user = new \mock\Dibber\Document\User)
              ->and($repository = $this->mockGetRepository())
-             ->and($repository->getMockController()->findBy = function() use ($user) {
+             ->and($repository->getMockController()->findBy = function(array $criteria, array $orderBy = null) use ($user) {
                 return [$user, $user];
              } )
              ->then
-                ->phpArray($this->baseMapper->findAll())
+                ->phpArray($this->baseMapper->findAll(['name']))
                     ->strictlyContainsValues([$user, $user])
 
                 ->mock($repository)
-                    ->call('findBy')->once();
+                    ->call('findBy')->withArguments([], ['name'])->once();
     }
 
     public function testFindBy()
