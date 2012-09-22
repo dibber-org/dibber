@@ -51,6 +51,30 @@ return [
                         ],
                     ],
 
+                    'users' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => 'users/[page/:page]',
+                            'defaults' => [
+                                'page'       => 1,
+                                'controller' => 'user',
+                                'action'     => 'list',
+                            ],
+                        ],
+                    ],
+
+                    'places' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => 'places/[page/:page]',
+                            'defaults' => [
+                                'page'       => 1,
+                                'controller' => 'place',
+                                'action'     => 'list',
+                            ],
+                        ],
+                    ],
+
                     /**
                      * Shortcut routes
                      */

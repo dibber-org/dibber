@@ -1,16 +1,13 @@
 <div style="float:left; padding-right:16px; width: 150px;">
-    <h2><?php echo $place->getName() ?></h2>
+    <h3>The users</h3>
 </div>
 <div style="margin-left: 160px;">
-    <?php if ($place->getUsers()) : ?>
-    <div id="users">
-        <h3>Its members</h3>
-        <ul class="nav nav-tabs nav-stacked">
-        <?php foreach ($place->getUsers() as $user) : ?>
+<?php if (count($users)) : ?>
+    <ul class="nav nav-tabs nav-stacked">
+        <?php foreach ($users as $user) : ?>
             <li><a href="<?php echo $this->url('dibber') . $user->getLogin()?>"><?php echo $this->zfcUserDisplayName($user) ?></a></li>
         <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
-    </div>
+    </ul>
+<?php endif; ?>
 </div>
 <div style="clear:both;"></div>

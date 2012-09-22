@@ -151,9 +151,9 @@ abstract class Base
     /**
      * @return array
      */
-    public function findAll()
+    public function findAll(array $orderBy = null)
     {
-        return $this->getRepository()->findAll();
+        return $this->getRepository()->findBy([], $orderBy);
     }
 
     /**

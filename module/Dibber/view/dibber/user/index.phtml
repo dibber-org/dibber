@@ -1,12 +1,12 @@
-<div style="float:left; padding-right:16px; width: 150px";>
-    <h3><?php echo $this->zfcUserDisplayName($user) ?></h3>
+<div style="float:left; padding-right:16px; width: 150px;">
+    <h2><?php echo $this->zfcUserDisplayName($user) ?></h2>
     <?php echo $this->gravatar($user->getEmail(), ['img_size' => 150]) ?>
 </div>
 <div style="margin-left: 160px;">
     <?php if ($user->getPlaces()) : ?>
     <div id="places">
-        <h3>Places</h3>
-        <ul>
+        <h3>Its places</h3>
+        <ul class="nav nav-tabs nav-stacked">
         <?php foreach ($user->getPlaces() as $place) : ?>
             <li><a href="<?php echo $this->url('dibber') . $place->getLogin()?>"><?php echo $place->getName() ?></a></li>
         <?php endforeach; ?>
