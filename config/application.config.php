@@ -6,6 +6,8 @@ return [
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineMongoODM',
+        'ScnSocialAuth',
+        'ScnSocialAuthDoctrineMongoODM',
         'Dibber'
     ],
     'module_listener_options' => [
