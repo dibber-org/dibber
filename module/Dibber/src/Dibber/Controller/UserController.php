@@ -11,7 +11,7 @@ namespace Dibber\Controller;
 
 use Zend\View\Model\ViewModel;
 
-class UserController extends \ZfcUser\Controller\UserController
+class UserController extends \ScnSocialAuth\Controller\UserController
 {
     /**
      * Public user page
