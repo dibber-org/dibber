@@ -1,9 +1,10 @@
 <?php
 namespace Dibber\Document\Mapper;
 
-use \Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use ScnSocialAuthDoctrineMongoODM\Options\ModuleOptions;
 
-class UserProvider extends Base implements \ScnSocialAuthDoctrineMongoODM\Mapper\UserProviderInterface
+class UserProvider extends Base implements \ScnSocialAuth\Mapper\UserProviderInterface
 {
     /**
      * @param DocumentManager $dm
