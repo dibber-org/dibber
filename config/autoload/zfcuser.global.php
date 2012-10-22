@@ -179,11 +179,6 @@ $settings = array(
  */
 return array(
     'zfcuser' => $settings,
-    'controllers' => array(
-        'invokables' => array(
-            'zfcuser' => 'Dibber\Controller\UserController',
-        ),
-    ),
     'service_manager' => array(
         'aliases' => array(
             'zfcuser_zend_db_adapter' => (isset($settings['zend_db_adapter'])) ? $settings['zend_db_adapter']: 'Zend\Db\Adapter\Adapter',

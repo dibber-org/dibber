@@ -29,7 +29,7 @@ class UserController extends \ScnSocialAuth\Controller\UserController
     public function profileAction()
     {
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser/login');
+            return $this->redirect()->toRoute('dibber/login');
         }
         return new ViewModel();
     }
@@ -48,5 +48,12 @@ class UserController extends \ScnSocialAuth\Controller\UserController
         return new ViewModel( [
             'users' => $users
         ] );
+    }
+
+    public function logoutAction()
+    {
+        # Seems to be needed to avoid PHP warnings as auth providers aren't set otherwise
+        $this->getHybridAuth();
+        return parent::logoutAction();
     }
 }
