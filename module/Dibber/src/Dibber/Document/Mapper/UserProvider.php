@@ -6,32 +6,29 @@ use \Doctrine\ODM\MongoDB\DocumentManager;
 class UserProvider extends Base implements \ScnSocialAuthDoctrineMongoODM\Mapper\UserProviderInterface
 {
     /**
-     * @var \ScnSocialAuthDoctrineMongoODM\Options\ModuleOptions
+     * @param DocumentManager $dm
+     * @param ModuleOptions $options
      */
-    protected $options;
-
-    /**
-     * @param \Doctrine\ODM\MongoDB\DocumentManager $dm
-     */
-    public function __construct(DocumentManager $dm = null, ModuleOptions $options)
+    public function __construct(DocumentManager $dm = null, ModuleOptions $options = null)
     {
         parent::__construct('Dibber\Document\UserProvider', $dm);
-
-        $this->options = $options;
     }
 
+    /**
+     * @param string $providerId
+     * @param string $provider
+     * @return UserProvider
+     */
     public function findUserByProviderId($providerId, $provider)
     {
-        $dr = $this->dm->getRepository($this->options->getUserProviderEntityClass());
-        $document = $dr->findOneBy(array('providerId' => (string) $providerId, 'provider' => $provider));
-        return $document;
+        return $this->findOneBy(array('providerId' => (string) $providerId, 'provider' => $provider));;
     }
 
     /**
      * Used to comply with ScnSocialAuth UserProviderInterface
      *
-     * @param \Dibber\Document\UserProvider $userProvider
-     * @return \Dibber\Document\UserProvider
+     * @param UserProvider $userProvider
+     * @return UserProvider
      */
     public function insert($userProvider) {
         return $this->save($userProvider, true);
@@ -40,8 +37,8 @@ class UserProvider extends Base implements \ScnSocialAuthDoctrineMongoODM\Mapper
     /**
      * Used to comply with ScnSocialAuth UserProviderInterface
      *
-     * @param \Dibber\Document\UserProvider $userProvider
-     * @return \Dibber\Document\UserProvider
+     * @param UserProvider $userProvider
+     * @return UserProvider
      */
     public function update($userProvider) {
         return $this->save($userProvider, true);
