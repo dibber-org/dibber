@@ -79,6 +79,7 @@ return [
                      * Shortcut routes
                      */
                     'profile' => [
+                        'priority' => 20000,
                         'type' => 'Literal',
                         'options' => [
                             'route' => 'profile',
@@ -89,6 +90,7 @@ return [
                         ],
                     ],
                     'login' => [
+                        'priority' => 20000,
                         'type' => 'Literal',
                         'options' => [
                             'route' => 'login',
@@ -97,14 +99,42 @@ return [
                                 'action'     => 'login',
                             ],
                         ],
+                        'may_terminate' => true,
+                        'child_routes' => [
+                            'provider' => [
+                                'type' => 'Segment',
+                                'options' => [
+                                    'route' => '/:provider',
+                                    'constraints' => [
+                                        'provider' => '[a-zA-Z][a-zA-Z0-9_-]+',
+                                    ],
+                                    'defaults' => [
+                                        'controller' => 'user',
+                                        'action' => 'provider-login',
+                                    ],
+                                ],
+                            ],
+                        ],
                     ],
                     'logout' => [
+                        'priority' => 20000,
                         'type' => 'Literal',
                         'options' => [
                             'route' => 'logout',
                             'defaults' => [
                                 'controller' => 'user',
                                 'action'     => 'logout',
+                            ],
+                        ],
+                    ],
+                    'register' => [
+                        'priority' => 20000,
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => 'register',
+                            'defaults' => [
+                                'controller' => 'user',
+                                'action'     => 'register',
                             ],
                         ],
                     ],
@@ -150,6 +180,11 @@ return [
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',
+        ],
+    ],
+    'view_helpers' => [
+        'invokables' => [
+            'socialSignInButton' => 'Dibber\View\Helper\SocialSignInButton',
         ],
     ],
 ];
