@@ -11,6 +11,7 @@ return array(
     'Dibber\Tests\Units\Document\Mapper\Base'         => __DIR__ . '/Tests/Units/Document/Mapper/Base.php',
     'Dibber\Tests\Units\Document\Mapper\UserProvider' => __DIR__ . '/Tests/Units/Document/Mapper/UserProvider.php',
     'Dibber\Tests\Units\Document\Mapper\User'         => __DIR__ . '/Tests/Units/Document/Mapper/User.php',
+    'Dibber\Tests\Units\Document\Mapper\Place' => __DIR__ . '/Tests/Units/Document/Mapper/Place.php',
     'Dibber\Tests\Units\Document\Mapper\Test'         => __DIR__ . '/Tests/Units/Document/Mapper/Test.php',
     'Dibber\Tests\Units\Test'                         => __DIR__ . '/Tests/Units/Test.php',
 );
