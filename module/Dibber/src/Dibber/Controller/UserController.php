@@ -40,9 +40,8 @@ class UserController extends \ZfcUser\Controller\UserController
 //        $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\Array());
 //        $paginator->setCurrentPageNumber($this->params('page'));
 
-        /* @var $dm \Doctrine\ODM\MongoDB\DocumentManager */
-        $dm = $this->getServiceLocator()->get('doctrine.documentmanager.odm_default');
-        $userMapper = new \Dibber\Document\Mapper\User($dm);
+        /* @var $userMapper \Dibber\Document\Mapper\User */
+        $userMapper = $this->getServiceLocator()->get('dibber_user_mapper');
         $users = $userMapper->findAll(['name']); // @todo sortBy not working
 
         return new ViewModel( [

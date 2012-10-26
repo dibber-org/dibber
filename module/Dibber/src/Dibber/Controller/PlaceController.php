@@ -30,9 +30,8 @@ class PlaceController extends AbstractActionController
 //        $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\Array());
 //        $paginator->setCurrentPageNumber($this->params('page'));
 
-        /* @var $dm \Doctrine\ODM\MongoDB\DocumentManager */
-        $dm = $this->getServiceLocator()->get('doctrine.documentmanager.odm_default');
-        $placeMapper = new \Dibber\Document\Mapper\Place($dm);
+        /* @var $placeMapper \Dibber\Document\Mapper\Place */
+        $placeMapper = $this->getServiceLocator()->get('dibber_place_mapper');
         $places = $placeMapper->findAll(['name']); // @todo sortBy not working
 
         return new ViewModel( [

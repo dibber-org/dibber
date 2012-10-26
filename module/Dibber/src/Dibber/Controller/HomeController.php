@@ -20,20 +20,19 @@ class HomeController extends AbstractActionController
      */
     public function indexAction()
     {
-        /* @var $dm \Doctrine\ODM\MongoDB\DocumentManager */
-        $dm = $this->getServiceLocator()->get('doctrine.documentmanager.odm_default');
-
         $login = $this->params('login');
 
         # Check if it is a User
-        $userMapper = new Document\Mapper\User($dm);
+        /* @var $userMapper \Dibber\Document\Mapper\User */
+        $userMapper = $this->getServiceLocator()->get('dibber_user_mapper');
         $user = $userMapper->findByLogin($login);
         if ($user instanceof Document\User) {
             return $this->forward()->dispatch('Dibber\Controller\User', array('action' => 'index', 'user' => $user));
         }
 
         # Check if it is a Place
-        $placeMapper = new Document\Mapper\Place($dm);
+        /* @var $placeMapper \Dibber\Document\Mapper\Place */
+        $placeMapper = $this->getServiceLocator()->get('dibber_place_mapper');
         $place = $placeMapper->findByLogin($login);
         if ($place instanceof Document\Place) {
             return $this->forward()->dispatch('Dibber\Controller\Place', array('action' => 'index', 'place' => $place));
