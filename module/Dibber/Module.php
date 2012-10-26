@@ -39,4 +39,32 @@ class Module
             ),
         );
     }
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'dibber_field_mapper' => function ($sm) {
+                    return new \Dibber\Document\Mapper\Field(
+                        $sm->get('doctrine.documentmanager.odm_default')
+                    );
+                },
+                'dibber_place_mapper' => function ($sm) {
+                    return new \Dibber\Document\Mapper\Place(
+                        $sm->get('doctrine.documentmanager.odm_default')
+                    );
+                },
+                'dibber_user_mapper' => function ($sm) {
+                    return new \Dibber\Document\Mapper\User(
+                        $sm->get('doctrine.documentmanager.odm_default')
+                    );
+                },
+                'dibber_zone_mapper' => function ($sm) {
+                    return new \Dibber\Document\Mapper\Zone(
+                        $sm->get('doctrine.documentmanager.odm_default')
+                    );
+                },
+            ),
+        );
+    }
 }
