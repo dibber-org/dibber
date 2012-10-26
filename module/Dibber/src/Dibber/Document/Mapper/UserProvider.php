@@ -22,7 +22,7 @@ class UserProvider extends Base implements \ScnSocialAuth\Mapper\UserProviderInt
      */
     public function findUserByProviderId($providerId, $provider)
     {
-        return $this->findOneBy(array('providerId' => (string) $providerId, 'provider' => $provider));;
+        return $this->findOneBy(['providerId' => (string) $providerId, 'provider' => $provider]);
     }
 
     /**

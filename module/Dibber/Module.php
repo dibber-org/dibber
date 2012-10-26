@@ -28,22 +28,25 @@ class Module
 
     public function getAutoloaderConfig()
     {
-        return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
+        return [
+            'Zend\Loader\ClassMapAutoloader' => [
                 __DIR__ . '/autoload_classmap.php',
-            ),
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
+            ],
+            'Zend\Loader\StandardAutoloader' => [
+                'namespaces' => [
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     public function getServiceConfig()
     {
-        return array(
-            'factories' => array(
+        return [
+            'factories' => [
+                /**
+                 * Services for documents mappers
+                 */
                 'dibber_field_mapper' => function ($sm) {
                     return new \Dibber\Document\Mapper\Field(
                         $sm->get('doctrine.documentmanager.odm_default')
@@ -64,7 +67,7 @@ class Module
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
                 },
-            ),
-        );
+            ],
+        ];
     }
 }
