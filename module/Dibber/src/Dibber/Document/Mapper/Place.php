@@ -14,13 +14,23 @@ class Place extends Base
     }
 
     /**
-     * For consistency with Document\Mapper\User::findByLogin()
+     * Alias to findByCode for consistency with
+     * Document\Mapper\User::findByLogin()
      *
      * @param string $login
-     * @return \Dibber\Document\User
+     * @return \Dibber\Document\Place
      */
     public function findByLogin($login)
     {
-        return $this->findOneBy(['code' => $login]);
+        return $this->findByCode($login);
+    }
+
+    /**
+     * @param string $code
+     * @return \Dibber\Document\Place
+     */
+    public function findByCode($code)
+    {
+        return $this->findOneBy(['code' => (string) $code]);
     }
 }
