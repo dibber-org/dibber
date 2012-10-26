@@ -25,7 +25,9 @@
         "doctrine/mongodb": "1.0.0-BETA1",
         "doctrine/doctrine-mongo-odm-module": "dev-master",
         "gedmo/doctrine-extensions": "2.3.*",
-        "zf-commons/zfc-user": "dev-master"
+        "zf-commons/zfc-user": "dev-master",
+        "socalnick/scn-social-auth": "dev-master",
+        "jhuet/scn-social-auth-doctrine-mongo-odm": "dev-master"
     },
     "require-dev": {
         "mageekguy/atoum": "dev-master"
