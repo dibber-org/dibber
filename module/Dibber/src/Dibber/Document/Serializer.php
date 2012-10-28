@@ -85,7 +85,7 @@ class Serializer
             $field = Inflector::tableize($field);
             if ($value instanceof \Traversable) {
                 if ($this->recursionDepth < $this->maxRecursionDepth) {
-                   $this->recursionDepth++;
+                    $this->recursionDepth++;
                     foreach ($value as $v) {
                         $data[$field][] = $this->serialize($v);
                     }
@@ -96,7 +96,11 @@ class Serializer
                 $data[$field] = $value->format(\DateTime::ATOM);
             }
             else if (is_object($value)) {
-                $data[$field] = $this->serialize($value);
+                if ($this->recursionDepth < $this->maxRecursionDepth) {
+                    $this->recursionDepth++;
+                    $data[$field] = $this->serialize($value);
+                    $this->recursionDepth--;
+                }
             }
             else {
                 $data[$field] = $value;
