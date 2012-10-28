@@ -6,10 +6,8 @@
 
 namespace Dibber\Document;
 
-use Doctrine\ODM\MongoDB\Mapping\ClassMetadata,
-    Doctrine\Common\Util\Inflector,
-    Doctrine\ODM\MongoDB\DocumentManager,
-    Exception;
+use Doctrine\Common\Util\Inflector
+ ,  Doctrine\ODM\MongoDB\DocumentManager;
 
 class Serializer
 {
