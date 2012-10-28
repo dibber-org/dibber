@@ -24,7 +24,7 @@ class Serializer
     /**
      * @var int
      */
-    protected $maxRecursionDepth = 1;
+    protected $maxRecursionDepth = 2;
 
     public function __construct($dm)
     {
