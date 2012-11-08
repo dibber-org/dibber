@@ -12,7 +12,6 @@ before_script:
   - echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - wget http://getcomposer.org/composer.phar
   - php composer.phar install --dev
-  - git clone git://github.com/ZF-Commons/ZfcUserDoctrineMongoODM.git vendor/zf-commons/zfc-user-doctrine-mongo-odm
   - chmod 711 bin/*
   - chmod 777 module/Dibber/src/Dibber/Document/Hydrator/ module/Dibber/src/Dibber/Document/Proxy/
 script: php vendor/mageekguy/atoum/scripts/runner.php -d tests/Dibber/
