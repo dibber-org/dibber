@@ -1,6 +1,6 @@
 define([
   // Libraries.
-  "zepto",
+  "jquery",
   "lodash",
   "backbone",
 
