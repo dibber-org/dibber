@@ -19,15 +19,15 @@
 
     <script>
         require({
-            urlArgs: "bust=" + (new Date()).getTime(), // @todo change bust with revision number or App version ?
+            urlArgs: 'bust=' + (new Date()).getTime(), // @todo change bust with revision number or App version ?
 
             // First the requirejs config - @todo is there a way to just extend the already existing config.js ?
             paths: {
-                jquery: "../../assets/js/libs/jquery",
-                lodash: "../../assets/js/libs/lodash",
-                jasmine: '../../test/jasmine/vendor/jasmine',
+                jquery:         '../../assets/js/libs/jquery',
+                lodash:         '../../assets/js/libs/lodash',
+                jasmine:        '../../test/jasmine/vendor/jasmine',
                 'jasmine-html': '../../test/jasmine/vendor/jasmine-html',
-                spec: '../../test/jasmine/spec'
+                spec:           '../../test/jasmine/spec'
             },
 
             shim: {
