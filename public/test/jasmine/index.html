@@ -1,39 +1,70 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <title>Backbone Boilerplate Jasmine Test Suite</title>
+    <title>Backbone Boilerplate Jasmine Test Suite</title>
 
-  <!-- Jasmine styles -->
-  <link rel="stylesheet" href="vendor/jasmine.css">
+    <!-- Jasmine styles -->
+    <link rel="stylesheet" href="vendor/jasmine.css">
 </head>
 
 <body>
-  <!-- Testing libs -->
-  <script src="vendor/jasmine.js"></script>
-  <script src="vendor/jasmine-html.js"></script>
+    <p id="ok" style="display:none;">1</p>
 
-  <!-- Load application -->
-  <script data-main="../../app/config"
-    src="../../assets/js/libs/require.js"></script>
+    <!-- Load application -->
+    <script src="../../assets/js/libs/require.js"></script>
 
-  <!-- Declare your spec files to be run here -->
-  <script>
-    // Ensure you point to where your spec folder is, base directory is app/,
-    // which is why ../test is necessary
-    require({ paths: { spec: "../test/jasmine/spec" } }, [
+    <script>
+        require({
+            urlArgs: "bust=" + (new Date()).getTime(), // @todo change bust with revision number or App version ?
 
-      // Load the example spec, replace this and add your own spec
-      "spec/example"
+            // First the requirejs config - @todo is there a way to just extend the already existing config.js ?
+            paths: {
+                jquery: "../../assets/js/libs/jquery",
+                lodash: "../../assets/js/libs/lodash",
+                jasmine: '../../test/jasmine/vendor/jasmine',
+                'jasmine-html': '../../test/jasmine/vendor/jasmine-html',
+                spec: '../../test/jasmine/spec'
+            },
 
-    ], function() {
-      // Set up the jasmine reporters once each spec has been loaded
-      jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
-      jasmine.getEnv().execute();
-    });
-  </script>
+            shim: {
+                jasmine: {
+                    exports: 'jasmine'
+                },
+                'jasmine-html': {
+                    deps: ['jasmine'],
+                    exports: 'jasmine'
+                }
+            }
+        }, [
+
+            // Then the dependencies
+            'jquery',
+            'lodash',
+            'jasmine-html'
+
+        ], function($, _, jasmine) {
+
+            // Set up the jasmine reporters
+            var jEnv = jasmine.getEnv();
+            jEnv.addReporter(new jasmine.TrivialReporter());
+
+            // Declare your spec files to be run here
+            var specs = [
+                'spec/example'
+            ];
+
+            //  Execute tests after having required all specs
+            $(function() {
+                require(specs, function() {
+                    jEnv.execute();
+                });
+            });
+
+        });
+    </script>
 </body>
 </html>
