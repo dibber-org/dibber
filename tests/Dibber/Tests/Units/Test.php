@@ -1,7 +1,7 @@
 <?php
 namespace Dibber\Tests\Units;
 
-require __DIR__ . '/../../../../init_autoloader.php';
+require __DIR__ . '/../../../../autoload_init.php';
 
 use mageekguy\atoum;
 
