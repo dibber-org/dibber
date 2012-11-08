@@ -1,5 +1,6 @@
 // Set the require.js configuration for your application.
 require.config({
+    urlArgs: "bust=" + (new Date()).getTime(), // @todo change bust with revision number or App version ?
 
   // Initialize the application with the main application file.
   deps: ["main"],
