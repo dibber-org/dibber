@@ -12,15 +12,15 @@ require.config({
     vendor: "../assets/vendor",
 
     // Libraries.
-    jquery: "../assets/js/libs/jquery",
+    zepto: "../assets/js/libs/zepto",
     lodash: "../assets/js/libs/lodash",
     backbone: "../assets/js/libs/backbone"
   },
 
   shim: {
-    // Backbone library depends on lodash and jQuery.
+    // Backbone library depends on lodash and Zepto (jQuery replacement).
     backbone: {
-      deps: ["lodash", "jquery"],
+      deps: ["lodash", "zepto"],
       exports: "Backbone"
     },
 
