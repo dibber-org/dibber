@@ -10,11 +10,6 @@
 // Composer autoloading
 require 'vendor/autoload.php';
 
-# Hack as this package is not yet available in composer. PR waiting for it :
-# https://github.com/ZF-Commons/ZfcUserDoctrineMongoODM/pull/5
-// @todo remove once package available
-require 'vendor/zf-commons/zfc-user-doctrine-mongo-odm/autoload_register.php';
-
 if (!class_exists('Zend\Loader\AutoloaderFactory')) {
     throw new RuntimeException('Unable to load ZF2. Run `php composer.phar install`.');
 }
