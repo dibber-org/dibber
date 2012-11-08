@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Map resources to release distribution
+RewriteRule ^app/(.*)$ dist/release/$1 [NC,L]
+RewriteRule ^assets/js/libs/(.*)$ dist/release/$1 [NC,L]
+RewriteRule ^assets/css/(.*)$ dist/release/$1 [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
