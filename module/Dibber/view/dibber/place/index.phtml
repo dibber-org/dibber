@@ -7,7 +7,7 @@
         <h3>Its members</h3>
         <ul class="nav nav-tabs nav-stacked">
         <?php foreach ($place->getUsers() as $user) : ?>
-            <li><a href="<?= $this->url('dibber') . $user->getLogin()?>"><?= $this->zfcUserDisplayName($user) ?></a></li>
+            <li><a href="<?= $this->url('dibber') . $user->getLogin()?>" data-bypass><?= $this->zfcUserDisplayName($user) ?></a></li>
         <?php endforeach; ?>
         </ul>
     <?php endif; ?>

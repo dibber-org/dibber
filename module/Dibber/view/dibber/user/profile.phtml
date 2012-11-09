@@ -2,8 +2,8 @@
     <h3><?= $this->zfcUserDisplayName() ?></h3>
     <?= $this->gravatar($this->zfcUserIdentity()->getEmail(), ['img_size' => 150]) ?>
     <ul class="nav nav-tabs nav-stacked">
-        <li><a href="<?= $this->url('zfcuser/changeemail')?>"><?= $this->translate('Change your email') ?></a></li>
-        <li><a href="<?= $this->url('zfcuser/changepassword')?>"><?= $this->translate('Change your password') ?></a></li>
+        <li><a href="<?= $this->url('zfcuser/changeemail')?>" data-bypass><?= $this->translate('Change your email') ?></a></li>
+        <li><a href="<?= $this->url('zfcuser/changepassword')?>" data-bypass><?= $this->translate('Change your password') ?></a></li>
     </ul>
 </div>
 <div style="margin-left: 160px;">

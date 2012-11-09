@@ -29,21 +29,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="<?= $this->url('dibber') ?>">dibber</a>
+          <a class="brand" href="<?= $this->url('dibber') ?>" data-bypass>dibber</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="<?= $this->url('dibber') ?>"><?= $this->translate('Home') ?></a></li>
-              <li><a href="<?= $this->url('dibber/users') ?>page/1"><?= $this->translate('Users') ?></a></li>
-              <li><a href="<?= $this->url('dibber/places') ?>page/1"><?= $this->translate('Places') ?></a></li>
+              <li class="active"><a href="<?= $this->url('dibber') ?>" data-bypass><?= $this->translate('Home') ?></a></li>
+              <li><a href="<?= $this->url('dibber/users') ?>page/1" data-bypass><?= $this->translate('Users') ?></a></li>
+              <li><a href="<?= $this->url('dibber/places') ?>page/1" data-bypass><?= $this->translate('Places') ?></a></li>
             </ul>
           </div><!--/.nav-collapse -->
           <div id="userbox" class="nav-collapse">
             <ul id="user-links" class="nav">
               <?php if ($this->zfcUserIdentity()) : ?>
-              <li><a href="<?= $this->url('dibber/profile') ?>"><?= $this->translate('Profile') ?></a></li>
-              <li><a href="<?= $this->url('dibber/logout') ?>"><?= $this->translate('Sign out') ?></a></li>
+              <li><a href="<?= $this->url('dibber/profile') ?>" data-bypass><?= $this->translate('Profile') ?></a></li>
+              <li><a href="<?= $this->url('dibber/logout') ?>" data-bypass><?= $this->translate('Sign out') ?></a></li>
               <?php else : ?>
-              <li><a href="<?= $this->url('dibber/login') ?>"><?= $this->translate('Sign in') ?></a></li>
+              <li><a href="<?= $this->url('dibber/login') ?>" data-bypass><?= $this->translate('Sign in') ?></a></li>
               <?php endif; ?>
             </ul>
           </div>

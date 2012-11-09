@@ -8,7 +8,7 @@
         <h3>Its places</h3>
         <ul class="nav nav-tabs nav-stacked">
         <?php foreach ($user->getPlaces() as $place) : ?>
-            <li><a href="<?= $this->url('dibber') . $place->getLogin()?>"><?= $place->getName() ?></a></li>
+            <li><a href="<?= $this->url('dibber') . $place->getLogin()?>" data-bypass><?= $place->getName() ?></a></li>
         <?php endforeach; ?>
         </ul>
     <?php endif; ?>

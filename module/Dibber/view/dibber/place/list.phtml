@@ -5,7 +5,7 @@
 <?php if (count($places)) : ?>
     <ul class="nav nav-tabs nav-stacked">
         <?php foreach ($places as $place) : ?>
-            <li><a href="<?= $this->url('dibber') . $place->getLogin()?>"><?= $place->getName() ?></a></li>
+            <li><a href="<?= $this->url('dibber') . $place->getLogin()?>" data-bypass><?= $place->getName() ?></a></li>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
