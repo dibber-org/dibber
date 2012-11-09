@@ -1,5 +1,5 @@
 <div style="float:left; padding-right:16px; width: 150px;">
-    <h2><?php echo $place->getName() ?></h2>
+    <h2><?= $place->getName() ?></h2>
 </div>
 <div style="margin-left: 160px;">
     <?php if ($place->getUsers()) : ?>
@@ -7,7 +7,7 @@
         <h3>Its members</h3>
         <ul class="nav nav-tabs nav-stacked">
         <?php foreach ($place->getUsers() as $user) : ?>
-            <li><a href="<?php echo $this->url('dibber') . $user->getLogin()?>"><?php echo $this->zfcUserDisplayName($user) ?></a></li>
+            <li><a href="<?= $this->url('dibber') . $user->getLogin()?>"><?= $this->zfcUserDisplayName($user) ?></a></li>
         <?php endforeach; ?>
         </ul>
     <?php endif; ?>

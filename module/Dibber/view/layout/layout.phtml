@@ -1,18 +1,18 @@
-<?php echo $this->doctype(); ?>
+<?= $this->doctype(); ?>
 
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <?php echo $this->headTitle('dibber')->setSeparator(' - ')->setAutoEscape(false) ?>
+    <?= $this->headTitle('dibber')->setSeparator(' - ')->setAutoEscape(false) ?>
 
-    <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+    <?= $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
 
     <!-- Le styles -->
-    <?php echo $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'])
+    <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'])
                     ->appendStylesheet($this->assetsPath() . '/css/index.css') ?>
 
     <!-- Scripts -->
-    <?php echo $this->headScript()->setAllowArbitraryAttributes(true)
+    <?= $this->headScript()->setAllowArbitraryAttributes(true)
                                   ->appendFile($this->assetsPath() . '/js/libs/html5.js', 'text/javascript', ['conditional' => 'lt IE 9'])
                                   ->appendFile($this->assetsPath() . '/js/libs/require.js', 'text/javascript', ['data-main' => '/app/config']) ?>
 
@@ -29,21 +29,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="<?php echo $this->url('dibber') ?>">dibber</a>
+          <a class="brand" href="<?= $this->url('dibber') ?>">dibber</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="<?php echo $this->url('dibber') ?>"><?php echo $this->translate('Home') ?></a></li>
-              <li><a href="<?php echo $this->url('dibber/users') ?>page/1"><?php echo $this->translate('Users') ?></a></li>
-              <li><a href="<?php echo $this->url('dibber/places') ?>page/1"><?php echo $this->translate('Places') ?></a></li>
+              <li class="active"><a href="<?= $this->url('dibber') ?>"><?= $this->translate('Home') ?></a></li>
+              <li><a href="<?= $this->url('dibber/users') ?>page/1"><?= $this->translate('Users') ?></a></li>
+              <li><a href="<?= $this->url('dibber/places') ?>page/1"><?= $this->translate('Places') ?></a></li>
             </ul>
           </div><!--/.nav-collapse -->
           <div id="userbox" class="nav-collapse">
             <ul id="user-links" class="nav">
               <?php if ($this->zfcUserIdentity()) : ?>
-              <li><a href="<?php echo $this->url('dibber/profile') ?>"><?php echo $this->translate('Profile') ?></a></li>
-              <li><a href="<?php echo $this->url('dibber/logout') ?>"><?php echo $this->translate('Sign out') ?></a></li>
+              <li><a href="<?= $this->url('dibber/profile') ?>"><?= $this->translate('Profile') ?></a></li>
+              <li><a href="<?= $this->url('dibber/logout') ?>"><?= $this->translate('Sign out') ?></a></li>
               <?php else : ?>
-              <li><a href="<?php echo $this->url('dibber/login') ?>"><?php echo $this->translate('Sign in') ?></a></li>
+              <li><a href="<?= $this->url('dibber/login') ?>"><?= $this->translate('Sign in') ?></a></li>
               <?php endif; ?>
             </ul>
           </div>
@@ -53,16 +53,16 @@
 
     <div class="container">
 
-      <?php echo $this->content; ?>
+      <?= $this->content; ?>
 
       <hr>
 
       <footer>
-        <p>&copy; 2005 - 2012 by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+        <p>&copy; 2005 - 2012 by Zend Technologies Ltd. <?= $this->translate('All rights reserved.') ?></p>
       </footer>
 
     </div> <!-- /container -->
 
-  <?php echo $this->inlineScript() ?>
+  <?= $this->inlineScript() ?>
   </body>
 </html>

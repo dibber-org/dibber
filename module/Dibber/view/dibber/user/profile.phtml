@@ -1,12 +1,12 @@
 <div style="float:left; padding-right:16px; width: 150px;">
-    <h3><?php echo $this->zfcUserDisplayName() ?></h3>
-    <?php echo $this->gravatar($this->zfcUserIdentity()->getEmail(), ['img_size' => 150]) ?>
+    <h3><?= $this->zfcUserDisplayName() ?></h3>
+    <?= $this->gravatar($this->zfcUserIdentity()->getEmail(), ['img_size' => 150]) ?>
     <ul class="nav nav-tabs nav-stacked">
-        <li><a href="<?php echo $this->url('zfcuser/changeemail')?>"><?php echo $this->translate('Change your email') ?></a></li>
-        <li><a href="<?php echo $this->url('zfcuser/changepassword')?>"><?php echo $this->translate('Change your password') ?></a></li>
+        <li><a href="<?= $this->url('zfcuser/changeemail')?>"><?= $this->translate('Change your email') ?></a></li>
+        <li><a href="<?= $this->url('zfcuser/changepassword')?>"><?= $this->translate('Change your password') ?></a></li>
     </ul>
 </div>
 <div style="margin-left: 160px;">
-    
+
 </div>
 <div style="clear:both;"></div>

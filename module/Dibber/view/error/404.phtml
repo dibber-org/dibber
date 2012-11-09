@@ -1,5 +1,5 @@
-<h1><?php echo $this->translate('A 404 error occurred') ?></h1>
-<h2><?php echo $this->message ?></h2>
+<h1><?= $this->translate('A 404 error occurred') ?></h1>
+<h2><?= $this->message ?></h2>
 
 <?php if (isset($this->reason) && $this->reason): ?>
 
@@ -24,15 +24,15 @@ switch ($this->reason) {
 }
 ?>
 
-<p><?php echo $reasonMessage ?></p>
+<p><?= $reasonMessage ?></p>
 
 <?php endif ?>
 
 <?php if (isset($this->controller) && $this->controller): ?>
 
 <dl>
-    <dt><?php echo $this->translate('Controller') ?>:</dt>
-    <dd><?php echo $this->escapeHtml($this->controller) ?>
+    <dt><?= $this->translate('Controller') ?>:</dt>
+    <dd><?= $this->escapeHtml($this->controller) ?>
 <?php
 if (isset($this->controller_class)
     && $this->controller_class
@@ -48,14 +48,14 @@ if (isset($this->controller_class)
 
 <?php if (isset($this->exception) && $this->exception): ?>
 
-<h2><?php echo $this->translate('Exception') ?>:</h2>
+<h2><?= $this->translate('Exception') ?>:</h2>
 
-<p><b><?php echo $this->escapeHtml($this->exception->getMessage()) ?></b></p>
+<p><b><?= $this->escapeHtml($this->exception->getMessage()) ?></b></p>
 
-<h3><?php echo $this->translate('Stack trace') ?>:</h3>
+<h3><?= $this->translate('Stack trace') ?>:</h3>
 
 <pre>
-<?php echo $this->exception->getTraceAsString() ?>
+<?= $this->exception->getTraceAsString() ?>
 </pre>
 
 <?php endif ?>
