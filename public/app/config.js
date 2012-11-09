@@ -13,6 +13,7 @@ require.config({
 
         // Libraries.
         jquery:     '../assets/js/libs/jquery',
+        moment:     '../assets/js/libs/moment',
         lodash:     '../assets/js/libs/lodash',
         backbone:   '../assets/js/libs/backbone'
     },
