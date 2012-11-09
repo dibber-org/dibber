@@ -1,18 +1,32 @@
 // Place module
 define([
     // Application.
-    'app'
+    'app',
+    'moment'
 ],
 
 // Map dependencies from above array.
-function(app) {
+function(app, moment) {
 
     // Create a new module.
     var Place = app.module();
 
     // Default Model.
     Place.Model = Backbone.Model.extend({
-
+        defaults: {
+            code: '',
+            coordinates: {
+                latitude: 0.0,
+                longitude: 0.0
+            },
+            createdAt: moment().format(),
+            level: 1,
+            name: '',
+            path: '',
+            surfaceSize: 0,
+            surfaceUnit: '',
+            updatedAt: moment().format()
+        }
     });
 
     // Default Collection.

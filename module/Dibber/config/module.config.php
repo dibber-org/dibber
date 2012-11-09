@@ -185,6 +185,7 @@ return [
     'view_helpers' => [
         'invokables' => [
             'socialSignInButton' => 'Dibber\View\Helper\SocialSignInButton',
+            'assetsPath' => 'Dibber\View\Helper\AssetsPath',
         ],
     ],
 ];

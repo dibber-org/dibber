@@ -19,7 +19,7 @@ require.config({
     },
 
     shim: {
-        // Backbone library depends on lodash and Zepto (jQuery replacement).
+        // Backbone library depends on lodash and jQuery.
         backbone: {
             deps: ['lodash', 'jquery'],
             exports: 'Backbone'
