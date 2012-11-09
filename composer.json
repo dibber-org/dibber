@@ -21,6 +21,7 @@
     "require": {
         "php": ">=5.3.5",
         "zendframework/zendframework": "2.*",
+        "zendframework/zend-developer-tools": "dev-master",
         "doctrine/common": "2.3.0-RC3",
         "doctrine/mongodb": "1.0.*",
         "doctrine/doctrine-mongo-odm-module": "0.*",
