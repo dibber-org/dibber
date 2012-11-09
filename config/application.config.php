@@ -1,6 +1,7 @@
 <?php
 return [
     'modules' => [
+        'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineMongoODMModule',
         'ZfcBase',
