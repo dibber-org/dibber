@@ -1,0 +1,27 @@
+web1:
+    name: dibber
+    document_root: public
+    default_gateway: index.php
+    index_list: [index.php]
+
+    shared_writable_dirs:
+     - /data
+
+    php_version: 5.3.10
+    php_extensions:
+     - curl
+     - mcrypt
+     - mongo
+    php_date_timezone: "UTC"
+    php_short_open_tag: "1"
+    php_display_errors: "0"
+    php_magic_quotes_gpc: "0"
+    php_register_globals: "0"
+    php_session_autostart: "0"
+
+    after_build:
+     - "wget http://getcomposer.org/composer.phar"
+     - "php composer.phar install --quiet"
+     - "php composer.phar dump-autoload --optimize"
+     - "chmod 711 bin/*"
+     - "chmod 777 module/Dibber/src/Dibber/Document/Hydrator/ module/Dibber/src/Dibber/Document/Proxy/"
