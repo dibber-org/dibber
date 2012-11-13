@@ -12,6 +12,7 @@ web1:
      - curl
      - mcrypt
      - mongo
+     - zip
     php_date_timezone: "UTC"
     php_short_open_tag: "1"
     php_display_errors: "0"
