@@ -21,7 +21,7 @@ web1:
 
     after_build:
      - "wget http://getcomposer.org/composer.phar"
-     - "php composer.phar install --quiet"
+     - "php composer.phar install"
      - "php composer.phar dump-autoload --optimize"
      - "chmod 711 bin/*"
      - "chmod 777 module/Dibber/src/Dibber/Document/Hydrator/ module/Dibber/src/Dibber/Document/Proxy/"
