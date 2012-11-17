@@ -21,11 +21,11 @@ return [
 //                'driver'             => 'odm_default',
 
                 'generate_proxies'   => true,
-                'proxy_dir'          => 'module/Dibber/src/Dibber/Document/Proxy',
+                'proxy_dir'          => 'data/cache/Dibber/Document/Proxy',
                 'proxy_namespace'    => 'Dibber\Model\Proxy',
 
                 'generate_hydrators' => true,
-                'hydrator_dir'       => 'module/Dibber/src/Dibber/Document/Hydrator',
+                'hydrator_dir'       => 'data/cache/Dibber/Document/Hydrator',
                 'hydrator_namespace' => 'Dibber\Document\Hydrator',
 
                 'default_db'         => 'dibber',
