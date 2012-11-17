@@ -13,7 +13,7 @@ before_script:
   - wget http://getcomposer.org/composer.phar
   - php composer.phar install --dev
   - chmod 711 bin/*
-  - chmod 777 module/Dibber/src/Dibber/Document/Hydrator/ module/Dibber/src/Dibber/Document/Proxy/
+  - chmod 777 data/cache/Dibber/Document/Hydrator/ data/cache/Dibber/Document/Proxy/
 script: php vendor/mageekguy/atoum/scripts/runner.php -d tests/Dibber/
 notifications:
   irc: "irc.freenode.org#dibber"
