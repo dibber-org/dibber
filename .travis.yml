@@ -10,8 +10,8 @@ before_script:
   - tar -xzf mongo-1.2.10.tgz
   - sh -c "cd mongo-1.2.10 && phpize && ./configure --enable-mongo && make && sudo make install"
   - echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-  - wget http://getcomposer.org/composer.phar
-  - php composer.phar install --dev
+  - composer self-update
+  - composer install --dev
   - chmod 711 bin/*
   - chmod 777 data/cache/Dibber/Document/Hydrator/ data/cache/Dibber/Document/Proxy/
 script: php vendor/mageekguy/atoum/scripts/runner.php -d tests/Dibber/
