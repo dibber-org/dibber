@@ -8,4 +8,6 @@ return array(
     'Dibber\WebService\Controller\UserController'           => __DIR__ . '/src/WebService/Controller/UserController.php',
     'Dibber\WebService\Controller\PlaceController'          => __DIR__ . '/src/WebService/Controller/PlaceController.php',
     'Dibber\WebService\Controller\BaseController'           => __DIR__ . '/src/WebService/Controller/BaseController.php',
+    'Dibber\WebService\Controller\FieldController'          => __DIR__ . '/src/WebService/Controller/FieldController.php',
+    'Dibber\WebService\Controller\ZoneController'           => __DIR__ . '/src/WebService/Controller/ZoneController.php',
 );
