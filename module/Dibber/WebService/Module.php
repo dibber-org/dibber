@@ -55,6 +55,11 @@ class Module
     {
         return [
             'factories' => [
+                'Dibber\WebService\Controller\Field' => function ($sm) {
+                    $controller = new Controller\FieldController();
+                    $controller->setMapper($sm->getServiceLocator()->get('dibber_field_mapper'));
+                    return $controller;
+                },
                 'Dibber\WebService\Controller\User' => function ($sm) {
                     $controller = new Controller\UserController();
                     $controller->setMapper($sm->getServiceLocator()->get('dibber_user_mapper'));
