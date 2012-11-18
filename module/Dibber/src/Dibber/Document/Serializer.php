@@ -12,7 +12,7 @@ use Doctrine\Common\Util\Inflector
 class Serializer
 {
     /**
-     * @var Doctrine\ODM\MongoDB\DocumentManager
+     * @var DocumentManager
      */
     protected $dm;
 
@@ -71,12 +71,19 @@ class Serializer
         $this->maxRecursionDepth = $maxRecursionDepth;
     }
 
+    /**
+     * Actually serialize the document recursively to the maxRecursionDepth set
+     * in the class.
+     *
+     * @param Document\Base $document
+     * @return array
+     */
     protected function serialize($document)
     {
         $className = get_class($document);
         $metadata = $this->dm->getClassMetadata($className);
 
-        $data = array();
+        $data = [];
 
         foreach ($metadata->fieldMappings as $field => $mapping) {
             $value = $metadata->reflFields[$field]->getValue($document);
@@ -120,7 +127,7 @@ class Serializer
     }
 
     /**
-     * Convert a document to a JSON object
+     * Convert a document to a JSON stringified object
      *
      * @param Document\Base $document
      * @return string
