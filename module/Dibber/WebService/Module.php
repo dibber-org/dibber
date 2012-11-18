@@ -69,6 +69,11 @@ class Module
                     $controller = new Controller\PlaceController();
                     $controller->setMapper($sm->getServiceLocator()->get('dibber_place_mapper'));
                     return $controller;
+                },
+                'Dibber\WebService\Controller\Zone' => function ($sm) {
+                    $controller = new Controller\ZoneController();
+                    $controller->setMapper($sm->getServiceLocator()->get('dibber_zone_mapper'));
+                    return $controller;
                 }
             ]
         ];
