@@ -56,7 +56,12 @@ abstract class BaseController extends AbstractRestfulController
      */
     public function get($id)
     {
-        return $this->mapper->toArray($this->mapper->find($id));
+        $resource = $this->mapper->find($id);
+        if (!$resource) {
+            throw new \Exception('The requested resource was not found.');
+        }
+
+        return $this->mapper->toArray($resource);
     }
 
     /**
@@ -67,7 +72,14 @@ abstract class BaseController extends AbstractRestfulController
      */
     public function create($data)
     {
-        return $this->mapper->toArray($this->mapper->save($data));
+        try {
+            $resource = $this->mapper->save($data, true);
+        }
+        catch (\Exception $e) {
+            throw new \Exception('The requested resource could not be created');
+        }
+
+        return $this->mapper->toArray($resource);
     }
 
     /**
@@ -80,7 +92,14 @@ abstract class BaseController extends AbstractRestfulController
     public function update($id, $data)
     {
         $data['_id'] = $id;
-        return $this->mapper->toArray($this->mapper->save($data));
+        try {
+            $resource = $this->mapper->save($data, true);
+        }
+        catch (\Exception $e) {
+            throw new \Exception('The requested resource could not be updated');
+        }
+
+        return $this->mapper->toArray($resource);
     }
 
     /**
@@ -91,6 +110,13 @@ abstract class BaseController extends AbstractRestfulController
      */
     public function delete($id)
     {
-        return $this->mapper->toArray($this->mapper->delete($id));
+        try {
+            $resource = $this->mapper->delete($id, true);
+        }
+        catch (\Exception $e) {
+            throw new \Exception('The requested resource could not be deleted');
+        }
+
+        return $this->mapper->toArray($resource);
     }
 }
