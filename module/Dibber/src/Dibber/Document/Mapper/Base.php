@@ -209,6 +209,7 @@ abstract class Base
     }
 
     /**
+     * @param array $orderBy
      * @return array
      */
     public function findAll(array $orderBy = null)
@@ -239,6 +240,7 @@ abstract class Base
             if (array_key_exists('_id', $data) && !empty($data['_id'])) {
                 # We have an id here > it's an update !
                 $document = $this->find($data['_id']);
+                unset($data['_id']);
             }
             $document = $this->hydrate($data, $document);
         }
