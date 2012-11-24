@@ -30,6 +30,6 @@
         "jhuet/scn-social-auth-doctrine-mongo-odm": "dev-master"
     },
     "require-dev": {
-        "mageekguy/atoum": "dev-master"
+        "atoum/atoum": "dev-master"
     }
 }
