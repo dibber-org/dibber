@@ -42,8 +42,19 @@ class Module
 
     public function getServiceConfig()
     {
-        return array(
-            'factories' => array(
+        return [
+            'aliases' => [
+                'dibber_user_service' => 'zfcuser_user_service'
+            ],
+
+            'invokables' => [
+                'zfcuser_user_service' => 'Dibber\Service\User',
+            ],
+
+            'factories' => [
+                /**
+                 * Services for documents mappers
+                 */
                 'dibber_field_mapper' => function ($sm) {
                     return new \Dibber\Document\Mapper\Field(
                         $sm->get('doctrine.documentmanager.odm_default')
@@ -64,7 +75,27 @@ class Module
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
                 },
-            ),
-        );
+
+
+                /**
+                 * Services for services :]
+                 */
+                'dibber_field_service' => function($sm) {
+                    $fieldService = new \Dibber\Service\Field();
+                    $fieldService->setServiceManager($sm);
+                    return $fieldService;
+                },
+                'dibber_place_service' => function($sm) {
+                    $placeService = new \Dibber\Service\Place();
+                    $placeService->setServiceManager($sm);
+                    return $placeService;
+                },
+                'dibber_zone_service' => function($sm) {
+                    $zoneService = new \Dibber\Service\Zone();
+                    $zoneService->setServiceManager($sm);
+                    return $zoneService;
+                },
+            ],
+        ];
     }
 }
