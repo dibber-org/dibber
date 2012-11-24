@@ -112,6 +112,19 @@ class Serializer
             }
         }
 
+        /**
+         * These documents have children that can be retrieved thanks to the
+         * Gedmo tree behavior.
+         * @todo find a better way to check if this document implements the Gedmo tree behavior
+         */
+//        if ($document instanceof Thing) {
+//            if ($this->recursionDepth < $this->maxRecursionDepth) {
+//                $this->recursionDepth++;
+//                $data['children'] = $this->serialize($this->dm->getRepository(get_class($document))->getChildren($document));
+//                $this->recursionDepth--;
+//            }
+//        }
+
         return $data;
     }
 
