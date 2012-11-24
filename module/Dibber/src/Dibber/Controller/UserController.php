@@ -10,9 +10,13 @@
 namespace Dibber\Controller;
 
 use Zend\View\Model\ViewModel;
+use Dibber\Service\ServiceAwareInterface;
+use Dibber\Service\ServiceProviderTrait;
 
-class UserController extends \ScnSocialAuth\Controller\UserController
+class UserController extends \ScnSocialAuth\Controller\UserController implements ServiceAwareInterface
 {
+    use ServiceProviderTrait;
+
     /**
      * Public user page
      */
@@ -40,9 +44,7 @@ class UserController extends \ScnSocialAuth\Controller\UserController
 //        $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\Array());
 //        $paginator->setCurrentPageNumber($this->params('page'));
 
-        /* @var $userMapper \Dibber\Document\Mapper\User */
-        $userMapper = $this->getServiceLocator()->get('dibber_user_mapper');
-        $users = $userMapper->findAll(['name']); // @todo sortBy not working
+        $users = $this->getService()->getMapper()->findAll(['name']); // @todo sortBy not working
 
         return new ViewModel( [
             'users' => $users
@@ -54,5 +56,17 @@ class UserController extends \ScnSocialAuth\Controller\UserController
         # Seems to be needed to avoid PHP warnings as auth providers aren't set otherwise
         $this->getHybridAuth();
         return parent::logoutAction();
+    }
+
+    /**
+     * @return \Dibber\Service\User
+     */
+    public function getService()
+    {
+        if (null === $this->service) {
+            $this->service = $this->getServiceLocator()->get('dibber_user_service');
+        }
+
+        return $this->service;
     }
 }
