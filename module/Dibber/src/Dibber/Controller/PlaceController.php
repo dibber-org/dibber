@@ -9,11 +9,15 @@
 
 namespace Dibber\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController
- ,  Zend\View\Model\ViewModel;
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Dibber\Service\ServiceAwareInterface;
+use Dibber\Service\ServiceProviderTrait;
 
-class PlaceController extends AbstractActionController
+class PlaceController extends AbstractActionController implements ServiceAwareInterface
 {
+    use ServiceProviderTrait;
+
     /**
      * Public place page
      */
@@ -30,12 +34,22 @@ class PlaceController extends AbstractActionController
 //        $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\Array());
 //        $paginator->setCurrentPageNumber($this->params('page'));
 
-        /* @var $placeMapper \Dibber\Document\Mapper\Place */
-        $placeMapper = $this->getServiceLocator()->get('dibber_place_mapper');
-        $places = $placeMapper->findAll(['name']); // @todo sortBy not working
+        $places = $this->getService()->getMapper()->findAll(['name']); // @todo sortBy not working
 
         return new ViewModel( [
             'places' => $places
         ] );
+    }
+
+    /**
+     * @return \Dibber\Service\Place
+     */
+    public function getService()
+    {
+        if (null === $this->service) {
+            $this->service = $this->getServiceLocator()->get('dibber_place_service');
+        }
+
+        return $this->service;
     }
 }
