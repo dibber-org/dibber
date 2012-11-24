@@ -11,4 +11,4 @@ else
 fi
 
 # execute tests
-/usr/local/bin/php54 vendor/mageekguy/atoum/scripts/runner.php -p /usr/local/bin/php54 -d $dir
+/usr/local/bin/php54 vendor/atoum/atoum/scripts/runner.php -p /usr/local/bin/php54 -d $dir

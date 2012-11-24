@@ -34,6 +34,11 @@ class User extends Base implements \ZfcUser\Entity\UserInterface
     public $places;
 
     /**
+     * @var int
+     */
+    private $state;
+
+    /**
      *
      */
     public function __construct()
@@ -163,6 +168,28 @@ class User extends Base implements \ZfcUser\Entity\UserInterface
     {
         $this->places[] = $place;
         $place->users[] = $this;
+        return $this;
+    }
+
+    /**
+     * Get state. Used to comply with ZfcUser UserInterface
+     *
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set state. Used to comply with ZfcUser UserInterface
+     *
+     * @param int $state
+     * @return User
+     */
+    public function setState($state)
+    {
+        $this->state = (int) $state;
         return $this;
     }
 }
