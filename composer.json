@@ -27,7 +27,8 @@
         "gedmo/doctrine-extensions": "2.*",
         "zf-commons/zfc-user": "dev-master",
         "socalnick/scn-social-auth": "dev-master",
-        "jhuet/scn-social-auth-doctrine-mongo-odm": "dev-master"
+        "jhuet/scn-social-auth-doctrine-mongo-odm": "dev-master",
+        "jhuet/sds-doctrine-extensions-module": "dev-master"
     },
     "require-dev": {
         "atoum/atoum": "dev-master"

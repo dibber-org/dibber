@@ -8,6 +8,7 @@ return [
         'ZfcUserDoctrineMongoODM',
         'ScnSocialAuth',
         'ScnSocialAuthDoctrineMongoODM',
+        'Sds\DoctrineExtensionsModule',
         'Dibber\WebService',
         'Dibber',
     ],
