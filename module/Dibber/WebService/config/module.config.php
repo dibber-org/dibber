@@ -7,14 +7,14 @@ return [
             'trace'   => true
         ]
     ],
-    'di' => [
-        'instance' => [
-            'alias' => [
-                'json-pp'  => 'Dibber\WebService\PostProcessor\Json',
-//                'image-pp' => 'Dibber\WebService\PostProcessor\Image',
-            ]
-        ]
-    ],
+//    'di' => [
+//        'instance' => [
+//            'alias' => [
+//                'json-pp'  => 'Dibber\WebService\PostProcessor\Json',
+////                'image-pp' => 'Dibber\WebService\PostProcessor\Image',
+//            ]
+//        ]
+//    ],
     'controllers' => [
         'invokables' => [
         ]
