@@ -17,7 +17,7 @@ abstract class Base
      */
     protected $documentName;
 
-    /** @var Document\Serializer */
+    /** @var \Sds\DoctrineExtensions\Serializer */
     protected $serializer;
 
     /**
@@ -88,20 +88,17 @@ abstract class Base
     }
 
     /**
-     * @return Document\Serializer
+     * @return \Sds\Common\Serializer\SerializerInterface
      */
     public function getSerializer()
     {
-        if (! $this->serializer) {
-            $this->serializer = new Document\Serializer($this->dm);
-        }
         return $this->serializer;
     }
 
     /**
-     * @param Document\Serializer $serializer
+     * @param \Sds\Common\Serializer\SerializerInterface $serializer
      */
-    public function setSerializer(Document\Serializer $serializer)
+    public function setSerializer(\Sds\Common\Serializer\SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
     }
