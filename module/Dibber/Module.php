@@ -10,10 +10,16 @@
 namespace Dibber;
 
 use Zend\Mvc\ModuleRouteListener;
+use Zend\ModuleManager\Feature;
+use Zend\EventManager\EventInterface;
 
-class Module
+class Module implements
+    Feature\AutoloaderProviderInterface,
+    Feature\BootstrapListenerInterface,
+    Feature\ConfigProviderInterface,
+    Feature\ServiceProviderInterface
 {
-    public function onBootstrap($e)
+    public function onBootstrap(EventInterface $e)
     {
         $e->getApplication()->getServiceManager()->get('translator');
         $eventManager        = $e->getApplication()->getEventManager();
@@ -76,6 +82,13 @@ class Module
                     );
                     $userMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
                     return $userMapper;
+                },
+                'dibber_user_provider_mapper' => function ($sm) {
+                    $userProviderMapper = new \Dibber\Document\Mapper\UserProvider(
+                        $sm->get('doctrine.documentmanager.odm_default')
+                    );
+                    $userProviderMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
+                    return $userProviderMapper;
                 },
                 'dibber_zone_mapper' => function ($sm) {
                     $zoneMapper = new \Dibber\Document\Mapper\Zone(

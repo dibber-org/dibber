@@ -4,10 +4,13 @@ namespace Dibber\Document\Mapper;
 use \Doctrine\ODM\MongoDB\DocumentManager
  ,  \Doctrine\ODM\MongoDB\DocumentRepository
  ,  \Dibber\Document
- ,  \Sds\Common\Serializer;
+ ,  \Sds\Common\Serializer
+ ,  Zend\EventManager;
 
-abstract class Base
+abstract class Base implements EventManager\EventManagerAwareInterface
 {
+    use EventManager\EventManagerAwareTrait;
+
     /** @var DocumentManager */
     protected $dm;
 
