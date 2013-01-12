@@ -13,10 +13,6 @@ return [
             'image-pp' => 'Dibber\WebService\PostProcessor\Image',
         ],
     ],
-    'controllers' => [
-        'invokables' => [
-        ]
-    ],
     'router' => [
         'routes' => [
             'ws' => [
