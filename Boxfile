@@ -25,4 +25,4 @@ web1:
      - "php composer.phar install"
      - "php composer.phar dump-autoload --optimize"
      - "chmod 711 bin/*"
-     - "chmod 777 module/Dibber/src/Dibber/Document/Hydrator/ module/Dibber/src/Dibber/Document/Proxy/"
+     - "chmod 777 data/cache/Dibber/Document/Hydrator/ data/cache/Dibber/Document/Proxy/"
