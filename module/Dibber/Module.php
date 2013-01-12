@@ -10,10 +10,16 @@
 namespace Dibber;
 
 use Zend\Mvc\ModuleRouteListener;
+use Zend\ModuleManager\Feature;
+use Zend\EventManager\EventInterface;
 
-class Module
+class Module implements
+    Feature\AutoloaderProviderInterface,
+    Feature\BootstrapListenerInterface,
+    Feature\ConfigProviderInterface,
+    Feature\ServiceProviderInterface
 {
-    public function onBootstrap($e)
+    public function onBootstrap(EventInterface $e)
     {
         $e->getApplication()->getServiceManager()->get('translator');
         $eventManager        = $e->getApplication()->getEventManager();
