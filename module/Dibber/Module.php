@@ -44,7 +44,8 @@ class Module
     {
         return [
             'aliases' => [
-                'dibber_user_service' => 'zfcuser_user_service'
+                'dibber_user_service' => 'zfcuser_user_service',
+                'doctrine.serializer.odm_default' => 'Sds\DoctrineExtensions\Serializer'
             ],
 
             'invokables' => [
@@ -56,24 +57,32 @@ class Module
                  * Services for documents mappers
                  */
                 'dibber_field_mapper' => function ($sm) {
-                    return new \Dibber\Document\Mapper\Field(
+                    $fieldMapper = new \Dibber\Document\Mapper\Field(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
+                    $fieldMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
+                    return $fieldMapper;
                 },
                 'dibber_place_mapper' => function ($sm) {
-                    return new \Dibber\Document\Mapper\Place(
+                    $placeMapper = new \Dibber\Document\Mapper\Place(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
+                    $placeMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
+                    return $placeMapper;
                 },
                 'dibber_user_mapper' => function ($sm) {
-                    return new \Dibber\Document\Mapper\User(
+                    $userMapper = new \Dibber\Document\Mapper\User(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
+                    $userMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
+                    return $userMapper;
                 },
                 'dibber_zone_mapper' => function ($sm) {
-                    return new \Dibber\Document\Mapper\Zone(
+                    $zoneMapper = new \Dibber\Document\Mapper\Zone(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
+                    $zoneMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
+                    return $zoneMapper;
                 },
 
 

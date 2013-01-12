@@ -23,7 +23,10 @@ trait Tree
     private $path;
 
     /**
-     * Comment to pass strict standards
+     * Override this property in the using class with according @ODM
+     * annotations.
+     *
+     * Commented to pass strict standards.
      *
      * @ODM\ReferenceOne
      * @Gedmo\Mapping\Annotation\TreeParent

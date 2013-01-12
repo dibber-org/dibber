@@ -30,9 +30,9 @@ class Zone extends Test
 
              ->assert('Setting a not accepted parent raises an exception')
                 ->exception(function() {
-                    $this->zone->setParent(new Document\Zone);
+                    $this->zone->setParent(new Document\Field);
                 } )
                     ->isInstanceOf('\Exception')
-                    ->hasMessage("Dibber\Document\Zone does not accept Dibber\Document\Zone as a child");
+                    ->hasMessage("Dibber\Document\Field does not accept Dibber\Document\Zone as a child");
     }
 }
