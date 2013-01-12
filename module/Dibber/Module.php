@@ -44,7 +44,8 @@ class Module
     {
         return [
             'aliases' => [
-                'dibber_user_service' => 'zfcuser_user_service'
+                'dibber_user_service' => 'zfcuser_user_service',
+                'doctrine.serializer.odm_default' => 'Sds\DoctrineExtensions\Serializer'
             ],
 
             'invokables' => [
@@ -59,28 +60,28 @@ class Module
                     $fieldMapper = new \Dibber\Document\Mapper\Field(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
-                    $fieldMapper->setSerializer($sm->get('Sds\DoctrineExtensions\Serializer'));
+                    $fieldMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
                     return $fieldMapper;
                 },
                 'dibber_place_mapper' => function ($sm) {
                     $placeMapper = new \Dibber\Document\Mapper\Place(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
-                    $placeMapper->setSerializer($sm->get('Sds\DoctrineExtensions\Serializer'));
+                    $placeMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
                     return $placeMapper;
                 },
                 'dibber_user_mapper' => function ($sm) {
                     $userMapper = new \Dibber\Document\Mapper\User(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
-                    $userMapper->setSerializer($sm->get('Sds\DoctrineExtensions\Serializer'));
+                    $userMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
                     return $userMapper;
                 },
                 'dibber_zone_mapper' => function ($sm) {
                     $zoneMapper = new \Dibber\Document\Mapper\Zone(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
-                    $zoneMapper->setSerializer($sm->get('Sds\DoctrineExtensions\Serializer'));
+                    $zoneMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
                     return $zoneMapper;
                 },
 
@@ -103,10 +104,6 @@ class Module
                     $zoneService->setServiceManager($sm);
                     return $zoneService;
                 },
-
-                'doctrine.serializer.odm_default' => function ($sm) {
-                    return new \Sds\DoctrineExtensions\Serializer\Serializer;
-                }
             ],
         ];
     }

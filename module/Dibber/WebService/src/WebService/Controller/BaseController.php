@@ -30,8 +30,7 @@ abstract class BaseController extends AbstractRestfulController
     {
         if (is_string($mapper)) {
             $this->mapper = $this->getServiceLocator()->get($mapper);
-        }
-        else {
+        } else {
             $this->mapper = $mapper;
         }
 
@@ -45,7 +44,14 @@ abstract class BaseController extends AbstractRestfulController
      */
     public function getList()
     {
-        return $this->mapper->toArray($this->mapper->findAll());
+        try {
+            $list = $this->getMapper()->findAll();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('The requested resources could not be retrieved.');
+        }
+
+        return $this->getMapper()->serialize($list);
     }
 
     /**
@@ -56,12 +62,12 @@ abstract class BaseController extends AbstractRestfulController
      */
     public function get($id)
     {
-        $resource = $this->mapper->find($id);
+        $resource = $this->getMapper()->find($id);
         if (!$resource) {
             throw new \Exception('The requested resource was not found.');
         }
 
-        return $this->mapper->toArray($resource);
+        return $this->getMapper()->serialize($resource);
     }
 
     /**
@@ -73,13 +79,13 @@ abstract class BaseController extends AbstractRestfulController
     public function create($data)
     {
         try {
-            $resource = $this->mapper->save($data, true);
+            $resource = $this->getMapper()->save($data, true);
         }
         catch (\Exception $e) {
             throw new \Exception('The requested resource could not be created');
         }
 
-        return $this->mapper->toArray($resource);
+        return $this->getMapper()->serialize($resource);
     }
 
     /**
@@ -93,13 +99,13 @@ abstract class BaseController extends AbstractRestfulController
     {
         $data['_id'] = $id;
         try {
-            $resource = $this->mapper->save($data, true);
+            $resource = $this->getMapper()->save($data, true);
         }
         catch (\Exception $e) {
             throw new \Exception('The requested resource could not be updated');
         }
 
-        return $this->mapper->toArray($resource);
+        return $this->getMapper()->serialize($resource);
     }
 
     /**
@@ -111,12 +117,12 @@ abstract class BaseController extends AbstractRestfulController
     public function delete($id)
     {
         try {
-            $resource = $this->mapper->delete($id, true);
+            $resource = $this->getMapper()->delete($id, true);
         }
         catch (\Exception $e) {
             throw new \Exception('The requested resource could not be deleted');
         }
 
-        return $this->mapper->toArray($resource);
+        return $this->getMapper()->serialize($resource);
     }
 }
