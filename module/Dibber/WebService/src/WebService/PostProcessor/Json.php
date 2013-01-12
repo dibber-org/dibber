@@ -9,12 +9,12 @@ class Json extends AbstractPostProcessor
 {
     public function process()
     {
-        $result = \Zend\Json\Encoder::encode($this->_vars);
+        $result = \Zend\Json\Encoder::encode($this->vars);
 
-        $this->_response->setContent($result);
+        $this->response->setContent($result);
 
-        $headers = $this->_response->getHeaders();
+        $headers = $this->response->getHeaders();
         $headers->addHeaderLine('Content-Type', 'application/json');
-        $this->_response->setHeaders($headers);
+        $this->response->setHeaders($headers);
     }
 }

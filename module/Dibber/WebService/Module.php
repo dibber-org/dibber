@@ -23,7 +23,7 @@ class Module
         $sharedEvents->attach('Zend\Mvc\Controller\AbstractRestfulController', MvcEvent::EVENT_DISPATCH, [$this, 'postProcess'], -100);
         //@todo only attach if the route used matches this module's
         //@see https://github.com/scaraveos/ZF2-Restful-Module-Skeleton/issues/8
-        $sharedEvents->attach('Zend\Mvc\Application', MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'errorProcess'], 999);
+        $sharedEvents->attach('Zend\Mvc\Application', MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'errorProcess'], -999);
     }
 
     /**
@@ -88,8 +88,7 @@ class Module
         $routeMatch = $e->getRouteMatch();
         $formatter = $routeMatch->getParam('formatter', false);
 
-        /** @var \Zend\Di\Di $di */
-        $di = $e->getTarget()->getServiceLocator()->get('di');
+        $sm = $e->getApplication()->getServiceManager();
 
         if ($formatter !== false) {
             if ($e->getResult() instanceof \Zend\View\Model\ViewModel) {
@@ -102,13 +101,11 @@ class Module
                 $vars = $e->getResult();
             }
 
-            /** @var PostProcessor\AbstractPostProcessor $postProcessor */
-            $postProcessor = $di->get($formatter . '-pp', [
-                'response' => $e->getResponse(),
-                'vars' => $vars,
-            ] );
-
-            $postProcessor->process();
+            /** @var \Dibber\WebService\PostProcessor\AbstractPostProcessor $postProcessor */
+            $postProcessor = $sm->get($formatter . '-pp');
+            $postProcessor->setResponse($e->getResponse())
+                          ->setVars($vars)
+                          ->process();
 
             return $postProcessor->getResponse();
         }
@@ -122,8 +119,7 @@ class Module
      */
     public function errorProcess(MvcEvent $e)
     {
-        /** @var \Zend\Di\Di $di */
-        $di = $e->getApplication()->getServiceManager()->get('di');
+        $sm = $e->getApplication()->getServiceManager();
 
         $eventParams = $e->getParams();
 
@@ -147,21 +143,19 @@ class Module
             $vars['error'] = 'Something went wrong';
         }
 
-        /** @var PostProcessor\AbstractPostProcessor $postProcessor */
-        $postProcessor = $di->get(
-            $configuration['errors']['post_processor'],
-            ['response' => $e->getResponse(), 'vars' => $vars]
-        );
+        /** @var \Dibber\WebService\PostProcessor\AbstractPostProcessor $postProcessor */
+        $postProcessor = $sm->get($configuration['errors']['post_processor']);
+        $postProcessor->setResponse($e->getResponse())
+                      ->setVars($vars)
+                      ->process();
 
-        $postProcessor->process();
-
-        if ($eventParams['error'] === \Zend\Mvc\Application::ERROR_CONTROLLER_NOT_FOUND ||
-            $eventParams['error'] === \Zend\Mvc\Application::ERROR_ROUTER_NO_MATCH)
-        {
+        if (
+            $eventParams['error'] === \Zend\Mvc\Application::ERROR_CONTROLLER_NOT_FOUND ||
+            $eventParams['error'] === \Zend\Mvc\Application::ERROR_ROUTER_NO_MATCH
+        ) {
             $e->getResponse()->setStatusCode(\Zend\Http\PhpEnvironment\Response::STATUS_CODE_501);
         }
-        else
-        {
+        else {
             $e->getResponse()->setStatusCode(\Zend\Http\PhpEnvironment\Response::STATUS_CODE_500);
         }
 

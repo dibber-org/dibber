@@ -9,13 +9,13 @@ class Image extends AbstractPostProcessor
 {
     public function process()
     {
-        $result = $this->_vars['image'];
+        $result = $this->vars['image'];
 
-        $this->_response->setContent($result);
+        $this->response->setContent($result);
 
-        $headers = $this->_response->getHeaders();
-        $headers->addHeaderLine('Content-Type', 'image/' . $this->_vars['type']);
+        $headers = $this->response->getHeaders();
+        $headers->addHeaderLine('Content-Type', 'image/' . $this->vars['type']);
         $headers->addHeaderLine('Cache-Control', 'max-age=86400');
-        $this->_response->setHeaders($headers);
+        $this->response->setHeaders($headers);
     }
 }
