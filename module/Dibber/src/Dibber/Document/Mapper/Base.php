@@ -1,11 +1,14 @@
 <?php
 namespace Dibber\Document\Mapper;
 
-use \Doctrine\ODM\MongoDB\DocumentManager;
+use \Doctrine\ODM\MongoDB\DocumentManager
+ ,  \Doctrine\ODM\MongoDB\DocumentRepository
+ ,  \Dibber\Document
+ ,  \Sds\Common\Serializer;
 
 abstract class Base
 {
-    /** @var \Doctrine\ODM\MongoDB\DocumentManager */
+    /** @var DocumentManager */
     protected $dm;
 
     /**
@@ -15,8 +18,12 @@ abstract class Base
      */
     protected $documentName;
 
+    /** @var Serializer\SerializerInterface */
+    protected $serializer;
+
     /**
-     * @param \Doctrine\ODM\MongoDB\DocumentManager $dm
+     * @param string $documentName
+     * @param DocumentManager $dm
      */
     public function __construct($documentName = null, DocumentManager $dm = null)
     {
@@ -29,7 +36,7 @@ abstract class Base
     }
 
     /**
-     * @return \Doctrine\ODM\MongoDB\DocumentManager
+     * @return DocumentManager
      */
     public function getDocumentManager()
     {
@@ -37,8 +44,8 @@ abstract class Base
     }
 
     /**
-     * @param \Doctrine\ODM\MongoDB\DocumentManager $dm
-     * @return \Dibber\Document\Mapper\Base
+     * @param DocumentManager $dm
+     * @return Base
      */
     public function setDocumentManager(DocumentManager $dm)
     {
@@ -56,7 +63,7 @@ abstract class Base
 
     /**
      * @param string $documentName
-     * @return \Dibber\Document\Mapper\Base
+     * @return Base
      * @throws \Exception
      */
     public function setDocumentName($documentName)
@@ -71,7 +78,7 @@ abstract class Base
 
     /**
      * @param string $documentName
-     * @return \Doctrine\ODM\MongoDB\DocumentRepository
+     * @return DocumentRepository
      */
     public function getRepository($documentName = null)
     {
@@ -82,9 +89,60 @@ abstract class Base
     }
 
     /**
+     * @return Serializer\SerializerInterface
+     */
+    public function getSerializer()
+    {
+        return $this->serializer;
+    }
+
+    /**
+     * @param Serializer\SerializerInterface $serializer
+     */
+    public function setSerializer(Serializer\SerializerInterface $serializer)
+    {
+        $this->serializer = $serializer;
+    }
+
+    /**
+     * @param array|Document\Base $document
+     * @return array
+     */
+    public function serialize($document = null)
+    {
+        $data = [];
+        if (is_null($document)) {
+            $document = $this->createDocument();
+        }
+
+        if (is_array($document) || $document instanceof \Traversable) {
+            // List of documents
+            foreach ($document as $d) {
+                $data[] = $this->getSerializer()->toArray($d);
+            }
+        }
+        else {
+            $data = $this->getSerializer()->toArray($document);
+        }
+
+        return $data;
+    }
+
+    /**
+     * Alias to serialize()
+     *
+     * @param array|Document\Base $document
+     * @return array
+     */
+    public function toArray($document = null)
+    {
+        return $this->serialize($document);
+    }
+
+    /**
      * @param array $data
-     * @param \Dibber\Document\Base $document
-     * @return \Dibber\Document\Base
+     * @param Document\Base $document
+     * @return Document\Base
      */
     public function hydrate($data, $document = null)
     {
@@ -109,7 +167,7 @@ abstract class Base
      * Creates a new instance of the given documentName or of the already known
      * one whose FQDN is stored in the className property.
      *
-     * @return Dibber\Document\Base
+     * @return Document\Base
      * @throws \Exception
      */
     public function createDocument($documentName = null)
@@ -132,7 +190,7 @@ abstract class Base
 
     /**
      * @param string $id
-     * @return Dibber\Document\Base
+     * @return Document\Base
      */
     public function find($id)
     {
@@ -141,7 +199,7 @@ abstract class Base
 
     /**
      * @param array $criteria
-     * @return Dibber\Document\Base
+     * @return Document\Base
      */
     public function findOneBy(array $criteria)
     {
@@ -149,6 +207,7 @@ abstract class Base
     }
 
     /**
+     * @param array $orderBy
      * @return array
      */
     public function findAll(array $orderBy = null)
@@ -166,9 +225,9 @@ abstract class Base
     }
 
     /**
-     * @param array|\Dibber\Document\Base $document
+     * @param array|Document\Base $document
      * @param bool $flush
-     * @return Dibber\Document\Base
+     * @return Document\Base
      */
     public function save($document, $flush = false)
     {
@@ -179,6 +238,7 @@ abstract class Base
             if (array_key_exists('_id', $data) && !empty($data['_id'])) {
                 # We have an id here > it's an update !
                 $document = $this->find($data['_id']);
+                unset($data['_id']);
             }
             $document = $this->hydrate($data, $document);
         }
@@ -193,8 +253,9 @@ abstract class Base
     }
 
     /**
-     * @param string|array|\Dibber\Document\Base $document
+     * @param string|array|Document\Base $document
      * @param bool $flush
+     * @return Document\Base
      */
     public function delete($document, $flush = false)
     {

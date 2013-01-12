@@ -8,7 +8,9 @@ return [
         'ZfcUserDoctrineMongoODM',
         'ScnSocialAuth',
         'ScnSocialAuthDoctrineMongoODM',
-        'Dibber'
+        'Sds\DoctrineExtensionsModule',
+        'Dibber\WebService',
+        'Dibber',
     ],
     'module_listener_options' => [
         'config_glob_paths'    => [

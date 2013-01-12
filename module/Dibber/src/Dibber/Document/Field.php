@@ -4,7 +4,7 @@ namespace Dibber\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
  ,  Dibber\Document\Traits;
 
-/** @ODM\Document(collection="fields") */
+/**@ODM\Document(collection="fields", repositoryClass="Gedmo\Tree\Document\MongoDB\Repository\MaterializedPathRepository") */
 class Field extends Thing
 {
     use Traits\Coordinates;
