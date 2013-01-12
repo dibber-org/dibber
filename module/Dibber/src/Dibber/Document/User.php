@@ -2,6 +2,7 @@
 namespace Dibber\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
+ ,  Sds\DoctrineExtensions\Annotation\Annotations as Sds
  ,  Dibber\Document\Traits;
 
 /** @ODM\Document(collection="users") */
@@ -30,6 +31,7 @@ class User extends Base implements \ZfcUser\Entity\UserInterface
      *      cascade={"persist"},
      *      simple=true
      *  )
+     * @Sds\Serializer(@Sds\Eager)
      */
     public $places;
 

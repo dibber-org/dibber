@@ -3,7 +3,8 @@ namespace Dibber\Document\Mapper;
 
 use \Doctrine\ODM\MongoDB\DocumentManager
  ,  \Doctrine\ODM\MongoDB\DocumentRepository
- ,  \Dibber\Document;
+ ,  \Dibber\Document
+ ,  \Sds\Common\Serializer;
 
 abstract class Base
 {
@@ -17,7 +18,7 @@ abstract class Base
      */
     protected $documentName;
 
-    /** @var \Sds\DoctrineExtensions\Serializer */
+    /** @var Serializer\SerializerInterface */
     protected $serializer;
 
     /**
@@ -44,7 +45,7 @@ abstract class Base
 
     /**
      * @param DocumentManager $dm
-     * @return Document\Mapper\Base
+     * @return Base
      */
     public function setDocumentManager(DocumentManager $dm)
     {
@@ -62,7 +63,7 @@ abstract class Base
 
     /**
      * @param string $documentName
-     * @return Document\Mapper\Base
+     * @return Base
      * @throws \Exception
      */
     public function setDocumentName($documentName)
@@ -88,7 +89,7 @@ abstract class Base
     }
 
     /**
-     * @return \Sds\Common\Serializer\SerializerInterface
+     * @return Serializer\SerializerInterface
      */
     public function getSerializer()
     {
@@ -96,9 +97,9 @@ abstract class Base
     }
 
     /**
-     * @param \Sds\Common\Serializer\SerializerInterface $serializer
+     * @param Serializer\SerializerInterface $serializer
      */
-    public function setSerializer(\Sds\Common\Serializer\SerializerInterface $serializer)
+    public function setSerializer(Serializer\SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
     }

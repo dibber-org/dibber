@@ -2,6 +2,7 @@
 namespace Dibber\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
+ ,  Sds\DoctrineExtensions\Annotation\Annotations as Sds
  ,  Dibber\Document\Traits;
 
 /** @ODM\Document(collection="places", repositoryClass="Gedmo\Tree\Document\MongoDB\Repository\MaterializedPathRepository") */
@@ -21,6 +22,7 @@ class Place extends Thing
      *      cascade={"persist"},
      *      simple=true
      *  )
+     * @Sds\Serializer(@Sds\Eager)
      */
     public $users;
 

@@ -2,6 +2,7 @@
 namespace Dibber\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
+ ,  Sds\DoctrineExtensions\Annotation\Annotations as Sds
  ,  Gedmo
  ,  Dibber\Document\Traits;
 
