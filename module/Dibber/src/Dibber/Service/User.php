@@ -2,9 +2,9 @@
 namespace Dibber\Service;
 
 use ZfcUser\Service\User as ZfcUserService;
-use Dibber\Document\Mapper\MapperAwareInterface;
-use Dibber\Document\Mapper\Base as BaseMapper;
-use Dibber\Document\Mapper\User as UserMapper;
+use Dibber\Mapper\MapperAwareInterface;
+use Dibber\Mapper\Base as BaseMapper;
+use Dibber\Mapper\User as UserMapper;
 
 class User extends ZfcUserService implements MapperAwareInterface
 {

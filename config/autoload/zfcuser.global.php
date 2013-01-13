@@ -185,7 +185,7 @@ return array(
         ),
         'factories' => array(
             'zfcuser_user_mapper' => function ($sm) {
-                return new \Dibber\Document\Mapper\User(
+                return new \Dibber\Mapper\User(
                     $sm->get('zfcuser_doctrine_dm'),
                     $sm->get('zfcuser_module_options')
                 );

@@ -1,20 +1,20 @@
 <?php
-namespace Dibber\Tests\Units\Document\Mapper;
+namespace Dibber\Tests\Units\Mapper;
 
 require_once(__DIR__ . '/Test.php');
 
 use Dibber\Document
- ,  Dibber\Document\Mapper
+ ,  Dibber\Mapper
  ,  mageekguy\atoum;
 
 class User extends Test
 {
-    /** @var Document\Mapper\User */
+    /** @var Mapper\User */
     protected $userMapper;
 
     public function beforeTestMethod($method)
     {
-        $this->userMapper = new \mock\Dibber\Document\Mapper\User($this->dm);
+        $this->userMapper = new \mock\Dibber\Mapper\User($this->dm);
     }
 
     public function testFindByLogin()

@@ -1,5 +1,5 @@
 <?php
-namespace Dibber\Document\Mapper;
+namespace Dibber\Mapper;
 
 use \Doctrine\ODM\MongoDB\DocumentManager;
 
@@ -15,7 +15,7 @@ class Place extends Base
 
     /**
      * Alias to findByCode for consistency with
-     * Document\Mapper\User::findByLogin()
+     * Mapper\User::findByLogin()
      *
      * @param string $login
      * @return \Dibber\Document\Place

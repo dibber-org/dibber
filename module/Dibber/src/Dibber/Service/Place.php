@@ -5,7 +5,7 @@ namespace Dibber\Service;
 class Place extends Base
 {
     /**
-     * @return \Dibber\Document\Mapper\Place
+     * @return \Dibber\Mapper\Place
      */
     public function getMapper()
     {

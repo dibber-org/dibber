@@ -1,5 +1,5 @@
 <?php
-namespace Dibber\Document\Mapper;
+namespace Dibber\Mapper;
 
 use \Doctrine\ODM\MongoDB\DocumentManager;
 

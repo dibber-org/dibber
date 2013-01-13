@@ -63,35 +63,35 @@ class Module implements
                  * Services for documents mappers
                  */
                 'dibber_field_mapper' => function ($sm) {
-                    $fieldMapper = new \Dibber\Document\Mapper\Field(
+                    $fieldMapper = new \Dibber\Mapper\Field(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
                     $fieldMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
                     return $fieldMapper;
                 },
                 'dibber_place_mapper' => function ($sm) {
-                    $placeMapper = new \Dibber\Document\Mapper\Place(
+                    $placeMapper = new \Dibber\Mapper\Place(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
                     $placeMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
                     return $placeMapper;
                 },
                 'dibber_user_mapper' => function ($sm) {
-                    $userMapper = new \Dibber\Document\Mapper\User(
+                    $userMapper = new \Dibber\Mapper\User(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
                     $userMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
                     return $userMapper;
                 },
                 'dibber_user_provider_mapper' => function ($sm) {
-                    $userProviderMapper = new \Dibber\Document\Mapper\UserProvider(
+                    $userProviderMapper = new \Dibber\Mapper\UserProvider(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
                     $userProviderMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
                     return $userProviderMapper;
                 },
                 'dibber_zone_mapper' => function ($sm) {
-                    $zoneMapper = new \Dibber\Document\Mapper\Zone(
+                    $zoneMapper = new \Dibber\Mapper\Zone(
                         $sm->get('doctrine.documentmanager.odm_default')
                     );
                     $zoneMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));

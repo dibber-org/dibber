@@ -1,20 +1,20 @@
 <?php
-namespace Dibber\Tests\Units\Document\Mapper;
+namespace Dibber\Tests\Units\Mapper;
 
 require_once(__DIR__ . '/Test.php');
 
 use Dibber\Document
- ,  Dibber\Document\Mapper
+ ,  Dibber\Mapper
  ,  mageekguy\atoum;
 
 class Place extends Test
 {
-    /** @var Document\Mapper\Place */
+    /** @var Mapper\Place */
     protected $placeMapper;
 
     public function beforeTestMethod($method)
     {
-        $this->placeMapper = new \mock\Dibber\Document\Mapper\Place($this->dm);
+        $this->placeMapper = new \mock\Dibber\Mapper\Place($this->dm);
     }
 
     public function testFindByLogin()

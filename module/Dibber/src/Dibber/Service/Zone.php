@@ -5,7 +5,7 @@ namespace Dibber\Service;
 class Zone extends Base
 {
     /**
-     * @return \Dibber\Document\Mapper\Zone
+     * @return \Dibber\Mapper\Zone
      */
     public function getMapper()
     {

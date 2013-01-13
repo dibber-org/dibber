@@ -1,5 +1,5 @@
 <?php
-namespace Dibber\Document\Mapper;
+namespace Dibber\Mapper;
 
 use \Doctrine\ODM\MongoDB\DocumentManager
  ,  \Doctrine\ODM\MongoDB\DocumentRepository
@@ -7,7 +7,7 @@ use \Doctrine\ODM\MongoDB\DocumentManager
  ,  \Sds\Common\Serializer
  ,  Zend\EventManager;
 
-abstract class Base implements EventManager\EventManagerAwareInterface
+abstract class Base// implements EventManager\EventManagerAwareInterface // commented as it makes unit tests seg fault :/
 {
     use EventManager\EventManagerAwareTrait;
 
