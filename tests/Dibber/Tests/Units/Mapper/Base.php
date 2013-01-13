@@ -1,21 +1,22 @@
 <?php
-namespace Dibber\Tests\Units\Document\Mapper;
+namespace Dibber\Tests\Units\Mapper;
 
 require_once(__DIR__ . '/Test.php');
 
 use Dibber\Document
- ,  Dibber\Document\Mapper
+ ,  Dibber\Mapper
  ,  mageekguy\atoum;
 
 class Base extends Test
 {
-    /** @var Document\Mapper\Base */
+    /** @var Mapper\Base */
     protected $baseMapper;
 
     public function beforeTestMethod($method)
     {
         # Will make it behave like a User mapper
-        $this->baseMapper = new \mock\Dibber\Document\Mapper\Base('Dibber\Document\User', $this->dm);
+        $this->baseMapper = new \mock\Dibber\Mapper\Base('Dibber\Document\User', $this->dm);
+//        $this->baseMapper->setSerializer($this->application->getServiceManager()->get('doctrine.serializer.odm_default'));
     }
 
     public function testSetDocumentName()
@@ -104,8 +105,8 @@ class Base extends Test
                     ->isInstanceOf('\Exception')
                     ->hasMessage("'Non\Existing\FQDN' class doesn't exist. Can't create class.")
 
-             ->assert('Creating default document with no default raises an exception')
-             ->if($baseMapper = new \mock\Dibber\Document\Mapper\Base)
+             ->assert('Creating default document with no default FQDN raises an exception')
+             ->if($baseMapper = new \mock\Dibber\Mapper\Base)
                 ->exception(function() use ($baseMapper) {
                     $baseMapper->createDocument();
                 } )

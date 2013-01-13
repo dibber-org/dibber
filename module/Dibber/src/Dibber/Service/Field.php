@@ -5,7 +5,7 @@ namespace Dibber\Service;
 class Field extends Base
 {
     /**
-     * @return \Dibber\Document\Mapper\Field
+     * @return \Dibber\Mapper\Field
      */
     public function getMapper()
     {

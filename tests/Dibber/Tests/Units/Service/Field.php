@@ -21,17 +21,17 @@ class Field extends Test
         $this->assert('default mapper is set and retreived')
              ->then
                 ->object($this->fieldService->getMapper())
-                    ->isInstanceOf('Dibber\Document\Mapper\Field');
+                    ->isInstanceOf('Dibber\Mapper\Field');
     }
 
     public function testSetMapper()
     {
         $this->assert('mapper is set and retreived')
-             ->if($fieldMapper = new \Dibber\Document\Mapper\Field)
+             ->if($fieldMapper = new \Dibber\Mapper\Field)
              ->and($this->fieldService->setMapper($fieldMapper))
              ->then
                 ->object($this->fieldService->getMapper())
-                    ->isInstanceOf('Dibber\Document\Mapper\Field')
+                    ->isInstanceOf('Dibber\Mapper\Field')
                     ->isEqualTo($fieldMapper);
     }
 }

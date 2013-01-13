@@ -2,8 +2,8 @@
 
 namespace Dibber\Service;
 
-use Dibber\Document\Mapper\MapperAwareInterface;
-use Dibber\Document\Mapper\MapperProviderTrait;
+use Dibber\Mapper\MapperAwareInterface;
+use Dibber\Mapper\MapperProviderTrait;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
 use Zend\ServiceManager\ServiceManager;
 

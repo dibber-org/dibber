@@ -1,20 +1,23 @@
 <?php
-namespace Dibber\Tests\Units\Document\Mapper;
+namespace Dibber\Tests\Units\Mapper;
 
 require_once(__DIR__ . '/Test.php');
 
 use Dibber\Document
- ,  Dibber\Document\Mapper
+ ,  Dibber\Mapper
  ,  mageekguy\atoum;
 
 class UserProvider extends Test
 {
-    /** @var Document\Mapper\UserProvider */
+    /** @var Mapper\UserProvider */
     protected $userProviderMapper;
 
     public function beforeTestMethod($method)
     {
-        $this->userProviderMapper = new \mock\Dibber\Document\Mapper\UserProvider($this->dm);
+        # Somehow autoload doesn't find it...
+        require 'vendor/hybridauth/hybridauth/hybridauth/Hybrid/User_Profile.php';
+
+        $this->userProviderMapper = new \mock\Dibber\Mapper\UserProvider($this->dm);
     }
 
     public function testFindUserByProviderId()

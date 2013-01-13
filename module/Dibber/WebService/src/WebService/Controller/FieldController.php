@@ -8,7 +8,7 @@ namespace Dibber\WebService\Controller;
 class FieldController extends BaseController
 {
     /**
-     * @var \Dibber\Document\Mapper\Field
+     * @var \Dibber\Mapper\Field
      */
     protected $mapper = null;
 }
