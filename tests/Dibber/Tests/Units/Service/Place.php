@@ -21,17 +21,17 @@ class Place extends Test
         $this->assert('default mapper is set and retreived')
              ->then
                 ->object($this->placeService->getMapper())
-                    ->isInstanceOf('Dibber\Document\Mapper\Place');
+                    ->isInstanceOf('Dibber\Mapper\Place');
     }
 
     public function testSetMapper()
     {
         $this->assert('mapper is set and retreived')
-             ->if($placeMapper = new \Dibber\Document\Mapper\Place)
+             ->if($placeMapper = new \Dibber\Mapper\Place)
              ->and($this->placeService->setMapper($placeMapper))
              ->then
                 ->object($this->placeService->getMapper())
-                    ->isInstanceOf('Dibber\Document\Mapper\Place')
+                    ->isInstanceOf('Dibber\Mapper\Place')
                     ->isEqualTo($placeMapper);
     }
 }

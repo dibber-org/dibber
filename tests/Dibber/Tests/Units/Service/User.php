@@ -19,7 +19,7 @@ class User extends Test
     public function testSetMapper()
     {
         $this->assert('setUserMapper is called on parent')
-             ->if($userMapper = new \Dibber\Document\Mapper\User($this->dm))
+             ->if($userMapper = new \Dibber\Mapper\User($this->dm))
              ->and($this->userService->getMockController()->setUserMapper = function($userMapper) {
                  return $this->userService;
              } )
@@ -33,13 +33,13 @@ class User extends Test
     public function testGetMapper()
     {
         $this->assert('getUserMapper is called on parent')
-             ->if($userMapper = new \Dibber\Document\Mapper\User($this->dm))
+             ->if($userMapper = new \Dibber\Mapper\User($this->dm))
              ->and($this->userService->getMockController()->getUserMapper = function() use($userMapper) {
                  return $userMapper;
              } )
              ->then
                  ->object($this->userService->getMapper())
-                    ->isInstanceOf('Dibber\Document\Mapper\User')
+                    ->isInstanceOf('Dibber\Mapper\User')
                     ->isIdenticalTo($userMapper)
                  ->mock($this->userService)
                      ->call('getUserMapper')->once();
