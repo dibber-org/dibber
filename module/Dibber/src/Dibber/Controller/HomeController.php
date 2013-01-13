@@ -23,7 +23,7 @@ class HomeController extends AbstractActionController
         $login = $this->params('login');
 
         # Check if it is a User
-        /* @var $userMapper \Dibber\Document\Mapper\User */
+        /* @var $userMapper \Dibber\Mapper\User */
         $userMapper = $this->getServiceLocator()->get('dibber_user_mapper');
         $user = $userMapper->findByLogin($login);
         if ($user instanceof Document\User) {
@@ -31,7 +31,7 @@ class HomeController extends AbstractActionController
         }
 
         # Check if it is a Place
-        /* @var $placeMapper \Dibber\Document\Mapper\Place */
+        /* @var $placeMapper \Dibber\Mapper\Place */
         $placeMapper = $this->getServiceLocator()->get('dibber_place_mapper');
         $place = $placeMapper->findByLogin($login);
         if ($place instanceof Document\Place) {

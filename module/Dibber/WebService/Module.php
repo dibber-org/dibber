@@ -2,18 +2,24 @@
 
 namespace Dibber\WebService;
 
-use Zend\Mvc\MvcEvent
- ,  \Dibber\WebService\Controller;
+use Zend\Mvc\MvcEvent;
+use Dibber\WebService\Controller;
+use Zend\ModuleManager\Feature;
+use Zend\EventManager\EventInterface;
 
 /**
  *
  */
-class Module
+class Module implements
+    Feature\AutoloaderProviderInterface,
+    Feature\BootstrapListenerInterface,
+    Feature\ConfigProviderInterface,
+    Feature\ControllerProviderInterface
 {
     /**
      * @param MvcEvent $e
      */
-    public function onBootstrap($e)
+    public function onBootstrap(EventInterface $e)
     {
         /** @var \Zend\ModuleManager\ModuleManager $moduleManager */
         $moduleManager = $e->getApplication()->getServiceManager()->get('modulemanager');

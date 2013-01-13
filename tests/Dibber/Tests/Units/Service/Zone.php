@@ -21,17 +21,17 @@ class Zone extends Test
         $this->assert('default mapper is set and retreived')
              ->then
                 ->object($this->zoneService->getMapper())
-                    ->isInstanceOf('Dibber\Document\Mapper\Zone');
+                    ->isInstanceOf('Dibber\Mapper\Zone');
     }
 
     public function testSetMapper()
     {
         $this->assert('mapper is set and retreived')
-             ->if($zoneMapper = new \Dibber\Document\Mapper\Zone)
+             ->if($zoneMapper = new \Dibber\Mapper\Zone)
              ->and($this->zoneService->setMapper($zoneMapper))
              ->then
                 ->object($this->zoneService->getMapper())
-                    ->isInstanceOf('Dibber\Document\Mapper\Zone')
+                    ->isInstanceOf('Dibber\Mapper\Zone')
                     ->isEqualTo($zoneMapper);
     }
 }

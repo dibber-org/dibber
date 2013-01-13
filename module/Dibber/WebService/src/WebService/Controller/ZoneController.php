@@ -8,7 +8,7 @@ namespace Dibber\WebService\Controller;
 class ZoneController extends BaseController
 {
     /**
-     * @var \Dibber\Document\Mapper\Zone
+     * @var \Dibber\Mapper\Zone
      */
     protected $mapper = null;
 }

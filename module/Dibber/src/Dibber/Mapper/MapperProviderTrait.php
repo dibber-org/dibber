@@ -1,6 +1,6 @@
 <?php
 
-namespace Dibber\Document\Mapper;
+namespace Dibber\Mapper;
 
 /**
  * A trait for objects that provide mapper

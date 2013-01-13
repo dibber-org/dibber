@@ -1,6 +1,7 @@
 <?php
-namespace Dibber\Document\Mapper;
+namespace Dibber\Mapper;
 
+use Hybrid_User_Profile;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use ScnSocialAuthDoctrineMongoODM\Options\ModuleOptions;
 use ZfcUser\Entity\UserInterface;

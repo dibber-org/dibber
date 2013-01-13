@@ -8,7 +8,7 @@ namespace Dibber\WebService\Controller;
 class UserController extends BaseController
 {
     /**
-     * @var \Dibber\Document\Mapper\User
+     * @var \Dibber\Mapper\User
      */
     protected $mapper = null;
 }

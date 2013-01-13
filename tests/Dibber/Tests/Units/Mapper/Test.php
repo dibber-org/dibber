@@ -1,7 +1,7 @@
 <?php
-namespace Dibber\Tests\Units\Document\Mapper;
+namespace Dibber\Tests\Units\Mapper;
 
-require_once __DIR__ . '/../../Test.php';
+require_once __DIR__ . '/../Test.php';
 
 use mageekguy\atoum;
 

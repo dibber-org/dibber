@@ -11,7 +11,7 @@ namespace Dibber\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController
  ,  Zend\View\Model\ViewModel
- ,  Dibber\Document;
+ ,  Dibber\Mapper;
 
 class MongoController extends AbstractActionController
 {
@@ -20,7 +20,7 @@ class MongoController extends AbstractActionController
         /* @var $dm \Doctrine\ODM\MongoDB\DocumentManager */
         $dm = $this->getServiceLocator()->get('doctrine.documentmanager.odm_default');
 
-        $userMapper = new Document\Mapper\User($dm);
+        $userMapper = new Mapper\User($dm);
         $jhuet = $userMapper->save( [
             'name' => 'Jérémy Huet',
             'login' => 'jhuet',

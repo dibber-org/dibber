@@ -10,12 +10,12 @@ use Zend\Mvc\Controller\AbstractRestfulController;
 abstract class BaseController extends AbstractRestfulController
 {
     /**
-     * @var \Dibber\Document\Mapper\Base
+     * @var \Dibber\Mapper\Base
      */
     protected $mapper = null;
 
     /**
-     * @return \Dibber\Document\Mapper\Base
+     * @return \Dibber\Mapper\Base
      */
     public function getMapper()
     {
