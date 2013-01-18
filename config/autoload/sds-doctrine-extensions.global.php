@@ -4,7 +4,7 @@ return [
     'sds' => [
         'doctrineExtensions' => [
             'extensionConfigs' => [
-                'Sds\DoctrineExtensions\Serializer' => null// ['maxNestingDepth' => 1], // will come later
+                'Sds\DoctrineExtensions\Serializer' => ['maxNestingDepth' => 2],
             ],
         ],
     ],
