@@ -5,18 +5,28 @@ namespace Dibber\Mapper;
 /**
  * A trait for objects that provide mapper
  */
-trait MapperProviderTrait
+trait MapperAwareTrait
 {
     /**
-     * @var
+     * @var Base
      */
     protected $mapper;
 
     /**
      * @param Base $mapper
+     * @return mixed
      */
     public function setMapper(Base $mapper)
     {
         $this->mapper = $mapper;
+        return $this;
+    }
+
+    /**
+     * @return Base
+     */
+    public function getMapper()
+    {
+        return $this->mapper;
     }
 }

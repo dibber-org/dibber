@@ -13,6 +13,6 @@ class Place extends Base
             $this->mapper = $this->getServiceManager()->get('dibber_place_mapper');
         }
 
-        return $this->mapper;
+        return parent::getMapper();
     }
 }

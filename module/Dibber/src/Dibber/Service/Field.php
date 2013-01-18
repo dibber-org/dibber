@@ -13,6 +13,6 @@ class Field extends Base
             $this->mapper = $this->getServiceManager()->get('dibber_field_mapper');
         }
 
-        return $this->mapper;
+        return parent::getMapper();
     }
 }

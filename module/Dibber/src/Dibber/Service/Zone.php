@@ -13,6 +13,6 @@ class Zone extends Base
             $this->mapper = $this->getServiceManager()->get('dibber_zone_mapper');
         }
 
-        return $this->mapper;
+        return parent::getMapper();
     }
 }
