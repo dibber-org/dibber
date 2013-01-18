@@ -9,12 +9,11 @@
 
 namespace Dibber\Controller;
 
-use Zend\View\Model\ViewModel;
+use Dibber\Service\ServiceAwareInterface;
+use Dibber\Service\ServiceAwareTrait;
+use Zend\Mvc\Controller\AbstractActionController;
 
-class IndexController extends BaseController
+class BaseController extends AbstractActionController implements ServiceAwareInterface
 {
-    public function indexAction()
-    {
-        return new ViewModel();
-    }
+    use ServiceAwareTrait;
 }

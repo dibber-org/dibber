@@ -9,15 +9,10 @@
 
 namespace Dibber\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Dibber\Service\ServiceAwareInterface;
-use Dibber\Service\ServiceProviderTrait;
 
-class PlaceController extends AbstractActionController implements ServiceAwareInterface
+class PlaceController extends BaseController
 {
-    use ServiceProviderTrait;
-
     /**
      * Public place page
      */
@@ -50,6 +45,6 @@ class PlaceController extends AbstractActionController implements ServiceAwareIn
             $this->service = $this->getServiceLocator()->get('dibber_place_service');
         }
 
-        return $this->service;
+        return parent::getService();
     }
 }

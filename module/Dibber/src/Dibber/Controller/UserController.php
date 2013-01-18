@@ -11,11 +11,11 @@ namespace Dibber\Controller;
 
 use Zend\View\Model\ViewModel;
 use Dibber\Service\ServiceAwareInterface;
-use Dibber\Service\ServiceProviderTrait;
+use Dibber\Service\ServiceAwareTrait;
 
 class UserController extends \ScnSocialAuth\Controller\UserController implements ServiceAwareInterface
 {
-    use ServiceProviderTrait;
+    use ServiceAwareTrait;
 
     /**
      * Public user page

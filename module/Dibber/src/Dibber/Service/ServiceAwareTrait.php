@@ -30,6 +30,6 @@ trait ServiceAwareTrait
      */
     public function getService()
     {
-        return $service;
+        return $this->service;
     }
 }
