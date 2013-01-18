@@ -16,9 +16,6 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        $hey = $this->getServiceLocator()->get('dibber_place_service');
-
-        die('<pre>'.var_export(get_class($hey->getServiceManager()), true).'</pre>'."\n");
         return new ViewModel();
     }
 }
