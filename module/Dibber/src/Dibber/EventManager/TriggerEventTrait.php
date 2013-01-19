@@ -21,9 +21,13 @@ trait TriggerEventTrait
      * @param  null|callable $callback
      * @return ResponseCollection
      */
-    public function triggerEvent($event, &$argv = array(), $target = null, $callback = null)
+    public function triggerEvent($event, $argv = array(), $target = null, $callback = null)
     {
-        if (! $this instanceof EventManagerAwareInterface) {
+//        if (! $this instanceof EventManagerAwareInterface) {
+//            throw new \Exception('Dibber\EventManager\TriggerEventTrait requires the class that uses it to implement Zend\EventManager\EventManagerAwareInterface');
+//        }
+        // replaces above if until \Dibber\Mapper\Base can implement EventManagerAwareInterface without making unit tests seg fault :/
+        if (! method_exists($this, 'getEventManager')) {
             throw new \Exception('Dibber\EventManager\TriggerEventTrait requires the class that uses it to implement Zend\EventManager\EventManagerAwareInterface');
         }
 
