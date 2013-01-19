@@ -5,7 +5,9 @@
 <?php if (count($places)) : ?>
     <ul class="nav nav-tabs nav-stacked">
         <?php foreach ($places as $place) : ?>
-            <li><a href="<?php echo $this->url('dibber') . $place->getLogin()?>"><?php echo $place->getName() ?></a></li>
+            <?php if ($place instanceof \Dibber\Document\Place) : ?>
+                <li><a href="<?php echo $this->url('dibber') . $place->getLogin()?>"><?php echo $place->getName() ?></a></li>
+            <?php endif; ?>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>

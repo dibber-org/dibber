@@ -44,7 +44,7 @@ class UserController extends \ScnSocialAuth\Controller\UserController implements
 //        $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\Array());
 //        $paginator->setCurrentPageNumber($this->params('page'));
 
-        $users = $this->getService()->getMapper()->findAll(['name']); // @todo sortBy not working
+        $users = $this->getService()->getMapper()->findAll('name');
 
         return new ViewModel( [
             'users' => $users
