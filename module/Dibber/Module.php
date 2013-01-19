@@ -56,6 +56,7 @@ class Module implements
 
             'invokables' => [
                 'zfcuser_user_service' => 'Dibber\Service\User',
+                'dibber_event_manager' => 'Zend\EventManager\SharedEventManager'
             ],
 
             'factories' => [
