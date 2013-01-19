@@ -1,7 +1,7 @@
 <?php
 namespace Dibber\Mapper;
 
-use \Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 
 class Zone extends Base
 {

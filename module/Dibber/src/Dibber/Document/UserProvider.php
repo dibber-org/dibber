@@ -1,8 +1,8 @@
 <?php
 namespace Dibber\Document;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
- ,  Dibber\Document\Traits;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Dibber\Document\Traits;
 
 /** @ODM\Document(collection="users_providers") */
 class UserProvider extends Base implements \ScnSocialAuth\Entity\UserProviderInterface

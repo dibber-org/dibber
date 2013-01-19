@@ -9,8 +9,8 @@
 
 namespace Dibber\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController
- ,  Dibber\Document;
+use Zend\Mvc\Controller\AbstractActionController;
+use Dibber\Document;
 
 class HomeController extends AbstractActionController
 {

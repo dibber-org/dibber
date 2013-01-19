@@ -1,8 +1,8 @@
 <?php
 namespace Dibber\Document;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
- ,  Dibber\Document\Traits\Behavior;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Dibber\Document\Traits\Behavior;
 
 /** @ODM\MappedSuperclass */
 abstract class Base

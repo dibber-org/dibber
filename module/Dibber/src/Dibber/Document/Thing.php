@@ -1,10 +1,10 @@
 <?php
 namespace Dibber\Document;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
- ,  Sds\DoctrineExtensions\Annotation\Annotations as Sds
- ,  Gedmo
- ,  Dibber\Document\Traits;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Sds\DoctrineExtensions\Annotation\Annotations as Sds;
+use Gedmo;
+use Dibber\Document\Traits;
 
 /**
  * @ODM\Document(repositoryClass="Gedmo\Tree\Document\MongoDB\Repository\MaterializedPathRepository")

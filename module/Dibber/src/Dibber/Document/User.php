@@ -1,9 +1,9 @@
 <?php
 namespace Dibber\Document;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
- ,  Sds\DoctrineExtensions\Annotation\Annotations as Sds
- ,  Dibber\Document\Traits;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Sds\DoctrineExtensions\Annotation\Annotations as Sds;
+use Dibber\Document\Traits;
 
 /** @ODM\Document(collection="users") */
 class User extends Base implements \ZfcUser\Entity\UserInterface

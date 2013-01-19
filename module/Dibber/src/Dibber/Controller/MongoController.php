@@ -9,9 +9,9 @@
 
 namespace Dibber\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController
- ,  Zend\View\Model\ViewModel
- ,  Dibber\Mapper;
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Dibber\Mapper;
 
 class MongoController extends AbstractActionController
 {

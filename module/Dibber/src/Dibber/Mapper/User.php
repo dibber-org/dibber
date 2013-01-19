@@ -1,7 +1,7 @@
 <?php
 namespace Dibber\Mapper;
 
-use \Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 
 class User extends Base implements \ZfcUser\Mapper\UserInterface
 {
