@@ -1,15 +1,18 @@
 <?php
 namespace Dibber\Mapper;
 
-use \Doctrine\ODM\MongoDB\DocumentManager
- ,  \Doctrine\ODM\MongoDB\DocumentRepository
- ,  \Dibber\Document
- ,  \Sds\Common\Serializer
- ,  Zend\EventManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\DocumentRepository;
+use Dibber\Document;
+use Dibber\EventManager\EventManagerAwareTrait;
+use Dibber\EventManager\TriggerEventTrait;
+use Zend\EventManager\EventManagerAwareInterface;
+use Sds\Common\Serializer;
 
-abstract class Base// implements EventManager\EventManagerAwareInterface // commented as it makes unit tests seg fault :/
+abstract class Base// implements EventManagerAwareInterface // commented as it makes unit tests seg fault :/
 {
-    use EventManager\EventManagerAwareTrait;
+    use EventManagerAwareTrait;
+    use TriggerEventTrait;
 
     /** @var DocumentManager */
     protected $dm;
@@ -153,7 +156,14 @@ abstract class Base// implements EventManager\EventManagerAwareInterface // comm
             $document = $this->createDocument();
         }
 
+        # Gives the possibility to change $argv in listeners
+        $argv = array('data' => &$data, 'document' => $document);
+        $this->triggerEvent('hydrate.pre', $argv);
+        extract($argv);
+
         $this->dm->getHydratorFactory()->hydrate($document, $data);
+
+        $this->triggerEvent('hydrate.post', $argv);
 
         return $document;
     }
@@ -194,37 +204,110 @@ abstract class Base// implements EventManager\EventManagerAwareInterface // comm
     /**
      * @param string $id
      * @return Document\Base
+     *
+     * @triggers find.pre
+     * @triggers find.post
+     * @triggers find
      */
     public function find($id)
     {
-        return $this->getRepository()->find($id);
+        # Gives the possibility to change $argv in listeners
+        $argv = array('id' => &$id);
+        $this->triggerEvent('find.pre', $argv);
+        extract($argv);
+
+        $document = $this->getRepository()->find($id);
+
+        $this->triggerEvent('find', ['document' => $document]);
+        $this->triggerEvent('find.post', ['id' => $id, 'document' => $document]);
+
+        return $document;
     }
 
     /**
      * @param array $criteria
      * @return Document\Base
+     *
+     * @triggers findOneBy.pre
+     * @triggers findOneBy.post
+     * @triggers find
      */
     public function findOneBy(array $criteria)
     {
-        return $this->getRepository()->findOneBy($criteria);
+        # Gives the possibility to change $argv in listeners
+        $argv = array('criteria' => &$criteria);
+        $this->triggerEvent('findOneBy.pre', $argv);
+        extract($argv);
+
+        $document = $this->getRepository()->findOneBy($criteria);
+
+        $this->triggerEvent('find', ['document' => $document]);
+        $this->triggerEvent('findOneBy.post', ['criteria' => $criteria, 'document' => $document]);
+
+        return $document;
     }
 
     /**
-     * @param array $orderBy
+     * @param array|string $orderBy
      * @return array
+     *
+     * @triggers findAll.pre
+     * @triggers findAll.post
+     * @triggers find
      */
-    public function findAll(array $orderBy = null)
+    public function findAll($orderBy = null)
     {
-        return $this->getRepository()->findBy([], $orderBy);
+        if (is_string($orderBy)) {
+            $orderBy = [$orderBy => 'asc'];
+        }
+
+        # Gives the possibility to change $argv in listeners
+        $argv = array('orderBy' => &$orderBy);
+        $this->triggerEvent('findAll.pre', $argv);
+        extract($argv);
+
+        $documents = $this->getRepository()->findBy([], $orderBy);
+
+        foreach ($documents as $document) {
+            $this->triggerEvent('find', ['document' => $document]);
+        }
+
+        $this->triggerEvent('findAll.post', ['orderBy' => $orderBy, 'documents' => $documents]);
+
+        return $documents;
     }
 
     /**
      * @param array $criteria
+     * @param array|string $orderBy
+     * @param int $limit
+     * @param int $offset
      * @return array
+     *
+     * @triggers findBy.pre
+     * @triggers findBy.post
+     * @triggers find
      */
-    public function findBy(array $criteria)
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     {
-        return $this->getRepository()->findBy($criteria);
+        if (is_string($orderBy)) {
+            $orderBy = [$orderBy => 'asc'];
+        }
+
+        # Gives the possibility to change $argv in listeners
+        $argv = array('criteria' => &$criteria, 'orderBy' => &$orderBy, 'limit' => &$limit, 'offset' => &$offset);
+        $this->triggerEvent('findBy.pre', $argv);
+        extract($argv);
+
+        $documents = $this->getRepository()->findBy($criteria, $orderBy, $limit, $offset);
+
+        foreach ($documents as $document) {
+            $this->triggerEvent('find', ['document' => $document]);
+        }
+
+        $this->triggerEvent('findBy.post', array_merge($argv, ['documents' => $documents]));
+
+        return $documents;
     }
 
     /**
@@ -234,6 +317,11 @@ abstract class Base// implements EventManager\EventManagerAwareInterface // comm
      */
     public function save($document, $flush = false)
     {
+        # Gives the possibility to change $argv in listeners
+        $argv = array('document' => &$document, 'flush' => &$flush);
+        $this->triggerEvent('save.pre', $argv);
+        extract($argv);
+
         if (is_array($document)) {
             # Means we only have an array of data here
             $data = $document;
@@ -252,6 +340,8 @@ abstract class Base// implements EventManager\EventManagerAwareInterface // comm
             $this->flush();
         }
 
+        $this->triggerEvent('save.post', $argv);
+
         return $document;
     }
 
@@ -262,6 +352,11 @@ abstract class Base// implements EventManager\EventManagerAwareInterface // comm
      */
     public function delete($document, $flush = false)
     {
+        # Gives the possibility to change $argv in listeners
+        $argv = array('document' => &$document, 'flush' => &$flush);
+        $this->triggerEvent('delete.pre', $argv);
+        extract($argv);
+
         if (is_string($document)) {
             # Means we only have the id of the document
             $document = $this->find($document);
@@ -272,11 +367,11 @@ abstract class Base// implements EventManager\EventManagerAwareInterface // comm
 
         $this->dm->remove($document);
 
-        $this->dm->persist($document);
-
         if ($flush == true) {
             $this->flush();
         }
+
+        $this->triggerEvent('delete.post', $argv);
 
         return $document;
     }
