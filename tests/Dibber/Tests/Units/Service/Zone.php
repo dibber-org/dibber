@@ -12,26 +12,16 @@ class Zone extends Test
 
     public function beforeTestMethod($method)
     {
-        $this->zoneService = new \mock\Dibber\Service\Zone;
+        $this->zoneService = new \Dibber\Service\Zone;
         $this->zoneService->setServiceManager($this->sm);
     }
 
-    public function testDefaultMapper()
+    public function testGetMapper()
     {
-        $this->assert('default mapper is set and retreived')
-             ->then
+        $this
+            ->assert('default mapper is set and retreived')
+            ->then
                 ->object($this->zoneService->getMapper())
                     ->isInstanceOf('Dibber\Mapper\Zone');
-    }
-
-    public function testSetMapper()
-    {
-        $this->assert('mapper is set and retreived')
-             ->if($zoneMapper = new \Dibber\Mapper\Zone)
-             ->and($this->zoneService->setMapper($zoneMapper))
-             ->then
-                ->object($this->zoneService->getMapper())
-                    ->isInstanceOf('Dibber\Mapper\Zone')
-                    ->isEqualTo($zoneMapper);
     }
 }
