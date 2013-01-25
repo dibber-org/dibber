@@ -13,7 +13,6 @@ trait TriggerEventTrait
     /**
      * Trigger an event more easily :
      * - $target is $this by default
-     * - $argv is received by reference to allow modification in listeners
      *
      * @param  string $event
      * @param  array|object $argv
