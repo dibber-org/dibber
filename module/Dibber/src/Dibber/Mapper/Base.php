@@ -262,7 +262,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
         }
 
         # Gives the possibility to change $argv in listeners
-        $argv = array('orderBy' => &$orderBy);
+        $argv = ['orderBy' => &$orderBy];
         $this->triggerEvent('findAll.pre', $argv);
         extract($argv);
 
@@ -340,7 +340,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
             $this->flush();
         }
 
-        $this->triggerEvent('save.post', $argv);
+        $this->triggerEvent('save.post', array_merge($argv, ['saved' => $document]));
 
         return $document;
     }
@@ -371,7 +371,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
             $this->flush();
         }
 
-        $this->triggerEvent('delete.post', $argv);
+        $this->triggerEvent('delete.post', array_merge($argv, ['deleted' => $document]));
 
         return $document;
     }
