@@ -5,7 +5,9 @@
 <?php if (count($users)) : ?>
     <ul class="nav nav-tabs nav-stacked">
         <?php foreach ($users as $user) : ?>
-            <li><a href="<?php echo $this->url('dibber') . $user->getLogin()?>"><?php echo $this->zfcUserDisplayName($user) ?></a></li>
+            <?php if ($user instanceof \Dibber\Document\User) : ?>
+                <li><a href="<?php echo $this->url('dibber') . $user->getLogin()?>"><?php echo $this->zfcUserDisplayName($user) ?></a></li>
+            <?php endif; ?>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
