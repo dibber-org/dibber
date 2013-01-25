@@ -12,26 +12,16 @@ class Place extends Test
 
     public function beforeTestMethod($method)
     {
-        $this->placeService = new \mock\Dibber\Service\Place;
+        $this->placeService = new \Dibber\Service\Place;
         $this->placeService->setServiceManager($this->sm);
     }
 
-    public function testDefaultMapper()
+    public function testGetMapper()
     {
-        $this->assert('default mapper is set and retreived')
-             ->then
+        $this
+            ->assert('default mapper is set and retreived')
+            ->then
                 ->object($this->placeService->getMapper())
                     ->isInstanceOf('Dibber\Mapper\Place');
-    }
-
-    public function testSetMapper()
-    {
-        $this->assert('mapper is set and retreived')
-             ->if($placeMapper = new \Dibber\Mapper\Place)
-             ->and($this->placeService->setMapper($placeMapper))
-             ->then
-                ->object($this->placeService->getMapper())
-                    ->isInstanceOf('Dibber\Mapper\Place')
-                    ->isEqualTo($placeMapper);
     }
 }
