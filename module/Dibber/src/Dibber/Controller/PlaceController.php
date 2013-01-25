@@ -29,7 +29,7 @@ class PlaceController extends BaseController
 //        $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\Array());
 //        $paginator->setCurrentPageNumber($this->params('page'));
 
-        $places = $this->getService()->getMapper()->findAll(['name']); // @todo sortBy not working
+        $places = $this->getService()->getMapper()->findAll('name');
 
         return new ViewModel( [
             'places' => $places

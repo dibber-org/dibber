@@ -12,26 +12,16 @@ class Field extends Test
 
     public function beforeTestMethod($method)
     {
-        $this->fieldService = new \mock\Dibber\Service\Field;
+        $this->fieldService = new \Dibber\Service\Field;
         $this->fieldService->setServiceManager($this->sm);
     }
 
-    public function testDefaultMapper()
+    public function testGetMapper()
     {
-        $this->assert('default mapper is set and retreived')
-             ->then
+        $this
+            ->assert('default mapper is set and retreived')
+            ->then
                 ->object($this->fieldService->getMapper())
                     ->isInstanceOf('Dibber\Mapper\Field');
-    }
-
-    public function testSetMapper()
-    {
-        $this->assert('mapper is set and retreived')
-             ->if($fieldMapper = new \Dibber\Mapper\Field)
-             ->and($this->fieldService->setMapper($fieldMapper))
-             ->then
-                ->object($this->fieldService->getMapper())
-                    ->isInstanceOf('Dibber\Mapper\Field')
-                    ->isEqualTo($fieldMapper);
     }
 }
