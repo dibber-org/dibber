@@ -1,8 +1,8 @@
 <?php
 namespace Dibber\Document\Traits;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
- ,  Dibber\Document;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Dibber\Document;
 
 trait ManyUsers
 {
@@ -17,7 +17,7 @@ trait ManyUsers
      *
      * @var array
      */
-//    public $users;
+//    private $users;
 
     /**
      * @return array of Document\User
@@ -28,15 +28,61 @@ trait ManyUsers
 
     /**
      * @param array $users of Document\User
+     * @param bool $inverse
      * @return mixed
      */
-    public function setUsers($users)
+    public function setUsers($users, $inverse = true)
     {
-        $this->users = [];
+        $this->removeUsers($inverse);
 
         foreach ($users as $user) {
             if ($user instanceof Document\User) {
-                $this->addUser($user);
+                $this->addUser($user, $inverse);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param bool $inverse
+     * @return mixed
+     */
+    public function removeUsers($inverse = true)
+    {
+        foreach ($this->users as $user) {
+            $this->removeUser($user, $inverse);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Document\User $user
+     * @param bool $inverse
+     * @return mixed
+     */
+    public function addUser(Document\User $user, $inverse = true)
+    {
+        $this->users[] = $user;
+        if ($inverse == true && method_exists($this, 'inverseAddUser')) {
+            $this->inverseAddUser($user);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Document\User $user
+     * @param bool $inverse
+     * @return mixed
+     */
+    public function removeUser(Document\User $user, $inverse = true)
+    {
+        foreach ($this->users as $key => $currentUser) {
+            if ($currentUser == $user) {
+                unset($this->users[$key]);
+                if ($inverse == true && method_exists($this, 'inverseRemoveUser')) {
+                    $this->inverseRemoveUser($user);
+                }
             }
         }
 
@@ -45,12 +91,16 @@ trait ManyUsers
 
     /**
      * @param Document\User $user
-     * @return mixed
+     * @return boolean
      */
-    public function addUser(Document\User $user)
+    public function hasUser(Document\User $user)
     {
-        $this->users[] = $user;
-        $user->places[] = $this; // @todo gonna break one day when used by another class than User!
-        return $this;
+        foreach ($this->users as $currentUser) {
+            if ($currentUser == $user) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
