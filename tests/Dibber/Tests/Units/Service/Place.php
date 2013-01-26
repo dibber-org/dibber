@@ -22,6 +22,7 @@ class Place extends Test
             ->assert('default mapper is set and retreived')
             ->then
                 ->object($this->placeService->getMapper())
-                    ->isInstanceOf('Dibber\Mapper\Place');
+                    ->isInstanceOf('Dibber\Mapper\Place')
+        ;
     }
 }

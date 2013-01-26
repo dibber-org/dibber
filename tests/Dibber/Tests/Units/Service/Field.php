@@ -22,6 +22,7 @@ class Field extends Test
             ->assert('default mapper is set and retreived')
             ->then
                 ->object($this->fieldService->getMapper())
-                    ->isInstanceOf('Dibber\Mapper\Field');
+                    ->isInstanceOf('Dibber\Mapper\Field')
+        ;
     }
 }

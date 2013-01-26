@@ -22,6 +22,7 @@ class Zone extends Test
             ->assert('default mapper is set and retreived')
             ->then
                 ->object($this->zoneService->getMapper())
-                    ->isInstanceOf('Dibber\Mapper\Zone');
+                    ->isInstanceOf('Dibber\Mapper\Zone')
+        ;
     }
 }
