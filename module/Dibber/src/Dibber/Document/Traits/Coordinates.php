@@ -1,8 +1,8 @@
 <?php
 namespace Dibber\Document\Traits;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
- ,  Dibber\Document;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Dibber\Document;
 
 trait Coordinates
 {
