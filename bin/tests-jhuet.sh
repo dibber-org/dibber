@@ -5,7 +5,7 @@ rm -rf data/cache/Dibber/Document/Hydrator/*.php
 rm -rf data/cache/Dibber/Document/Proxy/*.php
 
 if [ -z $1 ]; then
-  dir='tests/Dibber/'
+  dir='tests/Dibber/Tests/Units'
 else
   dir=$1
 fi
