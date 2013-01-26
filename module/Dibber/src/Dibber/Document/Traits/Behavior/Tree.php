@@ -1,8 +1,8 @@
 <?php
 namespace Dibber\Document\Traits\Behavior;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
- ,  Gedmo;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Gedmo;
 
 trait Tree
 {
