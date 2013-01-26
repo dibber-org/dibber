@@ -182,7 +182,7 @@ class Base extends Test
                     return [$user, $user];
                 } )
                 ->then
-                    ->phpArray($this->baseMapper->findAll(['name']))
+                    ->array($this->baseMapper->findAll(['name']))
                         ->strictlyContainsValues([$user, $user])
 
                     ->mock($repository)
@@ -200,7 +200,7 @@ class Base extends Test
                     return [$user, $user];
                 } )
                 ->then
-                    ->phpArray($this->baseMapper->findBy([]))
+                    ->array($this->baseMapper->findBy([]))
                         ->strictlyContainsValues([$user, $user])
 
                     ->mock($repository)
@@ -219,7 +219,7 @@ class Base extends Test
                     'save.pre',
                     function(ZendEvent $e) use($test, $document) {
                         $test
-                            ->phpArray($e->getParam('document'))
+                            ->array($e->getParam('document'))
                                 ->strictlyContainsValues($document)
                             ->boolean($e->getParam('flush'))
                                 ->isFalse()
