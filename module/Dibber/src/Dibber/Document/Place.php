@@ -24,7 +24,7 @@ class Place extends Thing
      *  )
      * @Sds\Serializer(@Sds\Eager)
      */
-    public $users;
+    private $users;
 
     /**
      *
@@ -61,5 +61,26 @@ class Place extends Thing
         }
         $this->parent = null;
         return $this;
+    }
+
+    /**
+     * Called after a ManyUsers::addUser to inverse the relation
+     *
+     * @param User $user
+     */
+    public function inverseAddUser(User $user)
+    {
+        $user->addPlace($this, false);
+    }
+
+    /**
+     * Called after a ManyUsers::removeUser to inverse the removal of the
+     * relation.
+     *
+     * @param User $user
+     */
+    public function inverseRemoveUser(User $user)
+    {
+        $user->removePlace($this, false);
     }
 }
