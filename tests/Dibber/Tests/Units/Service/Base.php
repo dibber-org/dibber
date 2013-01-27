@@ -12,6 +12,8 @@ class Base extends Test
 
     public function beforeTestMethod($method)
     {
+//        parent::beforeTestMethod($method);
+//
 //        $this->baseService = new \mock\Dibber\Service\Base;
 //        $this->baseService->setServiceManager($this->sm);
     }

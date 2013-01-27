@@ -14,6 +14,8 @@ class User extends Test
 
     public function beforeTestMethod($method)
     {
+        parent::beforeTestMethod($method);
+
         $this->userMapper = new \mock\Dibber\Mapper\User($this->dm);
     }
 

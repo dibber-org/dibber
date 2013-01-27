@@ -12,6 +12,8 @@ class Field extends Test
 
     public function beforeTestMethod($method)
     {
+        parent::beforeTestMethod($method);
+
         $this->fieldService = new \Dibber\Service\Field;
         $this->fieldService->setServiceManager($this->sm);
     }

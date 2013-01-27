@@ -14,6 +14,8 @@ class Place extends Test
 
     public function beforeTestMethod($method)
     {
+        parent::beforeTestMethod($method);
+
         $this->placeMapper = new \mock\Dibber\Mapper\Place($this->dm);
     }
 

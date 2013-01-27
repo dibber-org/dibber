@@ -12,6 +12,8 @@ class User extends Test
 
     public function beforeTestMethod($method)
     {
+        parent::beforeTestMethod($method);
+
         $this->userService = new \mock\Dibber\Service\User;
         $this->userService->setServiceManager($this->sm);
     }

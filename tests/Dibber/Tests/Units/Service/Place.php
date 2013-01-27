@@ -12,6 +12,8 @@ class Place extends Test
 
     public function beforeTestMethod($method)
     {
+        parent::beforeTestMethod($method);
+
         $this->placeService = new \Dibber\Service\Place;
         $this->placeService->setServiceManager($this->sm);
     }

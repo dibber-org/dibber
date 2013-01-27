@@ -12,6 +12,8 @@ class Zone extends Test
 
     public function beforeTestMethod($method)
     {
+        parent::beforeTestMethod($method);
+
         $this->zoneService = new \Dibber\Service\Zone;
         $this->zoneService->setServiceManager($this->sm);
     }
