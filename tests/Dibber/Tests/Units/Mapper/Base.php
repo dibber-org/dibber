@@ -16,9 +16,34 @@ class Base extends Test
 
     public function beforeTestMethod($method)
     {
+        parent::beforeTestMethod($method);
+
         # Will make it behave like a User mapper
         $this->baseMapper = new \mock\Dibber\Mapper\Base('Dibber\Document\User', $this->dm);
-//        $this->baseMapper->setSerializer($this->application->getServiceManager()->get('doctrine.serializer.odm_default'));
+    }
+
+    /**
+     * @param array $data
+     * @return Document\User
+     */
+    protected function createUser($data)
+    {
+        $user = new Document\User;
+        foreach ($data as $field => $value) {
+            $setter = 'set' . ucfirst($field);
+            $user->$setter($value);
+        }
+        return $user;
+    }
+
+    public function testSetDocumentManager()
+    {
+        $this
+            ->assert('DocumentManager is set and retreived')
+                ->if($this->baseMapper->setDocumentManager($this->dm))
+                ->then
+                    ->object($this->baseMapper->getDocumentManager())
+                        ->isIdenticalTo($this->dm);
     }
 
     public function testSetDocumentName()
@@ -51,6 +76,50 @@ class Base extends Test
             ->assert('Getting another DocumentName from Repository')
                 ->string($this->baseMapper->getRepository('Dibber\Document\Place')->getDocumentName())
                     ->isEqualTo('Dibber\Document\Place')
+        ;
+    }
+
+    /**
+     * @todo
+     */
+    public function testSerialize()
+    {
+//        $this
+//            ->assert('Single document is being serialized to an array')
+//                ->if($this->baseMapper->setSerializer($this->application->getServiceManager()->get('doctrine.serializer.odm_default')))
+//                ->and($documentArray = ['login' => 'jhuet', 'name' => 'Jérémy Huet'])
+//                ->and($document = $this->createUser($documentArray))
+//                ->then
+//                    ->array($this->baseMapper->serialize($document))
+//                        ->strictlyContainsValues($documentArray)
+//        ;
+    }
+
+    public function testSetSerializer()
+    {
+        $this
+            ->assert('Serializer is set and retreived')
+                ->if($serializer = $this->application->getServiceManager()->get('doctrine.serializer.odm_default'))
+                ->and($this->baseMapper->setSerializer($serializer))
+                ->then
+                    ->object($this->baseMapper->getSerializer())
+                        ->isIdenticalTo($serializer);
+    }
+
+    public function testToArray()
+    {
+        $this
+            ->assert('toArray is just alias to serialize')
+                ->if($document = new Document\User)
+                ->and($array = [])
+                ->and($this->baseMapper->getMockController()->serialize = function($document) use($array) {
+                    return $array;
+                } )
+                ->then
+                    ->array($this->baseMapper->toArray($document))
+                        ->isIdenticalTo($array)
+                    ->mock($this->baseMapper)
+                        ->call('serialize')->withArguments($document)->once()
         ;
     }
 
