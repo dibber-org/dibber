@@ -18,7 +18,8 @@ abstract class Test extends \Dibber\Tests\Units\Test
     }
 
     /**
-     * @return Doctrine\ODM\MongoDB\DocumentRepository
+     * @param \Dibber\Mapper\Base
+     * @return \Doctrine\ODM\MongoDB\DocumentRepository
      */
     protected function mockGetRepository($mockingOn = null)
     {
