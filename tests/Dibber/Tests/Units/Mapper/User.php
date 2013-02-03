@@ -58,6 +58,9 @@ class User extends Test
         $this
             ->assert('FindByusername is just an alias to findByLogin')
                 ->if($user = new \mock\Dibber\Document\User)
+                ->and($this->userMapper->getMockController()->findOneBy = function(array $criteria) use ($user) {
+                    return $user;
+                } )
                 ->and($login = 'jhuet')
                 ->then
                    ->object($this->userMapper->findByUsername($login))
