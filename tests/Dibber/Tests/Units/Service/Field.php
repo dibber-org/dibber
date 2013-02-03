@@ -12,6 +12,8 @@ class Field extends Test
 
     public function beforeTestMethod($method)
     {
+        parent::beforeTestMethod($method);
+
         $this->fieldService = new \Dibber\Service\Field;
         $this->fieldService->setServiceManager($this->sm);
     }
@@ -22,6 +24,7 @@ class Field extends Test
             ->assert('default mapper is set and retreived')
             ->then
                 ->object($this->fieldService->getMapper())
-                    ->isInstanceOf('Dibber\Mapper\Field');
+                    ->isInstanceOf('Dibber\Mapper\Field')
+        ;
     }
 }

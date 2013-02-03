@@ -12,6 +12,8 @@ class User extends Test
 
     public function beforeTestMethod($method)
     {
+        parent::beforeTestMethod($method);
+
         $this->userService = new \mock\Dibber\Service\User;
         $this->userService->setServiceManager($this->sm);
     }
@@ -27,7 +29,8 @@ class User extends Test
             ->then
                 ->object($this->userService->getMapper())
                     ->isInstanceOf('Dibber\Mapper\User')
-                    ->isIdenticalTo($userMapper);
+                    ->isIdenticalTo($userMapper)
+        ;
     }
 
     public function testSetMapper()
@@ -40,6 +43,7 @@ class User extends Test
                     ->isInstanceOf('Dibber\Service\User')
                 ->object($this->userService->getMapper())
                     ->isInstanceOf('Dibber\Mapper\User')
-                    ->isIdenticalTo($userMapper);
+                    ->isIdenticalTo($userMapper)
+        ;
     }
 }

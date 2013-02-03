@@ -157,7 +157,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
         }
 
         # Gives the possibility to change $argv in listeners
-        $argv = array('data' => &$data, 'document' => $document);
+        $argv = ['data' => &$data, 'document' => $document];
         $this->triggerEvent('hydrate.pre', $argv);
         extract($argv);
 
@@ -169,11 +169,27 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
     }
 
     /**
-     *
+     * Alias to document manager flush method.
      */
     public function flush()
     {
         $this->dm->flush();
+    }
+
+    /**
+     * Alias to document manager persist method.
+     */
+    public function persist(Document\Base $document)
+    {
+        $this->dm->persist($document);
+    }
+
+    /**
+     * Alias to document manager remove method.
+     */
+    public function remove(Document\Base $document)
+    {
+        $this->dm->remove($document);
     }
 
     /**
@@ -212,7 +228,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
     public function find($id)
     {
         # Gives the possibility to change $argv in listeners
-        $argv = array('id' => &$id);
+        $argv = ['id' => &$id];
         $this->triggerEvent('find.pre', $argv);
         extract($argv);
 
@@ -235,7 +251,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
     public function findOneBy(array $criteria)
     {
         # Gives the possibility to change $argv in listeners
-        $argv = array('criteria' => &$criteria);
+        $argv = ['criteria' => &$criteria];
         $this->triggerEvent('findOneBy.pre', $argv);
         extract($argv);
 
@@ -295,7 +311,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
         }
 
         # Gives the possibility to change $argv in listeners
-        $argv = array('criteria' => &$criteria, 'orderBy' => &$orderBy, 'limit' => &$limit, 'offset' => &$offset);
+        $argv = ['criteria' => &$criteria, 'orderBy' => &$orderBy, 'limit' => &$limit, 'offset' => &$offset];
         $this->triggerEvent('findBy.pre', $argv);
         extract($argv);
 
@@ -318,7 +334,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
     public function save($document, $flush = false)
     {
         # Gives the possibility to change $argv in listeners
-        $argv = array('document' => &$document, 'flush' => &$flush);
+        $argv = ['document' => &$document, 'flush' => &$flush];
         $this->triggerEvent('save.pre', $argv);
         extract($argv);
 
@@ -334,7 +350,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
             $document = $this->hydrate($data, $document);
         }
 
-        $this->dm->persist($document);
+        $this->persist($document);
 
         if ($flush == true) {
             $this->flush();
@@ -353,7 +369,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
     public function delete($document, $flush = false)
     {
         # Gives the possibility to change $argv in listeners
-        $argv = array('document' => &$document, 'flush' => &$flush);
+        $argv = ['document' => &$document, 'flush' => &$flush];
         $this->triggerEvent('delete.pre', $argv);
         extract($argv);
 
@@ -365,7 +381,7 @@ abstract class Base// implements EventManagerAwareInterface // commented as it m
             $document = $this->findOneBy($document);
         }
 
-        $this->dm->remove($document);
+        $this->remove($document);
 
         if ($flush == true) {
             $this->flush();

@@ -12,17 +12,9 @@ class Base extends Test
 
     public function beforeTestMethod($method)
     {
+//        parent::beforeTestMethod($method);
+//
 //        $this->baseService = new \mock\Dibber\Service\Base;
 //        $this->baseService->setServiceManager($this->sm);
-    }
-
-    public function testSetServiceManager()
-    {
-//        $this->assert('serviceManager is set and retreived')
-//             ->if($this->baseService->setServiceManager($this->sm));
-//             ->then
-//                ->object($this->baseService->getServiceManager())
-//                    ->isInstanceOf('Zend\ServiceManager\ServiceManager')
-//                    ->isEqualTo($this->sm);
     }
 }

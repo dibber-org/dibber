@@ -5,8 +5,9 @@ use Hybrid_User_Profile;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use ScnSocialAuthDoctrineMongoODM\Options\ModuleOptions;
 use ZfcUser\Entity\UserInterface;
+use ScnSocialAuth\Mapper\UserProviderInterface;
 
-class UserProvider extends Base implements \ScnSocialAuth\Mapper\UserProviderInterface
+class UserProvider extends Base implements UserProviderInterface
 {
     /**
      * @param DocumentManager $dm
@@ -20,7 +21,7 @@ class UserProvider extends Base implements \ScnSocialAuth\Mapper\UserProviderInt
     /**
      * @param string $providerId
      * @param string $provider
-     * @return UserProvider
+     * @return UserProviderInterface
      */
     public function findUserByProviderId($providerId, $provider)
     {
