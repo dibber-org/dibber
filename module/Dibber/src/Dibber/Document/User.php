@@ -33,7 +33,7 @@ class User extends Base implements \ZfcUser\Entity\UserInterface
      *  )
      * @Sds\Serializer(@Sds\Eager)
      */
-    public $places;
+    private $places;
 
     /**
      * @var int
@@ -57,7 +57,7 @@ class User extends Base implements \ZfcUser\Entity\UserInterface
      * @throws Exception
      */
     public function setId($id) {
-        throw new Exception('It is not allowed to specifically set the ID of a document');
+        throw new \Exception('It is not allowed to specifically set the ID of a document');
     }
 
     /**
@@ -163,17 +163,6 @@ class User extends Base implements \ZfcUser\Entity\UserInterface
     }
 
     /**
-     * @param Place $place
-     * @return mixed
-     */
-    public function addPlace(Place $place)
-    {
-        $this->places[] = $place;
-        $place->users[] = $this;
-        return $this;
-    }
-
-    /**
      * Get state. Used to comply with ZfcUser UserInterface
      *
      * @return int
@@ -193,5 +182,26 @@ class User extends Base implements \ZfcUser\Entity\UserInterface
     {
         $this->state = (int) $state;
         return $this;
+    }
+
+    /**
+     * Called after a ManyPlaces::addPlace to inverse the relation
+     *
+     * @param Place $place
+     */
+    public function inverseAddPlace(Place $place)
+    {
+        $place->addUser($this, false);
+    }
+
+    /**
+     * Called after a ManyPlaces::removePlace to inverse the removal of the
+     * relation.
+     *
+     * @param Place $place
+     */
+    public function inverseRemovePlace(Place $place)
+    {
+        $place->removeUser($this, false);
     }
 }

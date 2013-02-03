@@ -10,7 +10,7 @@ abstract class Base
     use Behavior\Timestampable;
 
     /** @ODM\Id */
-    private $id;
+    protected $id;
 
     /** */
     public function __construct() {}

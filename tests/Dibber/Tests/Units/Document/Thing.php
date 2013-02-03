@@ -17,21 +17,25 @@ class Thing extends Test
 
     public function testSetName()
     {
-        $this->assert('Name is set and retreived')
-             ->if($name = 'A Verrières')
-             ->and($this->thing->setName($name))
-             ->then
-                ->string($this->thing->getName())
-                    ->isEqualTo($name);
+        $this
+            ->assert('Name is set and retreived')
+                ->if($name = 'A Verrières')
+                ->and($this->thing->setName($name))
+                ->then
+                    ->string($this->thing->getName())
+                        ->isEqualTo($name)
+        ;
     }
 
     public function testSetNote()
     {
-        $this->assert('Note is set and retreived')
-             ->if($note = 'How wonderful !')
-             ->and($this->thing->setNote($note))
-             ->then
-                ->string($this->thing->getNote())
-                    ->isEqualTo($note);
+        $this
+            ->assert('Note is set and retreived')
+                ->if($note = 'How wonderful !')
+                ->and($this->thing->setNote($note))
+                ->then
+                   ->string($this->thing->getNote())
+                       ->isEqualTo($note)
+        ;
     }
 }

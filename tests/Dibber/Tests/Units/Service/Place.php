@@ -12,6 +12,8 @@ class Place extends Test
 
     public function beforeTestMethod($method)
     {
+        parent::beforeTestMethod($method);
+
         $this->placeService = new \Dibber\Service\Place;
         $this->placeService->setServiceManager($this->sm);
     }
@@ -22,6 +24,7 @@ class Place extends Test
             ->assert('default mapper is set and retreived')
             ->then
                 ->object($this->placeService->getMapper())
-                    ->isInstanceOf('Dibber\Mapper\Place');
+                    ->isInstanceOf('Dibber\Mapper\Place')
+        ;
     }
 }

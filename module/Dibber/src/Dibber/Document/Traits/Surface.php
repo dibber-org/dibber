@@ -1,8 +1,8 @@
 <?php
 namespace Dibber\Document\Traits;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM
- ,  Dibber\Document;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Dibber\Document;
 
 trait Surface
 {
@@ -59,7 +59,7 @@ trait Surface
      * @return Thing
      */
     public function setShape($shape) {
-        $this->shape = $shape;
+        $this->shape = (string) $shape;
         return $this;
     }
 }
