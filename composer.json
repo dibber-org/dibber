@@ -26,8 +26,8 @@
         "doctrine/mongodb": "1.0.*",
         "doctrine/doctrine-mongo-odm-module": "0.*",
         "gedmo/doctrine-extensions": "2.*",
-        "zf-commons/zfc-user": "dev-master",
-        "socalnick/scn-social-auth": "dev-master",
+        "zf-commons/zfc-user": "0.*",
+        "socalnick/scn-social-auth": "1.*",
         "jhuet/scn-social-auth-doctrine-mongo-odm": "dev-master",
         "jhuet/sds-doctrine-extensions-module": "dev-master",
         "jhuet/zdt-logger-module": "0.*"
