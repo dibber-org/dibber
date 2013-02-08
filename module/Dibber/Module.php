@@ -118,6 +118,8 @@ class Module implements
                     $zoneService->setServiceManager($sm);
                     return $zoneService;
                 },
+
+                'dibber_logger' => 'Dibber\ServiceFactory\Logger'
             ],
         ];
     }

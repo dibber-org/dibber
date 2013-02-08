@@ -1,6 +1,7 @@
 <?php
 return [
     'modules' => [
+        'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineMongoODMModule',
         'ZfcBase',
@@ -9,6 +10,7 @@ return [
         'ScnSocialAuth',
         'ScnSocialAuthDoctrineMongoODM',
         'Sds\DoctrineExtensionsModule',
+        'Jhu\ZdtLoggerModule',
         'Dibber\WebService',
         'Dibber',
     ],
