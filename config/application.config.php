@@ -10,6 +10,7 @@ return [
         'ScnSocialAuth',
         'ScnSocialAuthDoctrineMongoODM',
         'Sds\DoctrineExtensionsModule',
+        'Jhu\ZdtLoggerModule',
         'Dibber\WebService',
         'Dibber',
     ],
