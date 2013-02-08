@@ -12,5 +12,14 @@
  */
 
 return [
-    // ...
+    'dibber' => [
+        'logger' => [
+            'writers' => [ [
+                'name'      => 'stream',
+                'options'   => [
+                    'stream'    => __DIR__ . '/../../data/log/' . date('Y-m-d') . '.log'
+                ]
+            ] ]
+        ]
+    ]
 ];
