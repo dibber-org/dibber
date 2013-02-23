@@ -30,7 +30,8 @@
         "socalnick/scn-social-auth": "1.*",
         "jhuet/scn-social-auth-doctrine-mongo-odm": "dev-master",
         "jhuet/sds-doctrine-extensions-module": "dev-master",
-        "jhuet/zdt-logger-module": "0.*"
+        "jhuet/zdt-logger-module": "0.*",
+        "bjyoungblood/bjy-authorize": "dev-master"
     },
     "require-dev": {
         "atoum/atoum": "dev-master"

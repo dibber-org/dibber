@@ -9,6 +9,7 @@ return [
         'ZfcUserDoctrineMongoODM',
         'ScnSocialAuth',
         'ScnSocialAuthDoctrineMongoODM',
+        'BjyAuthorize',
         'Sds\DoctrineExtensionsModule',
         'Jhu\ZdtLoggerModule',
         'Dibber\WebService',
