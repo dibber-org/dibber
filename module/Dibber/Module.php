@@ -77,6 +77,13 @@ class Module implements
                     $placeMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
                     return $placeMapper;
                 },
+                'dibber_role_mapper' => function ($sm) {
+                    $roleMapper = new \Dibber\Mapper\Role(
+                        $sm->get('doctrine.documentmanager.odm_default')
+                    );
+                    $roleMapper->setSerializer($sm->get('doctrine.serializer.odm_default'));
+                    return $roleMapper;
+                },
                 'dibber_user_mapper' => function ($sm) {
                     $userMapper = new \Dibber\Mapper\User(
                         $sm->get('doctrine.documentmanager.odm_default')
