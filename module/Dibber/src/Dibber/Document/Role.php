@@ -8,7 +8,10 @@ use BjyAuthorize\Acl\HierarchicalRoleInterface;
 /** @ODM\Document(collection="roles") */
 class Role extends Base implements HierarchicalRoleInterface
 {
-    const COLLECTION = 'roles';
+    const COLLECTION    = 'roles';
+
+    const ROLE_GUEST    = 'guest';
+    const ROLE_USER     = 'user';
 
     /** @ODM\String */
     private $roleId;
