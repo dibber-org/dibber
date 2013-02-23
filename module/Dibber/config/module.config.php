@@ -140,6 +140,26 @@ return [
                     ],
                 ],
             ],
+            'scn-social-auth-user' => [
+                'child_routes' => [
+                    'authenticate' => array(
+                        'options' => array(
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Dibber\Controller',
+                                'controller' => 'user',
+                            ),
+                        ),
+                    ),
+                    'register' => [
+                        'options' => [
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Dibber\Controller',
+                                'controller' => 'user',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [

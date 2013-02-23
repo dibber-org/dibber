@@ -9,16 +9,19 @@
 
 namespace Dibber\Controller;
 
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Dibber\Service\ServiceAwareInterface;
 use Dibber\Service\ServiceAwareTrait;
 
-class UserController extends \ScnSocialAuth\Controller\UserController implements ServiceAwareInterface
+class UserController extends AbstractActionController implements ServiceAwareInterface
 {
     use ServiceAwareTrait;
 
     /**
      * Public user page
+     *
+     * @return \Zend\View\Model\ViewModel
      */
     public function indexAction()
     {
@@ -29,6 +32,8 @@ class UserController extends \ScnSocialAuth\Controller\UserController implements
 
     /**
      * Profile page
+     *
+     * @return \Zend\View\Model\ViewModel
      */
     public function profileAction()
     {
@@ -38,6 +43,9 @@ class UserController extends \ScnSocialAuth\Controller\UserController implements
         return new ViewModel();
     }
 
+    /**
+     * @return \Zend\View\Model\ViewModel
+     */
     public function listAction()
     {
         // @todo paginator with MongoDB?
@@ -51,11 +59,53 @@ class UserController extends \ScnSocialAuth\Controller\UserController implements
         ] );
     }
 
+    /**
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function registerAction()
+    {
+        // Attaching to register event in order to add the "user" role to the new user.
+        /* @var $roleService \Dibber\Service\Role */
+        $roleService = $this->getServiceLocator()->get('dibber_role_service');
+        $this->getService()->getEventManager()->attach('register', [$roleService, 'onRegister']);
+
+        return $this->forward()->dispatch('scn-social-auth-user', ['action' => 'register']);
+    }
+
+    /**
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function providerLoginAction()
+    {
+        return $this->forward()->dispatch('scn-social-auth-user', ['action' => 'providerLogin', 'provider' => $this->params('provider'), 'redirect' => $this->params('redirect')]);
+    }
+
+    public function authenticateAction()
+    {
+        // Attaching to register event in order to add the "user" role to the new user.
+        /* @var $hybridAuthAdapter \ScnSocialAuth\Authentication\Adapter\HybridAuth */
+        $hybridAuthAdapter = $this->getServiceLocator()->get('ScnSocialAuth\Authentication\Adapter\HybridAuth');
+        /* @var $roleService \Dibber\Service\Role */
+        $roleService = $this->getServiceLocator()->get('dibber_role_service');
+        $hybridAuthAdapter->getEventManager()->attach('registerViaProvider', [$roleService, 'onRegister']);
+
+        return $this->forward()->dispatch('zfcuser', ['action' => 'authenticate', 'provider' => $this->params('provider'), 'redirect' => $this->params('redirect')]);
+    }
+
+    /**
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function loginAction()
+    {
+        return $this->forward()->dispatch('scn-social-auth-user', ['action' => 'login']);
+    }
+
+    /**
+     * @return \Zend\View\Model\ViewModel
+     */
     public function logoutAction()
     {
-        # Seems to be needed to avoid PHP warnings as auth providers aren't set otherwise
-        $this->getHybridAuth();
-        return parent::logoutAction();
+        return $this->forward()->dispatch('scn-social-auth-user', ['action' => 'logout']);
     }
 
     /**
