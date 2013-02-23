@@ -6,9 +6,12 @@ use Sds\DoctrineExtensions\Annotation\Annotations as Sds;
 use Dibber\Document\Traits;
 
 /** @ODM\Document(collection="users") */
-class User extends Base implements \ZfcUser\Entity\UserInterface
+class User extends Base implements
+    \ZfcUser\Entity\UserInterface,
+    \BjyAuthorize\Provider\Role\ProviderInterface
 {
     use Traits\ManyPlaces;
+    use Traits\ManyRoles;
 
     const COLLECTION = 'users';
 
@@ -36,6 +39,17 @@ class User extends Base implements \ZfcUser\Entity\UserInterface
     private $places;
 
     /**
+     *  @ODM\ReferenceMany(
+     *      targetDocument="Role",
+     *      sort={"name"},
+     *      cascade={"persist"},
+     *      simple=true
+     *  )
+     * @Sds\Serializer(@Sds\Eager)
+     */
+    private $roles;
+
+    /**
      * @var int
      */
     private $state;
@@ -47,7 +61,8 @@ class User extends Base implements \ZfcUser\Entity\UserInterface
     {
         parent::__construct();
 
-        $this->places = new \Doctrine\Common\Collections\ArrayCollection;
+        $this->places   = new \Doctrine\Common\Collections\ArrayCollection;
+        $this->roles    = new \Doctrine\Common\Collections\ArrayCollection;
     }
 
     /**
