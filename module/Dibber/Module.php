@@ -120,6 +120,11 @@ class Module implements
                     $placeService->setServiceManager($sm);
                     return $placeService;
                 },
+                'dibber_role_service' => function($sm) {
+                    $roleService = new \Dibber\Service\Role();
+                    $roleService->setServiceManager($sm);
+                    return $roleService;
+                },
                 'dibber_zone_service' => function($sm) {
                     $zoneService = new \Dibber\Service\Zone();
                     $zoneService->setServiceManager($sm);
