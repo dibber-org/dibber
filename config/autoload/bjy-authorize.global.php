@@ -36,6 +36,7 @@ return array(
                 // Below is the default index action used by the [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)
                 array('route' => 'dibber/login',    'roles' => array('guest')),
                 array('route' => 'dibber/login/provider', 'roles' => array('guest')),
+                array('route' => 'scn-social-auth-user/register', 'roles' => array('guest')),
                 array('route' => 'scn-social-auth-hauth', 'roles' => array('guest')),
                 array('route' => 'scn-social-auth-user/authenticate/query', 'roles' => array('guest')),
 
